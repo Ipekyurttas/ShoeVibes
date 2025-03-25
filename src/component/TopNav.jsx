@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, Container, Button, Form, FormControl } from 'react-bootstrap';
 import { Bell, Heart, X } from 'react-bootstrap-icons';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import yazi from '../images/yazi.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import '../css/Navbar.css';
 
 function TopNavbar() {
   const [searchText, setSearchText] = useState('');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleClearSearch = () => {
     setSearchText('');
   };
 
-  
+
   const navigateToAuth = (tab) => {
-    console.log(`Navigating to /auth with tab: ${tab}`); 
+    console.log(`Navigating to /auth with tab: ${tab}`);
     navigate('/auth', { state: { tab } });
   };
 
@@ -52,7 +53,7 @@ function TopNavbar() {
                 <X size={20} color="#6a380a" />
               </Button>
             )}
-            <Button variant="outline-success" size="sm" style={{ borderRadius: '5px' }}>Search</Button>
+            <Button variant="outline-success" size="sm" style={{ borderRadius: '5px', height: '48px', width: '60px' }}>Search</Button>
           </Form>
         </div>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import '../css/Navbar.css';
 
 const categories = {
   brands: ["Nike", "Adidas", "Puma", "Sketchers"],
@@ -11,7 +12,7 @@ const categories = {
   campaigns: ["50% Off", "Buy 1 Get 1 Free", "Clearance Sale"]
 };
 
-function CategoryNav(){
+function CategoryNav() {
   const [hoveredCategory, setHoveredCategory] = useState(null);
 
   return (
