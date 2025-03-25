@@ -1,15 +1,18 @@
 import React from 'react';
-import TopNav from './components/TopNav';
-import CategoryNav from './components/CategoryNav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './App.css';
+import Home from './page/Home';
+import User from './page/User';
+import { Routes, Route } from 'react-router-dom';
 
-function App(){
+function App() {
   return (
-    <div style={{ width: '100%', height: '100%', overflowX: 'hidden' }}>
-      <TopNav/>
-      <CategoryNav/>
+    <div>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/auth' element={<User />} />
+      </Routes>
     </div>
   );
 };

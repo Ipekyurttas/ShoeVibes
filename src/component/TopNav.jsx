@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, Container, Button, Form, FormControl } from 'react-bootstrap';
-import { Bell, Heart, X } from 'react-bootstrap-icons'; 
-import yazi from '../assets/yazi.png'; 
+import { Bell, Heart, X } from 'react-bootstrap-icons';
+import { useNavigate } from 'react-router-dom'; 
+import yazi from '../images/yazi.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-function TopNavbar(){
+function TopNavbar() {
   const [searchText, setSearchText] = useState('');
+  const navigate = useNavigate(); 
 
   const handleClearSearch = () => {
     setSearchText('');
+  };
+
+  
+  const navigateToAuth = (tab) => {
+    console.log(`Navigating to /auth with tab: ${tab}`); 
+    navigate('/auth', { state: { tab } });
   };
 
   return (
@@ -32,14 +40,14 @@ function TopNavbar(){
               className="me-2"
               aria-label="Search"
               value={searchText}
-              onChange={(e) => setSearchText(e.target.value)} 
+              onChange={(e) => setSearchText(e.target.value)}
               style={{ borderRadius: '5px', width: '400px' }}
             />
             {searchText && (
               <Button
                 variant="link"
                 onClick={handleClearSearch}
-                style={{ marginLeft: '-40px', zIndex: 1 }} 
+                style={{ marginLeft: '-40px', zIndex: 1 }}
               >
                 <X size={20} color="#6a380a" />
               </Button>
@@ -58,13 +66,17 @@ function TopNavbar(){
             <Nav.Link href="#favorites" className="custom-nav-link">
               <Heart size={20} />
             </Nav.Link>
-            <Nav.Link href="#login" className="custom-nav-link">Log In</Nav.Link>
-            <Nav.Link href="#signin" className="custom-nav-link">Sign In</Nav.Link>
+            <Nav.Link onClick={() => navigateToAuth('login')} className="custom-nav-link">
+              Log In
+            </Nav.Link>
+            <Nav.Link onClick={() => navigateToAuth('signup')} className="custom-nav-link">
+              Sign In
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
-};
+}
 
 export default TopNavbar;

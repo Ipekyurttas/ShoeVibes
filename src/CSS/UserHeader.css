@@ -1,0 +1,11 @@
+.user-header {
+    height: 80px;
+    border-bottom: 0.8px solid #d3d3d3;
+}
+
+.logo {
+    margin-top: 20px;
+    height: 200px;
+    width: auto;
+    text-decoration: none;
+}
