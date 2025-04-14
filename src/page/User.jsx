@@ -5,22 +5,22 @@ import { useLocation } from 'react-router-dom';
 
 function User() {
     const location = useLocation();
-    const [activeTab, setActiveTab] = useState('signup');  
+    const [activeTab, setActiveTab] = useState('signup');
     console.log('Component rendered');
-    console.log('Location state:', location.state); 
+    console.log('Location state:', location.state);
 
     useEffect(() => {
         console.log('useEffect called');
         if (location.state && location.state.tab) {
             console.log('Setting activeTab:', location.state.tab);
-            setActiveTab(location.state.tab);  
+            setActiveTab(location.state.tab);
         }
     }, [location.state]);
 
     return (
         <div>
             <UserHeader />
-            <Form activeTab={activeTab} />
+            <Form activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
     );
 }

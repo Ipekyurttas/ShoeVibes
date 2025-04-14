@@ -5,6 +5,7 @@ import './App.css';
 import Home from './page/Home';
 import User from './page/User';
 import { Routes, Route } from 'react-router-dom';
+import ForgotPassword from './page/ForgotPassword';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/auth' element={<User />} />
+        <Route path='/forgotpassword' element={<ForgotPassword />} />
       </Routes>
     </div>
   );

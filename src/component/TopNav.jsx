@@ -42,7 +42,7 @@ function TopNavbar() {
               aria-label="Search"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
-              style={{ borderRadius: '5px', width: '400px' }}
+              style={{ borderRadius: '5px', width: '700px' }}
             />
             {searchText && (
               <Button
@@ -53,7 +53,6 @@ function TopNavbar() {
                 <X size={20} color="#6a380a" />
               </Button>
             )}
-            <Button variant="outline-success" size="sm" style={{ borderRadius: '5px', height: '48px', width: '60px' }}>Search</Button>
           </Form>
         </div>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
