@@ -12,7 +12,7 @@ import NewPassword from './page/NewPassword';
 
 function App() {
   return (
-    <div>
+    <div className="app-root">
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/auth' element={<User />} />

@@ -1,0 +1,94 @@
+.footer {
+    padding: 0.2rem 0 0.4rem 0; 
+    background: #f8f9fa;
+    margin-top: 0.3rem; 
+    font-size: 0.9rem;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+.footer-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 0.1rem; 
+}
+
+.footer-title {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 0.15rem; 
+    color: #6a380a;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.footer-copyright {
+    font-size: 0.95rem;
+    color: #6c757d;
+    margin: 0;
+}
+
+.footer-links {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem; 
+    padding-top: 0.1rem; 
+}
+
+.footer-links a {
+    color: #6a380a;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.footer-social {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 1rem;
+    padding-top: 0.1rem; 
+}
+
+.footer-social span {
+    margin-bottom: 0.1rem;
+    color: #6a380a;
+}
+
+.social-icon .instagram-icon {
+    color: #E1306C;
+    transition: transform 0.2s;
+}
+
+.social-icon .instagram-icon:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 576px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-left,
+    .footer-links,
+    .footer-social {
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-social {
+        margin-top: 0.3rem; 
+    }
+}
