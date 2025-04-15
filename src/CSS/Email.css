@@ -1,0 +1,63 @@
+.tick {
+    width: 280px;
+    margin-top: 100px;
+}
+
+.success-title {
+    font-weight: 500;
+    margin-top: 40px;
+}
+
+.success-write {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.write-newTitle {
+    margin-top: 8rem;
+    font-size: 32px;
+    font-weight: 300;
+}
+
+.custom-container {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    max-width: 400px;
+    text-align: center;
+}
+
+.newTitle {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.newPassword {
+    border: 1px solid #ced4da;
+    border-radius: 2px;
+    padding: 12px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 90%;
+    margin-top: 20px;
+}
+
+.newPassword-button {
+    color: white;
+    background-color: #605140;
+    border-color: #605140;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s;
+    width: 90%;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.newPassword-button:hover {
+    background-color: #605140;
+    border-color: #605140;
+}
