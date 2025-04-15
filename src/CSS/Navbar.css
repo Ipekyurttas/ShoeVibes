@@ -52,10 +52,15 @@ html, body, #root {
     box-shadow: none;
 }
 
+
 .custom-top-navbar .nav-link {
     color: #333333 !important;   
     font-weight: 500;             
-    padding-left: 10px;           
+    padding-left: 10px;  
+}         
+
+    .custom-right-nav {
+    margin-left: 150px;
 }
 
 .custom-top-navbar .nav-link:hover {

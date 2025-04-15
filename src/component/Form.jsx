@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/Form.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import google from '../images/google.png';
 
-function Form({ activeTab }) {
+function Form({ activeTab, setActiveTab }) {
+
+    const navigate = useNavigate();
 
     return (
         <div className="form-container">
@@ -56,7 +59,12 @@ function Form({ activeTab }) {
                             <input type='text' placeholder='Username*' className='form-control' />
                             <input type='password' placeholder='Password*' className='form-control' />
                             <p className="forgot-password-text">
-                                <span className="forgot-password-link">Forgot Password?</span>
+                                <span
+                                    className="forgot-password-link"
+                                    onClick={() => navigate('/forgotpassword')}
+                                >
+                                    Forgot Password?
+                                </span>
                             </p>
                             <button type='submit' className='btn btn-primary'>Log In</button>
                             <div className="or-container">

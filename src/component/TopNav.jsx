@@ -41,7 +41,7 @@ function TopNavbar() {
               aria-label="Search"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
-              style={{ borderRadius: '5px', width: '100%', maxWidth: '600px' }}
+              style={{ borderRadius: '5px', width: '400px' }}
             />
             {searchText && (
               <Button
