@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import yazi from '../images/yazi.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import '../css/Navbar.css';
+import "../CSS/Navbar.css"
 
 function TopNavbar() {
   const [searchText, setSearchText] = useState('');
@@ -14,7 +14,6 @@ function TopNavbar() {
   const handleClearSearch = () => {
     setSearchText('');
   };
-
 
   const navigateToAuth = (tab) => {
     console.log(`Navigating to /auth with tab: ${tab}`);
@@ -34,7 +33,7 @@ function TopNavbar() {
               className="d-inline-block align-top"
             />
           </Navbar.Brand>
-          <Form className="d-flex custom-search-form">
+          <Form className="d-flex custom-search-form" style={{ flexGrow: 1 }}>
             <FormControl
               type="search"
               placeholder="Search for"
@@ -42,7 +41,7 @@ function TopNavbar() {
               aria-label="Search"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
-              style={{ borderRadius: '5px', width: '400px' }}
+              style={{ borderRadius: '5px', width: '100%', maxWidth: '600px' }}
             />
             {searchText && (
               <Button
@@ -53,7 +52,6 @@ function TopNavbar() {
                 <X size={20} color="#6a380a" />
               </Button>
             )}
-            <Button variant="outline-success" size="sm" style={{ borderRadius: '5px', height: '48px', width: '60px' }}>Search</Button>
           </Form>
         </div>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
