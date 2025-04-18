@@ -1,59 +1,114 @@
-import React from "react";
+import React, { useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-// Resimleri import edelim
-import a1 from "../images/a1.jpg";
-import a2 from "../images/a2.jpg";
-import a3 from "../images/a1.jpg";
-import a4 from "../images/a6.jpg";
-import a5 from "../images/a2.jpg";
-
-const products = [
-  { id: 1, img: a1, name: "Jordan 1 Retro High OG", price: 133 },
-  { id: 2, img: a2, name: "Nike Jordan Hoodie", price: 96 },
-  { id: 3, img: a3, name: "Jordan 1 Low OG", price: 133 },
-  { id: 4, img: a4, name: "Jordan 12 Flu Game", price: 247 },
-  { id: 5, img: a5, name: "Jordan x Nigel Tee", price: 70 },
-  { id: 6, img: a4, name: "Adidas Taekwondo", price: 83 },
-  { id: 7, img: a1, name: "Adidas Taekwondo", price: 83 },
-  { id: 8, img: a5, name: "Adidas Taekwondo", price: 83 },
-];
+import "../CSS/Home1.css";
 
 function Home1() {
+  const scrollRef = useRef(null);
+
+  const categories = [
+    "SANA ÖZEL",
+    "EN YENİLER",
+    "KAPÜŞONLU ÜSTLER",
+    "JOGGER",
+    "T-SHIRT",
+    "CREW SWEATER",
+    "BROOKLYN",
+    "CHICAGO SADECE",
+    "V-LOGUY",
+    "CAPRI",
+    "Kadın Spor Ayakkabı",
+    "Çocuk Spor Ayakkabı",
+    "Erkek Spor Ayakkabı",
+    "Erkek Spor Ayakkabı",
+    "Erkek Spor Ayakkabı",
+    "Erkek Spor Ayakkabı",
+
+  ];
+
+  const scrollCategories = (direction) => {
+    const container = scrollRef.current;
+    const scrollAmount = 200; // Kaydırma miktarı
+
+    if (container) {
+      if (direction === 'left') {
+        container.scrollLeft -= scrollAmount;
+      } else {
+        container.scrollLeft += scrollAmount;
+      }
+    }
+  };
+
   return (
-    <div className="text-white py-5" style={{ backgroundColor: "rgb(241, 239, 239)" }}>
-      <div className="container bg-white text-dark rounded p-4">
-        <h2 className="mb-4">ShoeVibes</h2>
-      </div>
-
-      <div className="container mt-5">
-        <div className="row">
-          <div className="col-6 text-dark">
-            <h4>Recommended For You</h4>
-          </div>
-          <div className="col-6 text-end">
-            <button className="btn fw-bold" style={{color:"black"}}>
-              See All <i className="fi ms-1 mt-2 fi-rs-arrow-small-right fi-success"></i>
-            </button>
-          </div>
+    <div className="div1">
+      <div className="div2">
+        <div className="div3-1">
+          1.500 TL ve üzeri alışverişe
         </div>
+        <br /><br />
+
+        <h1 className="div3">500 TL İNDİRİM</h1>
+        <p className="text">
+          Seçili ürünlerde geçerlidir. Stoklarla sınırlıdır. Diğer kampanya ve kuponlarla birleştirilemez.
+        </p>
+        <button className="bg text-white py-2 px-6 rounded hover:bg-gray-800 transition">
+          ALIŞVERİŞE BAŞLA
+        </button>
       </div>
 
-      <div className="container">
-        <div className="row">
-          {products.map((product) => (
-            <div key={product.id} className="col-md-3 col-6 mb-3">
-              <div className="card text-white border-0" style={{ backgroundColor: "#605140",fontSize:"20px"}}>
-                <img src={product.img} className="card-img-top" alt={product.name} />
-                <div className="card-body">
-                  <p className="card-title">{product.name}</p>
-                  <p className="" style={{color:"black"}}>${product.price}</p>
-                </div>
-              </div>
+      {/* Kategori scroll */}
+      <div className="category-scroll mt-4 position-relative">
+        {/* Sol scroll butonu */}
+        <button
+          className="position-absolute start-0 top-50 translate-middle-y btn btn-light rounded-circle shadow z-1"
+          style={{ width: "40px", height: "40px", color: "orange" }}
+          onClick={() => scrollCategories('left')}
+        >
+          &lt;
+        </button>
+        <br />
+        {/* Scroll alanı */}
+        <div
+          className="d-flex overflow-auto gap-3 py-3 px-2 scroll-area"
+          ref={scrollRef}
+          style={{ scrollBehavior: "smooth" }}
+
+        >
+          {categories.map((item, index) => (
+            <div
+              key={index}
+              className="category-circle"
+
+            >
+              {item}
             </div>
           ))}
         </div>
+
+        {/* Sağ scroll butonu */}
+        <button
+          className="position-absolute end-0 top-50 translate-middle-y btn btn-light rounded-circle shadow z-1"
+          style={{ width: "40px", height: "40px", color: "orange" }}
+          onClick={() => scrollCategories('right')}
+        >
+          &gt;
+        </button>
       </div>
+      <br /><br />
+
+      {/* Ana Kartların olduğu alan: */}
+
+
+      <div className="card" ></div><br />
+      <div className="card1"></div> <br />
+      <div className="card2"></div><br />
+      <div className="card3"></div><br />
+      <div className="card4"></div><br />
+      <div className="card5"></div><br />
+      <div className="card6"></div>
+
+
+
+
     </div>
   );
 }

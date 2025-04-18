@@ -1,0 +1,217 @@
+.div1{
+  width: 100%;
+  background-color: #ffffff; /* ya da #ffffff veya doğru renk */
+  text-align: center;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+  
+.div2{
+ background-color: #E6E6E6; /* Eğer kastettiğin buysa */
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  height: 500px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+              0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  border-radius: 0.25rem;
+  
+  }
+
+
+  .div3-1{
+  background-color: #f97316; /* Tailwind'in orange-500 rengi */
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.25rem 1rem;
+  border-radius: 9999px;
+  display: inline-block;
+  margin-bottom: 1rem;
+  }
+
+
+  .div3{
+  background-color: #f97316; /* Tailwind'in orange-500 rengi */
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.25rem 1rem;
+  border-radius: 9999px;
+  display: inline-block;
+  margin-bottom: 1rem;
+  }
+
+  .text{
+font-weight: bold;
+    
+   font-size: 1rem; /* Tailwind'de text-sm = 14px = 0.875rem */
+  color: #4B5563;       /* Tailwind'de text-gray-600 */
+  margin-bottom: 1.5rem; /* Tailwind'de mb-6 = 1.5rem */
+  }
+
+  .category-scroll::-webkit-scrollbar {
+  display: none; /* Scrollbar'ı gizlemek için */
+}
+
+.category-scroll {
+  -ms-overflow-style: none;  /* Internet Explorer */
+  scrollbar-width: none;     /* Firefox */
+}
+.scroll-area {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0.5rem;
+  scroll-behavior: smooth;
+
+  /* Scroll çubuğunu gizle (tüm tarayıcılar için) */
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE ve Edge */
+
+  /* WebKit (Chrome, Safari) */
+}
+
+.scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+.category-circle {
+  width: 90px;
+  height: 90px;
+  min-width: 90px;
+  font-size: 10px;
+  padding: 8px;
+  color: black;
+  background-color: white;
+  border-radius: 50%;
+  border: 2px solid orange;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 0 0 2px rgb(166, 114, 114);
+}
+
+.category-circle:hover{
+  cursor: pointer;
+
+}
+
+
+
+
+.card{
+  width: 100%;
+  height: 600px;
+  background-image: url("../images/adidas.png");
+  background-size: cover;     /* görsel div'i kaplasın */
+  background-position: center;/* ortala */
+  background-repeat: no-repeat; /* tekrar etmesin */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+   transition: box-shadow 0.3s ease;
+   object-fit: fill;
+}
+
+.card1{
+  width: 100%;
+  height: 600px;
+  background-image: url("../images/erkek.png");
+  background-size: cover;     /* görsel div'i kaplasın */
+  background-position: center;/* ortala */
+  background-repeat: no-repeat; /* tekrar etmesin */
+  border: 1px solid #ccc;
+   transition: box-shadow 0.3s ease;
+}
+
+.card2{
+  width: 100%;
+  height: 600px;
+  background-image: url("../images/nike.png");
+  background-size: cover;     /* görsel div'i kaplasın */
+  background-position: center;/* ortala */
+  background-repeat: no-repeat; /* tekrar etmesin */
+  border: 1px solid #ccc;
+   transition: box-shadow 0.3s ease;
+}
+
+
+.card3{
+  width: 100%;
+  height: 600px;
+  background-image: url("../images/koşu.png");
+  background-size: cover;     /* görsel div'i kaplasın */
+  background-position: center;/* ortala */
+  background-repeat: no-repeat; /* tekrar etmesin */
+  border: 1px solid #ccc;
+   transition: box-shadow 0.3s ease;
+}
+
+
+.card4{
+  width: 100%;
+  height: 600px;
+  background-image: url("../images/reebok.png");
+  background-size: cover;     /* görsel div'i kaplasın */
+  background-position: center;/* ortala */
+  background-repeat: no-repeat; /* tekrar etmesin */
+  border: 1px solid #ccc;
+   transition: box-shadow 0.3s ease;
+}
+
+.card5{
+  width: 100%;
+  height: 600px;
+  background-image: url("../images/çocuk.png");
+  background-size: cover;     /* görsel div'i kaplasın */
+  background-position: center;/* ortala */
+  background-repeat: no-repeat; /* tekrar etmesin */
+  border: 1px solid #ccc;
+   transition: box-shadow 0.3s ease;
+}
+.card6{
+  width: 100%;
+  height: 600px;
+  background-image: url("../images/nike.png");
+  background-size: cover;     /* görsel div'i kaplasın */
+  background-position: center;/* ortala */
+  background-repeat: no-repeat; /* tekrar etmesin */
+  border: 1px solid #ccc;
+   transition: box-shadow 0.3s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.category-circle::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  border: 2px solid orange;
+  box-shadow: 0 0 0 2px black;
+  z-index: -1;
+}
+*/
