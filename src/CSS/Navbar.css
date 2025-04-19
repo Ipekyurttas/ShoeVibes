@@ -137,6 +137,14 @@ html, body, #root {
 }
 
 @media (max-width: 768px) {
+    .hearth-icon {
+        display: none;
+    }
+
+    .hearth-text {
+        display: block;
+    }
+    
     .custom-top-navbar,
     .custom-category-navbar {
         width: 100%;               

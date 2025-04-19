@@ -63,7 +63,8 @@ function TopNavbar() {
               <Bell size={20} />
             </Nav.Link>
             <Nav.Link href="#favorites" className="custom-nav-link">
-              <Heart size={20} />
+              <Heart class="heart-icon" size={20} />
+              <Heart class="heart-text" size={20} />
             </Nav.Link>
             <Nav.Link onClick={() => navigateToAuth('login')} className="custom-nav-link">
               Log In
