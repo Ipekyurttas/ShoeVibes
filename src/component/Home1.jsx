@@ -1,6 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../CSS/Home1.css";
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import court from "../images/courtadonus.webp";
+import futbol from "../images/futbol.png";
+
 
 function Home1() {
   const scrollRef = useRef(null);
@@ -8,9 +12,7 @@ function Home1() {
   const categories = [
     "SANA ÖZEL",
     "EN YENİLER",
-    "KAPÜŞONLU ÜSTLER",
     "JOGGER",
-    "T-SHIRT",
     "CREW SWEATER",
     "BROOKLYN",
     "CHICAGO SADECE",
@@ -19,56 +21,88 @@ function Home1() {
     "Kadın Spor Ayakkabı",
     "Çocuk Spor Ayakkabı",
     "Erkek Spor Ayakkabı",
-    "Erkek Spor Ayakkabı",
-    "Erkek Spor Ayakkabı",
-    "Erkek Spor Ayakkabı",
-
   ];
 
-  const scrollCategories = (direction) => {
-    const container = scrollRef.current;
-    const scrollAmount = 200; // Kaydırma miktarı
+  const images = [
+    '/image/slider.png',
+    '/image/indirim.png',
+    '/image/erkek.png',
+    '/image/kosu.png',
+    '/image/cocuk.png',
+    '/image/tarz.png',
+    '/image/adidas.png',
+    '/image/nike.png',
+    '/image/reebok.png',
+  ];
 
-    if (container) {
-      if (direction === 'left') {
-        container.scrollLeft -= scrollAmount;
-      } else {
-        container.scrollLeft += scrollAmount;
-      }
-    }
+  const [current, setCurrent] = useState(0);
+
+  const prevSlide = () => {
+    setCurrent(current === 0 ? images.length - 1 : current - 1);
+  };
+
+  const nextSlide = () => {
+    setCurrent(current === images.length - 1 ? 0 : current + 1);
+  };
+
+  const goToSlide = (index) => {
+    setCurrent(index);
   };
 
   return (
-    <div className="div1">
-      <div className="div2">
-        <div className="div3-1">
-          1.500 TL ve üzeri alışverişe
-        </div>
-        <br /><br />
+    <div>
+      <div className="slider-container">
+        <div className="photos">
+          <img
+            src={images[current]}
+            alt={`Slide ${current + 1}`}
+            className="d-block mx-auto img-fluid"
+            style={{ maxWidth: '100%', height: 'auto' }}
+          />
 
-        <h1 className="div3">500 TL İNDİRİM</h1>
-        <p className="text">
-          Seçili ürünlerde geçerlidir. Stoklarla sınırlıdır. Diğer kampanya ve kuponlarla birleştirilemez.
-        </p>
-        <button className="bg text-white py-2 px-6 rounded hover:bg-gray-800 transition">
-          ALIŞVERİŞE BAŞLA
-        </button>
+          {/* Left Arrow */}
+          <button
+            onClick={prevSlide}
+            className="btn btn-light position-absolute top-50  translate-middle-y rounded-circle shadow d-flex align-items-center justify-content-center"
+            style={{
+              width: "50px",
+              height: "50px",
+              left: "50px"
+            }}
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={nextSlide}
+            className="btn btn-light position-absolute top-50 translate-middle-y rounded-circle shadow d-flex align-items-center justify-content-center"
+            style={{
+              width: "50px",
+              height: "50px",
+              right: "50px"
+            }}
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
+
+        {/* Dot Navigation */}
+        <div className="d-flex justify-content-center mt-2 gap-2">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`btn btn-sm rounded-circle ${index === current ? "btn-dark" : "btn-secondary"}`}
+              style={{ width: "10px", height: "10px" }}
+            ></button>
+          ))}
+        </div>
       </div>
 
-      {/* Kategori scroll */}
-      <div className="category-scroll mt-4 position-relative">
-        {/* Sol scroll butonu */}
-        <button
-          className="position-absolute start-0 top-50 translate-middle-y btn btn-light rounded-circle shadow z-1"
-          style={{ width: "40px", height: "40px", color: "orange" }}
-          onClick={() => scrollCategories('left')}
-        >
-          &lt;
-        </button>
-        <br />
-        {/* Scroll alanı */}
+      <div className="category-scroll mt-5 position-relative">
         <div
-          className="d-flex overflow-auto gap-3 py-3 px-2 scroll-area"
+          className="d-flex overflow-auto gap-4 py-3 px-2 scroll-area"
           ref={scrollRef}
           style={{ scrollBehavior: "smooth" }}
 
@@ -83,32 +117,23 @@ function Home1() {
             </div>
           ))}
         </div>
-
-        {/* Sağ scroll butonu */}
-        <button
-          className="position-absolute end-0 top-50 translate-middle-y btn btn-light rounded-circle shadow z-1"
-          style={{ width: "40px", height: "40px", color: "orange" }}
-          onClick={() => scrollCategories('right')}
-        >
-          &gt;
-        </button>
       </div>
-      <br /><br />
-
-      {/* Ana Kartların olduğu alan: */}
-
-
-      <div className="card" ></div><br />
-      <div className="card1"></div> <br />
-      <div className="card2"></div><br />
-      <div className="card3"></div><br />
-      <div className="card4"></div><br />
-      <div className="card5"></div><br />
-      <div className="card6"></div>
-
-
-
-
+      <div className="d-flex flex-column justify-content-center align-items-center mt-5">
+        <div className="text-center fw-bold banner">
+          <p className="banner-title">Courta Dönüş</p>
+        </div>
+        <div className="banner-image text-center ">
+          <img src={court} alt="court" className="image mt-5" />
+        </div>
+      </div>
+      <div className="d-flex flex-column justify-content-center align-items-center mt-5">
+        <div className="text-center fw-bold banner">
+          <p className="banner-title">Futbol</p>
+        </div>
+        <div className="banner-image text-center ">
+          <img src={futbol} alt="court" className="image mt-5" />
+        </div>
+      </div>
     </div>
   );
 }
