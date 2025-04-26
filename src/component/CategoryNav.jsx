@@ -16,12 +16,12 @@ const categories = {
 };
 
 const categoryImages = {
-  brands: shoe1,  
-  men: shoe2,    
-  women: shoe3,  
-  kids: shoe1,    
-  sneakers: shoe2,
-  campaigns: shoe3,
+  brands: [shoe1, shoe2],
+  men: [shoe2, shoe3],
+  women: [shoe3, shoe1],
+  kids: [shoe1, shoe3],
+  sneakers: [shoe2, shoe1],
+  campaigns: [shoe3, shoe2],
 };
 
 function CategoryNav() {
@@ -35,7 +35,6 @@ function CategoryNav() {
         setActiveCategory(null); 
       }
     };
-
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
@@ -43,6 +42,8 @@ function CategoryNav() {
   const handleCategoryClick = (category) => {
     setActiveCategory(prevCategory => prevCategory === category ? null : category);
   };
+
+  const currentCategory = activeCategory || hoveredCategory;
 
   return (
     <>
@@ -67,28 +68,28 @@ function CategoryNav() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      {(activeCategory !== null || hoveredCategory !== null) && (
+
+      {currentCategory && (
         <div className="category-details-container">
           <div className="category-details-panel">
             <div className="category-items">
-              <h4>{(activeCategory || hoveredCategory)?.charAt(0).toUpperCase() + (activeCategory || hoveredCategory)?.slice(1)}</h4>
-              <ul className="category-list">
-                {(categories[activeCategory || hoveredCategory] || []).map((item, index) => (
+              <h4>{currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1)}</h4>
+              <ul className="category-list single-column">
+                {categories[currentCategory].map((item, index) => (
                   <li key={index}>{item}</li>
                 ))}
               </ul>
             </div>
-            <div className="category-image">
-              <img 
-                src={categoryImages[activeCategory || hoveredCategory]} 
-                alt={activeCategory || hoveredCategory} 
-              />
+            <div className="category-images">
+              {categoryImages[currentCategory].map((img, idx) => (
+                <img key={idx} src={img} alt={`img-${idx}`} />
+              ))}
             </div>
           </div>
         </div>
       )}
     </>
   );
-};
+}
 
 export default CategoryNav;

@@ -1,0 +1,30 @@
+.profile-sidebar {
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.profile-sidebar .nav-link {
+    color: #333;
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.profile-sidebar .nav-link:hover {
+    background-color: #e9ecef;
+    color: #6a380a;
+}
+
+.profile-sidebar .nav-link.active {
+    background-color: #6a380a;
+    color: white;
+}
+.card {
+    margin-bottom: 20px;
+}
+
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
