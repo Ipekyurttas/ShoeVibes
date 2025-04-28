@@ -1,57 +1,134 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import zappos from "../images/zappos.png";
+import kırmızı from "../images/kırmızı.png";
+import "../CSS/Home1.css";
 
-// Resimleri import edelim
-import a1 from "../images/a1.jpg";
-import a2 from "../images/a2.jpg";
-import a3 from "../images/a1.jpg";
-import a4 from "../images/a6.jpg";
-import a5 from "../images/a2.jpg";
 
-const products = [
-  { id: 1, img: a1, name: "Jordan 1 Retro High OG", price: 133 },
-  { id: 2, img: a2, name: "Nike Jordan Hoodie", price: 96 },
-  { id: 3, img: a3, name: "Jordan 1 Low OG", price: 133 },
-  { id: 4, img: a4, name: "Jordan 12 Flu Game", price: 247 },
-  { id: 5, img: a5, name: "Jordan x Nigel Tee", price: 70 },
-  { id: 6, img: a4, name: "Adidas Taekwondo", price: 83 },
-  { id: 7, img: a1, name: "Adidas Taekwondo", price: 83 },
-  { id: 8, img: a5, name: "Adidas Taekwondo", price: 83 },
-];
 
 function Home1() {
-  return (
-    <div className="text-white py-5" style={{ backgroundColor: "rgb(241, 239, 239)" }}>
-      <div className="container bg-white text-dark rounded p-4">
-        <h2 className="mb-4">ShoeVibes</h2>
-      </div>
+  const scrollRef = useRef(null);
 
-      <div className="container mt-5">
-        <div className="row">
-          <div className="col-6 text-dark">
-            <h4>Recommended For You</h4>
-          </div>
-          <div className="col-6 text-end">
-            <button className="btn fw-bold" style={{color:"black"}}>
-              See All <i className="fi ms-1 mt-2 fi-rs-arrow-small-right fi-success"></i>
-            </button>
-          </div>
+  const categories = [
+    "SANA ÖZEL",
+    "EN YENİLER",
+    "JOGGER",
+    "CREW SWEATER",
+    "BROOKLYN",
+    "CHICAGO SADECE",
+    "V-LOGUY",
+    "CAPRI",
+    "Kadın Spor Ayakkabı",
+    "Çocuk Spor Ayakkabı",
+    "Erkek Spor Ayakkabı",
+  ];
+
+  const images = [
+    '/image/modelkı.png',
+    '/image/botlukız.png',
+    '/image/collection.png',
+    '/image/sarıtopuklu.png',
+    '/image/heel.png',
+  ];
+
+  const [current, setCurrent] = useState(0);
+
+  const prevSlide = () => {
+    setCurrent(current === 0 ? images.length - 1 : current - 1);
+  };
+
+  const nextSlide = () => {
+    setCurrent(current === images.length - 1 ? 0 : current + 1);
+  };
+
+  const goToSlide = (index) => {
+    setCurrent(index);
+  };
+
+  return (
+    <div>
+      <div className="slider-container">
+        <div className="photos">
+          <img
+            src={images[current]}
+            alt={`Slide ${current + 1}`}
+            className="d-block mx-auto img-fluid"
+            style={{ maxWidth: '100%', height: 'auto' }}
+          />
+
+          {/* Left Arrow */}
+          <button
+            onClick={prevSlide}
+            className="btn btn-light position-absolute top-50  translate-middle-y rounded-circle shadow d-flex align-items-center justify-content-center"
+            style={{
+              width: "50px",
+              height: "50px",
+              left: "50px"
+            }}
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={nextSlide}
+            className="btn btn-light position-absolute top-50 translate-middle-y rounded-circle shadow d-flex align-items-center justify-content-center"
+            style={{
+              width: "50px",
+              height: "50px",
+              right: "50px"
+            }}
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
+
+        {/* Dot Navigation */}
+        <div className="d-flex justify-content-center mt-2 gap-2">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`btn btn-sm rounded-circle ${index === current ? "btn-dark" : "btn-secondary"}`}
+              style={{ width: "10px", height: "10px" }}
+            ></button>
+          ))}
         </div>
       </div>
 
-      <div className="container">
-        <div className="row">
-          {products.map((product) => (
-            <div key={product.id} className="col-md-3 col-6 mb-3">
-              <div className="card text-white border-0" style={{ backgroundColor: "#605140",fontSize:"20px"}}>
-                <img src={product.img} className="card-img-top" alt={product.name} />
-                <div className="card-body">
-                  <p className="card-title">{product.name}</p>
-                  <p className="" style={{color:"black"}}>${product.price}</p>
-                </div>
-              </div>
+      <div className="category-scroll mt-5 position-relative">
+        <div
+          className="d-flex overflow-auto gap-4 py-3 px-2 scroll-area"
+          ref={scrollRef}
+          style={{ scrollBehavior: "smooth" }}
+
+        >
+          {categories.map((item, index) => (
+            <div
+              key={index}
+              className="category-circle"
+
+            >
+              {item}
             </div>
           ))}
+        </div>
+      </div>
+      <div className="d-flex flex-column justify-content-center align-items-center mt-5">
+        <div className="text-center fw-bold banner">
+          <p className="banner-title">Back to Fashion</p>
+        </div>
+        <div className="banner-image text-center ">
+          <img src={kırmızı} alt="court" className="image mt-5" />
+        </div>
+      </div>
+      <div className="d-flex flex-column justify-content-center align-items-center mt-5">
+        <div className="text-center fw-bold banner">
+          <p className="banner-title">Converse</p>
+        </div>
+        <div className="banner-image text-center ">
+          <img src={zappos} alt="zappos" className="image mt-5" />
         </div>
       </div>
     </div>

@@ -10,7 +10,6 @@ function Home() {
         <>
             <TopNavbar/>
             <CategoryNav/>
-            <CategorySidebar/>
             <Home1/>
             <Footer/>
         </>

@@ -1,9 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import shoe1 from '../images/shoe1.webp';
-import shoe2 from '../images/shoe2.jpg';
-import shoe3 from '../images/shoe3.jpg';
+import adidaslogo from "../images/adidaslogo.jpg"
+import nikelogo1 from "../images/nikelogo1.jpg"
+import nikekategori from "../images/nikekategori.avif"
+import pumaerkek from "../images/pumaerkek.jpeg"
+import kremtopuklu from "../images/kremtopuklu.jpg"
+import sneakerkadın from "../images/sneakerkadın.webp"
+import siyahbebe from "../images/siyahbebe.webp"
+import pembespor from "../images/pembespor.webp"
 import "../CSS/Navbar.css";
 
 const categories = {
@@ -16,12 +21,12 @@ const categories = {
 };
 
 const categoryImages = {
-  brands: [shoe1, shoe2],
-  men: [shoe2, shoe3],
-  women: [shoe3, shoe1],
-  kids: [shoe1, shoe3],
-  sneakers: [shoe2, shoe1],
-  campaigns: [shoe3, shoe2],
+  brands: [adidaslogo,nikelogo1],
+  men: [nikekategori,pumaerkek],
+  women: [kremtopuklu,sneakerkadın],
+  kids: [siyahbebe,pembespor],
+  sneakers: [adidaslogo,nikelogo1],
+  campaigns: [adidaslogo,nikelogo1],
 };
 
 function CategoryNav() {

@@ -34,7 +34,7 @@ const Footer = () => {
               </ul>
             </nav>
           </Col>
-          <Col md={4} className="features-col">
+          <Col md={4} className="features-col ">
             <ul className="features-list">
               <li className="feature-item">
                 <Truck className="feature-icon" />

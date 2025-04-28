@@ -43,6 +43,7 @@
   }
   .features-col {
     padding: 0 1rem;
+    justify-content: center;
   } 
   .features-list {
     list-style: none;

@@ -11,7 +11,9 @@ import { Routes, Route } from 'react-router-dom';
 import ForgotPassword from './page/ForgotPassword';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-
+import SuccessEmail from './page/SuccessEmail';
+import Failure from './page/Failure';
+import NewPassword from './page/NewPassword';
 function App() {
   return (
     <div className="app-root">
@@ -26,6 +28,9 @@ function App() {
         <Route path="/profile/cart" element={<ProfileDetail/>} />
         <Route path="/profile/orders" element={<ProfileDetail/>} />
         <Route path="/profile/settings" element={<ProfileDetail/>} />
+        <Route path='/success' element={<SuccessEmail />} />
+        <Route path='/failure' element={<Failure />} />
+        <Route path='/set-password' element={<NewPassword />} />
       </Routes>
     </div>
   );
