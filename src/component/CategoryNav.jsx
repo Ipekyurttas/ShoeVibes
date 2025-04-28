@@ -1,20 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import adidaslogo from "../images/adidaslogo.jpg"
-import nikelogo1 from "../images/nikelogo1.jpg"
-import nikekategori from "../images/nikekategori.avif"
-import pumaerkek from "../images/pumaerkek.jpeg"
-import kremtopuklu from "../images/kremtopuklu.jpg"
-import sneakerkadın from "../images/sneakerkadın.webp"
-import siyahbebe from "../images/siyahbebe.webp"
-import pembespor from "../images/pembespor.webp"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';  
+import { useNavigate } from 'react-router-dom';
+import adidaslogo from "../images/adidaslogo.jpg";
+import nikelogo1 from "../images/nikelogo1.jpg";
+import nikekategori from "../images/nikekategori.avif";
+import pumaerkek from "../images/pumaerkek.jpeg";
+import kremtopuklu from "../images/kremtopuklu.jpg";
+import sneakerkadın from "../images/sneakerkadın.webp";
+import siyahbebe from "../images/siyahbebe.webp";
+import pembespor from "../images/pembespor.webp";
 import "../CSS/Navbar.css";
+
 
 const categories = {
   brands: ["Nike", "Adidas", "Puma", "Sketchers", "Vans", "Converse", "Lumberjack", "Us.Polo Assn."],
-  men: ["The Newest", "Bestsellers", "Sneakers", "Boots", "Sandals", "Loafers"],
   women: ["The Newest", "Bestsellers", "Heels", "Flats", "Sneakers", "Boots", "Evening Dress"],
+  men: ["The Newest", "Bestsellers", "Sneakers", "Boots", "Sandals", "Loafers"],
   kids: ["The Newest", "Bestsellers", "Sneakers", "Sandals", "Boots", "Slip-ons"],
   sneakers: ["The Newest", "Bestsellers", "Running", "Basketball", "Casual", "Skateboarding"],
   campaigns: ["50% Off", "Buy 1 Get 1 Free", "Clearance Sale"]
@@ -33,6 +37,7 @@ function CategoryNav() {
   const [activeCategory, setActiveCategory] = useState(null);
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const navbarRef = useRef(null);
+  const navigate= useNavigate();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -45,13 +50,25 @@ function CategoryNav() {
   }, []);
 
   const handleCategoryClick = (category) => {
-    setActiveCategory(prevCategory => prevCategory === category ? null : category);
+    if(category === "brands" && activeCategory === "brands" ){
+      navigate("/brands");
+    }else if(category === "women" && activeCategory === "women" ){
+      navigate("/women");
+    }else if(category === "men" && activeCategory === "men" ){
+      navigate("/men");
+    }else if(category === "kids" && activeCategory === "kids" ){
+      navigate("/kids");
+    }else if(category === "sneakers" && activeCategory === "sneakers" ){
+      navigate("/sneakers");
+    }else{
+      setActiveCategory(prevCategory => prevCategory === category ? null : category);
+    }
   };
 
   const currentCategory = activeCategory || hoveredCategory;
 
   return (
-    <>
+  <> 
       <Navbar expand="lg" className="sticky-top p-0 custom-category-navbar" ref={navbarRef}>
         <Container fluid className="p-0">
           <Navbar.Toggle aria-controls="category-navbar-nav" />

@@ -1,0 +1,139 @@
+.ecommerce-container {
+    display: flex;
+    max-width: 1500px;
+    margin: 40px auto;
+    padding: 0 40px; 
+    gap: 40px;      
+    box-sizing: border-box;
+  }
+  .product-listing {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 28px;
+  }
+  .sidebar-container {
+    width: 240px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: white;
+    transition: box-shadow 0.2s;
+  }
+  .product-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  .product-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    margin-bottom: 12px;
+  }
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .price-badge {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    background: #ff3f6c;
+    color: white;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 0 4px 4px 0;
+  }
+  
+  .favorite-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,255,255,0.8);
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+  }
+  .favorite-button.active {
+    color: #ff3f6c;
+  }
+  
+  .product-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .product-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+  }
+  .product-code,
+  .favorite-count,
+  .review-count,
+  .payment-info,
+  .original-price {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+  }
+  .product-description {
+    font-size: 13px;
+    color: #555;
+    margin: 0;
+  }
+  .rating-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .rating-stars .star {
+    font-size: 12px;
+  }
+  .current-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff3f6c;
+  }
+  .original-price {
+    text-decoration: line-through;
+  }
+  .installment-option {
+    font-size: 12px;
+    color: #666;
+  }
+  
+  @media (max-width: 768px) {
+    .ecommerce-container {
+      flex-direction: column;
+    }
+    .sidebar-container {
+      width: 100%;
+    }
+    .product-listing {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  

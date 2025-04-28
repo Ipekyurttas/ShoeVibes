@@ -8,15 +8,6 @@ import google from '../images/google.png';
 
 function Form({ activeTab, setActiveTab }) {
     const navigate = useNavigate();
-    const handleFormSubmit = (e) => {
-       e.preventDefault();
-       if(activeTab === 'login') {
-        handleLogin(e); 
-       }else {
-        andleSignup(e);  
-    }
-};
-
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -49,6 +40,7 @@ function Form({ activeTab, setActiveTab }) {
             });
     
             if (response.status === 200 || response.status === 201) {
+                console.log('Signup Data:', formData);
                 toast.success('Registration Successful. You are redirected to Home Page...');
                 
                 setTimeout(() => {
@@ -71,6 +63,7 @@ function Form({ activeTab, setActiveTab }) {
             });
     
             if (response.status === 200) {
+                console.log('Login Data:', loginData);
                 toast.success('Entrance Successful. You are redirected to Home Page...');
         
                 setTimeout(() => {

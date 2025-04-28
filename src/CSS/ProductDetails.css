@@ -1,0 +1,114 @@
+.product-detail-container {
+    display: flex;
+    padding: 2rem;
+    gap: 2rem;
+  }
+  
+  .image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image-section img {
+    max-width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px #e5e5e5;
+  }
+  
+  .detail-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .product-name {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .product-code {
+    color:#e5e5e5;
+  }
+  
+  .price-info {
+    display: flex;
+    gap: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  .current-price {
+    color: #6a380a;
+    font-weight: bold;
+  }
+  
+  .original-price {
+    text-decoration: line-through;
+    color: gray;
+  }
+  
+  .rating {
+    font-size: 1rem;
+    color: #ff9900;
+  }
+  
+  .description {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .size-selector h4 {
+    margin: 1rem 0 0.5rem 0;
+  }
+  
+  .size-button {
+    margin-right: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    background-color: #a38461;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+  }
+  
+  .size-button:hover {
+    background-color: #6a380a;;
+  }
+  
+  .coupon {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .coupon input {
+    padding: 0.5rem;
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #ffffff;
+  }
+  
+  .apply-coupon {
+    padding: 0.5rem 1rem;
+    background-color: #6a380a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add-to-cart {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: #6a380a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  

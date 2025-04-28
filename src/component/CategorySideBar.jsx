@@ -13,23 +13,23 @@ const CategorySidebar = () => {
 
   const categories = [
     {
-      name: 'Marka',
+      name: 'Brands',
       options: ['Nike', 'Adidas', 'Puma', 'Sketchers', 'Vans', 'Converse', 'Lumberjack', 'Us.Polo Assn.']
     },
     {
-      name: 'Renk',
+      name: 'Color',
       options: ['Siyah', 'Bej', 'Kırmızı', 'Mavi']
     },
     {
-      name: 'Fiyat Aralığı',
+      name: 'Price',
       options: ['300-600', '600-900', '900-1200', '1200-1500', '1500+']
     },
     {
-      name: 'Beden',
+      name: 'Size',
       options: ['36', '37', '38', '39', '40', '41', '42', '43', '44']
     },
     {
-      name: 'Materyal',
+      name: 'Material',
       options: ['Suni Deri', 'Hakiki Deri', 'Kauçuk']
     },
     {
@@ -37,7 +37,7 @@ const CategorySidebar = () => {
       options: ['Bedava Kargo']
     },
     {
-      name: 'Kupon',
+      name: 'Cupon',
       options: ['Kuponlu Ürün']
     }
   ];
@@ -45,7 +45,7 @@ const CategorySidebar = () => {
   return (
     <div className="sidebar-card">
       <div className="sidebar-header">
-        <h5>Filtrele</h5>
+        <h5>Filter</h5>
       </div>
 
       <div className="sidebar-categories">
@@ -81,7 +81,7 @@ const CategorySidebar = () => {
       </div>
 
       <button className="btn apply-btn w-100 mt-3">
-        Seçimi Uygula
+        Apply
       </button>
     </div>
   );
