@@ -1,0 +1,24 @@
+.custom-nav-link {
+    padding: 10px 15px;
+  }
+  
+  .custom-nav-link:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .custom-dropdown-menu {
+    min-width: 180px;
+    padding-right: 10px;
+    margin-right: 3px;
+    font-size: 14px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    z-index: 999;
+  }
+  
+  .custom-dropdown-menu .dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  

@@ -1,26 +1,23 @@
-.div1{
-  width: 100%;
-  background-color: #ffffff; /* ya da #ffffff veya doğru renk */
-  text-align: center;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+.slider-container {
+  margin-top: 30px;
+  position: relative;
 }
 
-  
-.div2{
- background-color: #E6E6E6; /* Eğer kastettiğin buysa */
-  margin-left: auto;
-  margin-right: auto;
-  width: 95%;
-  height: 500px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-              0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  border-radius: 0.25rem;
-  
-  }
+.photos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: visible;
+}
 
+.text {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #4B5563;
+  margin-bottom: 1.5rem;
 
+<<<<<<< HEAD
   .div3-1{
   background-color: #df7c13; /* Tailwind'in orange-500 rengi */
   color: #ffffff;
@@ -52,24 +49,36 @@ font-weight: bold;
 
   .category-scroll::-webkit-scrollbar {
   display: none; /* Scrollbar'ı gizlemek için */
+=======
+>>>>>>> e35308e25cf0dc3648340b112f8b4006ff167a91
 }
 
 .category-scroll {
-  -ms-overflow-style: none;  /* Internet Explorer */
-  scrollbar-width: none;     /* Firefox */
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
+
+.category-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.category-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+}
+
 .scroll-area {
   display: flex;
   overflow-x: auto;
   gap: 1rem;
   padding: 1rem 0.5rem;
   scroll-behavior: smooth;
-
-  /* Scroll çubuğunu gizle (tüm tarayıcılar için) */
-  scrollbar-width: none;        /* Firefox */
-  -ms-overflow-style: none;     /* IE ve Edge */
-
-  /* WebKit (Chrome, Safari) */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .scroll-area::-webkit-scrollbar {
@@ -97,121 +106,39 @@ font-weight: bold;
   box-shadow: 0 0 0 2px rgb(166, 114, 114);
 }
 
-.category-circle:hover{
+.category-circle:hover {
   cursor: pointer;
 
 }
 
-
-
-
-.card{
-  width: 100%;
-  height: 600px;
-  background-image: url("../images/adidas.png");
-  background-size: cover;     /* görsel div'i kaplasın */
-  background-position: center;/* ortala */
-  background-repeat: no-repeat; /* tekrar etmesin */
-  border: 1px solid #ccc;
+.banner {
+  background-color: rgb(228, 230, 235);
+  width: 250px;
   border-radius: 10px;
-   transition: box-shadow 0.3s ease;
-   object-fit: fill;
 }
 
-.card1{
+.banner-title {
+  font-size: 25px;
+  color: #4B5563;
+  margin-top: 5px;
+}
+
+.banner-image {
+  background-image: linear-gradient(rgb(228, 230, 235), rgb(255, 255, 255));
+  position: relative;
+  margin-top: -10px;
   width: 100%;
-  height: 600px;
-  background-image: url("../images/erkek.png");
-  background-size: cover;     /* görsel div'i kaplasın */
-  background-position: center;/* ortala */
-  background-repeat: no-repeat; /* tekrar etmesin */
-  border: 1px solid #ccc;
-   transition: box-shadow 0.3s ease;
 }
 
-.card2{
-  width: 100%;
-  height: 600px;
-  background-image: url("../images/nike.png");
-  background-size: cover;     /* görsel div'i kaplasın */
-  background-position: center;/* ortala */
-  background-repeat: no-repeat; /* tekrar etmesin */
-  border: 1px solid #ccc;
-   transition: box-shadow 0.3s ease;
+.image {
+  width: 80%;
+  height: 80%;
+  border-radius: 10px;
+  box-shadow: rgba(114, 124, 142, 0.25) 0px 8px 27px 0px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-
-.card3{
-  width: 100%;
-  height: 600px;
-  background-image: url("../images/koşu.png");
-  background-size: cover;     /* görsel div'i kaplasın */
-  background-position: center;/* ortala */
-  background-repeat: no-repeat; /* tekrar etmesin */
-  border: 1px solid #ccc;
-   transition: box-shadow 0.3s ease;
+.image:hover {
+  transform: scale(1.1);
+  box-shadow: rgba(114, 124, 142, 0.4) 0px 12px 35px 0px;
 }
-
-
-.card4{
-  width: 100%;
-  height: 600px;
-  background-image: url("../images/reebok.png");
-  background-size: cover;     /* görsel div'i kaplasın */
-  background-position: center;/* ortala */
-  background-repeat: no-repeat; /* tekrar etmesin */
-  border: 1px solid #ccc;
-   transition: box-shadow 0.3s ease;
-}
-
-.card5{
-  width: 100%;
-  height: 600px;
-  background-image: url("../images/çocuk.png");
-  background-size: cover;     /* görsel div'i kaplasın */
-  background-position: center;/* ortala */
-  background-repeat: no-repeat; /* tekrar etmesin */
-  border: 1px solid #ccc;
-   transition: box-shadow 0.3s ease;
-}
-.card6{
-  width: 100%;
-  height: 600px;
-  background-image: url("../images/nike.png");
-  background-size: cover;     /* görsel div'i kaplasın */
-  background-position: center;/* ortala */
-  background-repeat: no-repeat; /* tekrar etmesin */
-  border: 1px solid #ccc;
-   transition: box-shadow 0.3s ease;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*.category-circle::before {
-  content: "";
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
-  border-radius: 50%;
-  border: 2px solid orange;
-  box-shadow: 0 0 0 2px black;
-  z-index: -1;
-}
-*/

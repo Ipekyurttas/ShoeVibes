@@ -1,33 +1,43 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import shoe1 from '../images/shoe1.webp';
-import shoe2 from '../images/shoe2.jpg';
-import shoe3 from '../images/shoe3.jpg';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';  
+import { useNavigate } from 'react-router-dom';
+import adidaslogo from "../images/adidaslogo.jpg";
+import nikelogo1 from "../images/nikelogo1.jpg";
+import nikekategori from "../images/nikekategori.avif";
+import pumaerkek from "../images/pumaerkek.jpeg";
+import kremtopuklu from "../images/kremtopuklu.jpg";
+import sneakerkadın from "../images/sneakerkadın.webp";
+import siyahbebe from "../images/siyahbebe.webp";
+import pembespor from "../images/pembespor.webp";
 import "../CSS/Navbar.css";
+
 
 const categories = {
   brands: ["Nike", "Adidas", "Puma", "Sketchers", "Vans", "Converse", "Lumberjack", "Us.Polo Assn."],
-  men: ["The Newest", "Bestsellers", "Sneakers", "Boots", "Sandals", "Loafers"],
   women: ["The Newest", "Bestsellers", "Heels", "Flats", "Sneakers", "Boots", "Evening Dress"],
+  men: ["The Newest", "Bestsellers", "Sneakers", "Boots", "Sandals", "Loafers"],
   kids: ["The Newest", "Bestsellers", "Sneakers", "Sandals", "Boots", "Slip-ons"],
   sneakers: ["The Newest", "Bestsellers", "Running", "Basketball", "Casual", "Skateboarding"],
   campaigns: ["50% Off", "Buy 1 Get 1 Free", "Clearance Sale"]
 };
 
 const categoryImages = {
-  brands: shoe1,  
-  men: shoe2,    
-  women: shoe3,  
-  kids: shoe1,    
-  sneakers: shoe2,
-  campaigns: shoe3,
+  brands: [adidaslogo,nikelogo1],
+  men: [nikekategori,pumaerkek],
+  women: [kremtopuklu,sneakerkadın],
+  kids: [siyahbebe,pembespor],
+  sneakers: [adidaslogo,nikelogo1],
+  campaigns: [adidaslogo,nikelogo1],
 };
 
 function CategoryNav() {
   const [activeCategory, setActiveCategory] = useState(null);
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const navbarRef = useRef(null);
+  const navigate= useNavigate();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -35,17 +45,30 @@ function CategoryNav() {
         setActiveCategory(null); 
       }
     };
-
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
   const handleCategoryClick = (category) => {
-    setActiveCategory(prevCategory => prevCategory === category ? null : category);
+    if(category === "brands" && activeCategory === "brands" ){
+      navigate("/brands");
+    }else if(category === "women" && activeCategory === "women" ){
+      navigate("/women");
+    }else if(category === "men" && activeCategory === "men" ){
+      navigate("/men");
+    }else if(category === "kids" && activeCategory === "kids" ){
+      navigate("/kids");
+    }else if(category === "sneakers" && activeCategory === "sneakers" ){
+      navigate("/sneakers");
+    }else{
+      setActiveCategory(prevCategory => prevCategory === category ? null : category);
+    }
   };
 
+  const currentCategory = activeCategory || hoveredCategory;
+
   return (
-    <>
+  <> 
       <Navbar expand="lg" className="sticky-top p-0 custom-category-navbar" ref={navbarRef}>
         <Container fluid className="p-0">
           <Navbar.Toggle aria-controls="category-navbar-nav" />
@@ -67,28 +90,28 @@ function CategoryNav() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      {(activeCategory !== null || hoveredCategory !== null) && (
+
+      {currentCategory && (
         <div className="category-details-container">
           <div className="category-details-panel">
             <div className="category-items">
-              <h4>{(activeCategory || hoveredCategory)?.charAt(0).toUpperCase() + (activeCategory || hoveredCategory)?.slice(1)}</h4>
-              <ul className="category-list">
-                {(categories[activeCategory || hoveredCategory] || []).map((item, index) => (
+              <h4>{currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1)}</h4>
+              <ul className="category-list single-column">
+                {categories[currentCategory].map((item, index) => (
                   <li key={index}>{item}</li>
                 ))}
               </ul>
             </div>
-            <div className="category-image">
-              <img 
-                src={categoryImages[activeCategory || hoveredCategory]} 
-                alt={activeCategory || hoveredCategory} 
-              />
+            <div className="category-images">
+              {categoryImages[currentCategory].map((img, idx) => (
+                <img key={idx} src={img} alt={`img-${idx}`} />
+              ))}
             </div>
           </div>
         </div>
       )}
     </>
   );
-};
+}
 
 export default CategoryNav;

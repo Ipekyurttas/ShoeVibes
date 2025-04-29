@@ -4,15 +4,14 @@ import CategoryNav from '../component/CategoryNav';
 import Footer from '../component/Footer';
 import Home1 from '../component/Home1';
 
+
 function Home() {
     return (
         <>
-            <TopNavbar />
-            <CategoryNav />
-            <main className="main-content">
-                <Home1 /> 
-            </main>
-            <Footer />
+            <TopNavbar/>
+            <CategoryNav/>
+            <Home1/>
+            <Footer/>
         </>
     );
 };

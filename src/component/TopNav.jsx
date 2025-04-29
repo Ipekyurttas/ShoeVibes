@@ -3,6 +3,8 @@ import { Navbar, Nav, Container, Button, Form, FormControl } from 'react-bootstr
 import { Bell, Heart, X } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 import yazi from '../images/yazi.png';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import "../CSS/Navbar.css"
@@ -24,7 +26,12 @@ function TopNavbar() {
     <Navbar bg="light" expand="lg" className="sticky-top p-0 custom-top-navbar">
       <Container fluid className="p-0" style={{ width: '100%', height: '100%' }}>
         <div className="d-flex align-items-center">
-          <Navbar.Brand href="#" className="me-3 p-2 custom-navbar-brand">
+          <Navbar.Brand 
+           onClick={() => {
+            navigate('/');
+            toast.success("Navigating..." ,{ autoClose: 2000 });
+           }}
+          className="me-3 p-2 custom-navbar-brand">
             <img
               src={yazi}
               alt="Logo"
@@ -33,6 +40,7 @@ function TopNavbar() {
               className="d-inline-block align-top"
             />
           </Navbar.Brand>
+          <ToastContainer />
           <Form className="d-flex custom-search-form" style={{ flexGrow: 1 }}>
             <FormControl
               type="search"
@@ -41,7 +49,7 @@ function TopNavbar() {
               aria-label="Search"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
-              style={{ borderRadius: '5px', width: '400px' }}
+              style={{ borderRadius: '5px', width: '2000px' }}
             />
             {searchText && (
               <Button
@@ -63,7 +71,7 @@ function TopNavbar() {
               <Bell size={20} />
             </Nav.Link>
             <Nav.Link href="#favorites" className="custom-nav-link">
-              <Heart size={20} />
+              <Heart class="heart-icon" size={20} />
             </Nav.Link>
             <Nav.Link onClick={() => navigateToAuth('login')} className="custom-nav-link">
               Log In

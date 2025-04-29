@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify'; 
 import axios from 'axios'; // Axios'u ekliyoruz
 import '../css/Form.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -37,18 +38,20 @@ function Form({ activeTab, setActiveTab }) {
                     'Content-Type': 'application/json'
                 }
             });
-
+    
             if (response.status === 200 || response.status === 201) {
-                console.log('Signup successful:', response.data);
-                alert('Signup successful!');
-                navigate('/');
+                console.log('Signup Data:', formData);
+                toast.success('Registration Successful. You are redirected to Home Page...');
+                
+                setTimeout(() => {
+                    navigate('/profile');
+                }, 2000); 
             }
         } catch (error) {
-            console.error('Signup failed:', error.response?.data || error.message);
-            alert('Signup failed: ' + (error.response?.data?.message || error.message));
+            toast.error('Signup failed: ' + (error.response?.data?.message || error.message));
         }
     };
-
+    
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -58,15 +61,17 @@ function Form({ activeTab, setActiveTab }) {
                     'Content-Type': 'application/json'
                 }
             });
-
+    
             if (response.status === 200) {
-                console.log('Login successful:', response.data);
-                alert('Login successful!');
-                navigate('/');
+                console.log('Login Data:', loginData);
+                toast.success('Entrance Successful. You are redirected to Home Page...');
+        
+                setTimeout(() => {
+                    navigate('/profile');
+                }, 2000); 
             }
         } catch (error) {
-            console.error('Login failed:', error.response?.data || error.message);
-            alert('Login failed: ' + (error.response?.data?.message || error.message));
+            toast.error('Login failed: ' + (error.response?.data?.message || error.message));
         }
     };
 
@@ -90,6 +95,7 @@ function Form({ activeTab, setActiveTab }) {
 
                 <div className="form-content-body">
                     {activeTab === 'signup' && (
+
                         <form className="form" onSubmit={handleSignup}>
                             <p className="custom-font">Sign Up</p>
                             <input
@@ -136,10 +142,18 @@ function Form({ activeTab, setActiveTab }) {
                                 <span className="or-text">OR</span>
                                 <div className="line"></div>
                             </div>
-                            <button type="button" className="btn btn-google">
-                                <img src={google} alt="google" className="google-logo" />
+                            <button
+                                type='button'
+                                className='btn btn-google'
+                                onClick={() => {
+                                    toast.success('Successful registration with Google');
+                                    setTimeout(() => navigate('/profilehome'), 1000);
+                                }}
+                            >
+                                <img src={google} alt='google' className='google-logo' />
                                 Sign Up with Google
                             </button>
+
                             <p className="switch-form-text">
                                 Already have an account?{' '}
                                 <span onClick={() => setActiveTab('login')} className="switch-form-link">
@@ -186,10 +200,18 @@ function Form({ activeTab, setActiveTab }) {
                                 <span className="or-text">OR</span>
                                 <div className="line"></div>
                             </div>
-                            <button type="button" className="btn btn-google">
-                                <img src={google} alt="google" className="google-logo" />
+                            <button
+                                type='button'
+                                className='btn btn-google'
+                                onClick={() => {
+                                    toast.success('Successful entrance with Google');
+                                    setTimeout(() => navigate('/profile'), 1000);
+                                }}
+                            >
+                                <img src={google} alt='google' className='google-logo' />
                                 Log In with Google
                             </button>
+
                             <p className="switch-form-text">
                                 Don't have an account?{' '}
                                 <span onClick={() => setActiveTab('signup')} className="switch-form-link">
