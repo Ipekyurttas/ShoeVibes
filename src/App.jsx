@@ -35,7 +35,7 @@ function App() {
         <Route path="/profile" element={<ProfileHome />} />
         <Route path="/profile/account" element={<ProfileDetail />} />
         <Route path="/profile/favorites" element={<ProfileDetail />} />
-        <Route path="/profile/cart" element={<ProfileDetail />} />
+        <Route path="/profile/cart" element={<Cart />} />
         <Route path="/profile/orders" element={<ProfileDetail />} />
         <Route path="/profile/settings" element={<ProfileDetail />} />
         <Route path='/success' element={<SuccessEmail />} />

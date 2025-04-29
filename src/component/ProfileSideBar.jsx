@@ -27,15 +27,16 @@ function ProfileSideBar() {
                 <PersonFill className="me-2" /> Account
               </Nav.Link>
             </Nav.Item>
+            
             <Nav.Item>
               <Nav.Link onClick={() => handleNavigation('profile/favorites')} className="d-flex align-items-center">
                 <Heart className="me-2" /> Favorites
               </Nav.Link>
             </Nav.Item>
+
             <Nav.Item>
               <Nav.Link onClick={() => handleNavigation('profile/cart')} className="d-flex align-items-center">
-                <Cart className="me-2" />
-                Cart
+                <Cart className="me-2" />Cart
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
