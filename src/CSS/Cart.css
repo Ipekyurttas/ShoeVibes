@@ -1,0 +1,13 @@
+/* src/CSS/Cart.css */
+
+.empty-cart {
+  margin-top: 50px;
+}
+
+.tabs button {
+  width: 30%;
+}
+
+.item-list .card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
