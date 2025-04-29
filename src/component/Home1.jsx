@@ -28,7 +28,6 @@ function Home1() {
     '/image/modelkı.png',
     '/image/botlukız.png',
     '/image/collection.png',
-    '/image/sarıtopuklu.png',
     '/image/heel.png',
   ];
 
@@ -54,7 +53,7 @@ function Home1() {
             src={images[current]}
             alt={`Slide ${current + 1}`}
             className="d-block mx-auto img-fluid"
-            style={{ maxWidth: '100%', height: 'auto' }}
+            style={{ maxWidth: '75%', height: 'auto' }}
           />
 
           {/* Left Arrow */}
@@ -119,7 +118,7 @@ function Home1() {
         <div className="text-center fw-bold banner">
           <p className="banner-title">Back to Fashion</p>
         </div>
-        <div className="banner-image text-center ">
+        <div className="banner-image text-center mb-5 ">
           <img src={kırmızı} alt="court" className="image mt-5" />
         </div>
       </div>
@@ -127,7 +126,7 @@ function Home1() {
         <div className="text-center fw-bold banner">
           <p className="banner-title">Converse</p>
         </div>
-        <div className="banner-image text-center ">
+        <div className="banner-image text-center mb-5 ">
           <img src={zappos} alt="zappos" className="image mt-5" />
         </div>
       </div>
