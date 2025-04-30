@@ -52,7 +52,7 @@ function Cart() {
                 <div className="empty-cart text-center">
                     <img src="/cart-empty.png" alt="Empty Cart" style={{ width: "80px", marginBottom: "10px" }} />
                     <p>Sepetinizde ürün bulunmamaktadır.</p>
-                    <p><span className="text-warning">FLO</span>’da binlerce ürün ve model seni bekliyor</p>
+                    <p><span className="text-warning">ShoeVibes</span>’da binlerce ürün ve model seni bekliyor</p>
                     <Link to="/" className="btn btn-warning mt-2">Alışverişe Başla</Link>
                 </div>
             )}

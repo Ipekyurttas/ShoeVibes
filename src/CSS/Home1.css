@@ -17,40 +17,40 @@
   color: #4B5563;
   margin-bottom: 1.5rem;
 
-<<<<<<< HEAD
-  .div3-1{
-  background-color: #df7c13; /* Tailwind'in orange-500 rengi */
+}
+
+.div3-1 {
+  background-color: #df7c13;
   color: #ffffff;
   font-weight: 600;
   padding: 0.25rem 1rem;
   border-radius: 9999px;
   display: inline-block;
   margin-bottom: 1rem;
-  }
+}
 
 
-  .div3{
-  background-color: #df7c13; /* Tailwind'in orange-500 rengi */
+.div3 {
+  background-color: #df7c13;
+  /* Tailwind'in orange-500 rengi */
   color: #ffffff;
   font-weight: 600;
   padding: 0.25rem 1rem;
   border-radius: 9999px;
   display: inline-block;
   margin-bottom: 1rem;
-  }
+}
 
-  .text{
-font-weight: bold;
-    
-   font-size: 1rem; /* Tailwind'de text-sm = 14px = 0.875rem */
-  color: #4B5563;       /* Tailwind'de text-gray-600 */
-  margin-bottom: 1.5rem; /* Tailwind'de mb-6 = 1.5rem */
-  }
+.text {
+  font-weight: bold;
 
-  .category-scroll::-webkit-scrollbar {
-  display: none; /* Scrollbar'ı gizlemek için */
-=======
->>>>>>> e35308e25cf0dc3648340b112f8b4006ff167a91
+  font-size: 1rem;
+  color: #4B5563;
+  margin-bottom: 1.5rem;
+}
+
+.category-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 .category-scroll {
