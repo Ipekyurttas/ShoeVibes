@@ -18,7 +18,7 @@ const CategorySidebar = () => {
     },
     {
       name: 'Color',
-      options: ['Siyah', 'Bej', 'Kırmızı', 'Mavi']
+      options: ['Siyah', 'Bej', 'Kırmızı', 'Mavi','Gri','Beyaz','Yeşil','Pembe','Sarı']
     },
     {
       name: 'Price',
@@ -30,7 +30,7 @@ const CategorySidebar = () => {
     },
     {
       name: 'Material',
-      options: ['Suni Deri', 'Hakiki Deri', 'Kauçuk']
+      options: ['Suni Deri', 'Hakiki Deri', 'Kauçuk','Kumaş','Ortopedik']
     },
     {
       name: 'Kargo',
