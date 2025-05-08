@@ -3,7 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import zappos from "../images/zappos.png";
 import kırmızı from "../images/kırmızı.png";
+import men from "../images/menbots.png";
 import "../CSS/Home1.css";
+import ProductList from "./ProductList";
 
 
 
@@ -27,9 +29,12 @@ function Home1() {
   const images = [
     '/image/modelkı.png',
     '/image/botlukız.png',
+    '/image/mencollection.png',
     '/image/collection.png',
-    '/image/sarıtopuklu.png',
     '/image/heel.png',
+    '/image/sneaker.png',
+    '/image/bots.png',
+    '/image/heelcolor.png',
   ];
 
   const [current, setCurrent] = useState(0);
@@ -54,7 +59,7 @@ function Home1() {
             src={images[current]}
             alt={`Slide ${current + 1}`}
             className="d-block mx-auto img-fluid"
-            style={{ maxWidth: '100%', height: 'auto' }}
+            style={{ maxWidth: '75%', height: 'auto' }}
           />
 
           {/* Left Arrow */}
@@ -116,20 +121,34 @@ function Home1() {
         </div>
       </div>
       <div className="d-flex flex-column justify-content-center align-items-center mt-5">
-        <div className="text-center fw-bold banner">
+        <div className="text-center fw-bold banner mt-5">
           <p className="banner-title">Back to Fashion</p>
         </div>
-        <div className="banner-image text-center ">
+        <div className="banner-image text-center mb-5 ">
           <img src={kırmızı} alt="court" className="image mt-5" />
         </div>
       </div>
       <div className="d-flex flex-column justify-content-center align-items-center mt-5">
-        <div className="text-center fw-bold banner">
+        <div className="text-center fw-bold banner mt-5">
           <p className="banner-title">Converse</p>
         </div>
-        <div className="banner-image text-center ">
+        <div className="banner-image text-center mb-5 ">
           <img src={zappos} alt="zappos" className="image mt-5" />
         </div>
+      </div>
+      <div className="d-flex flex-column justify-content-center align-items-center mt-5">
+        <div className="text-center fw-bold banner mt-5">
+          <p className="banner-title">Men Bots</p>
+        </div>
+        <div className="banner-image text-center mb-5 ">
+          <img src={men} alt="zappos" className="image mt-5" />
+        </div>
+      </div>
+      <div className="mt-5">
+        <div className="mt-5">
+          <p className="fw-bold you-title">Sizin İçin Seçtiklerimiz</p>
+        </div>
+        <ProductList />
       </div>
     </div>
   );
