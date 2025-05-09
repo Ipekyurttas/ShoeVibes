@@ -18,7 +18,7 @@ const CategorySidebar = () => {
     },
     {
       name: 'Color',
-      options: ['Siyah', 'Bej', 'Kırmızı', 'Mavi','Gri','Beyaz','Yeşil','Pembe','Sarı']
+      options: ['Black', 'Bej', 'Red', 'Blue','Grey','White','Green','Pink','Yellow']
     },
     {
       name: 'Price',
@@ -30,15 +30,15 @@ const CategorySidebar = () => {
     },
     {
       name: 'Material',
-      options: ['Suni Deri', 'Hakiki Deri', 'Kauçuk','Kumaş','Ortopedik']
+      options: ['Artificial Leather', 'Genuine Leather', 'Rubber','Fabric','Orthopedic']
     },
     {
-      name: 'Kargo',
-      options: ['Bedava Kargo']
+      name: 'Delivery',
+      options: ['Free Delivery']
     },
     {
-      name: 'Cupon',
-      options: ['Kuponlu Ürün']
+      name: 'Discount',
+      options: ['Discounted Product']
     }
   ];
 
