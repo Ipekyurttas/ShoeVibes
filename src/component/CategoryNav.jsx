@@ -10,10 +10,12 @@ import nikekategori from "../images/nikekategori.avif";
 import pumaerkek from "../images/pumaerkek.jpeg";
 import kremtopuklu from "../images/kremtopuklu.jpg";
 import sneakerkadın from "../images/sneakerkadın.webp";
-import siyahbebe from "../images/siyahbebe.webp";
-import pembespor from "../images/pembespor.webp";
+import sneakersiyah from "../images/sneakersiyah.webp";
+import sneakerbeyaz from "../images/sneakerbeyaz.webp";
+import kızsiyah from "../images/kızsiyah.webp";
+import erkekmavi from "../images/erkekmavi.webp";
+import indirim from "../images/indirim.png";
 import "../CSS/Navbar.css";
-
 
 const categories = {
   brands: ["Nike", "Adidas", "Puma", "Sketchers", "Vans", "Converse", "Lumberjack", "Us.Polo Assn."],
@@ -28,9 +30,9 @@ const categoryImages = {
   brands: [adidaslogo,nikelogo1],
   men: [nikekategori,pumaerkek],
   women: [kremtopuklu,sneakerkadın],
-  kids: [siyahbebe,pembespor],
-  sneakers: [adidaslogo,nikelogo1],
-  campaigns: [adidaslogo,nikelogo1],
+  kids: [kızsiyah,erkekmavi],
+  sneakers: [sneakerbeyaz,sneakersiyah],
+  campaigns: [indirim],
 };
 
 function CategoryNav() {

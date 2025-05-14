@@ -90,7 +90,7 @@ function Cart() {
                                                     <span className="fw-bold">{item.price.toFixed(2)} ₺</span>
                                                 </div>
                                                 {!item.inCart ? (
-                                                    <button className="btn2" onClick={() => addToCart(item.id)}>Sepete Ekle</button>
+                                                    <button className="btn2 " onClick={() => addToCart(item.id)}>Sepete Ekle</button>
                                                 ) : (
                                                     <span className="badge bg-success">Sepette</span>
                                                 )}
