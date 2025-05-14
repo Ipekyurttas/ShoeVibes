@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../CSS/Cart.css'; // özel stiller için
+import stiletto from "../images/stiletto.webp";
+import convers from "../images/conversebrands.webp";
+import convers1 from "../images/conversebrands1.webp";
+import boşsepet from "../images/boşSepet.jpeg";
+import "../CSS/Cart.css"
+
 
 function Cart() {
     const [activeTab, setActiveTab] = useState('onceEklenenler');
@@ -12,27 +18,27 @@ function Cart() {
             price: 624.95,
             oldPrice: 1249.90,
             size: 38,
-            imageUrl: "https://via.placeholder.com/100",
+            imageUrl: stiletto,
             inCart: false
         },
         {
             id: 2,
             name: "Freemax",
-            description: "Kadın Yazlık Rahat Baretli Kolej Babet",
+            description: "Kadın Yazlık Rahat Mavi Renk Konvers",
             price: 494.94,
             oldPrice: null,
             size: 38,
-            imageUrl: "https://via.placeholder.com/100",
+            imageUrl: convers,
             inCart: false
         },
         {
             id: 3,
             name: "Tonny Black",
-            description: "Kadın Siyah Yüksek Poli Taban Yanı Açık Ayakkabı",
+            description: "Kadın Beyaz Konvers",
             price: 674.97,
             oldPrice: 1349.95,
             size: 38,
-            imageUrl: "https://via.placeholder.com/100",
+            imageUrl: convers1,
             inCart: false
         }
     ]);
@@ -50,10 +56,10 @@ function Cart() {
             {/* Eğer sepet boşsa */}
             {cartItems.filter(item => item.inCart).length === 0 && (
                 <div className="empty-cart text-center">
-                    <img src="/cart-empty.png" alt="Empty Cart" style={{ width: "80px", marginBottom: "10px" }} />
-                    <p>Sepetinizde ürün bulunmamaktadır.</p>
-                    <p><span className="text-warning">FLO</span>’da binlerce ürün ve model seni bekliyor</p>
-                    <Link to="/" className="btn btn-warning mt-2">Alışverişe Başla</Link>
+                    <img src={boşsepet} alt="Boş Sepet" style={{ width: "80px", height:"80px", marginBottom: "10px" }} />
+                    <p >Sepetinizde ürün bulunmamaktadır.</p>
+                    <p><span className="s-text">ShoeVibes</span>’ da binlerce ürün ve model seni bekliyor</p>
+                    <Link to="/" className="btn mt-2" style={{ width: "165px", height: "75px", borderColor:"#6a380a",}}>Alışverişe Başla</Link>
                 </div>
             )}
 
@@ -61,9 +67,9 @@ function Cart() {
             {cartItems.length > 0 && (
                 <>
                     <div className="tabs d-flex justify-content-around my-4">
-                        <button className={`btn ${activeTab === 'onceEklenenler' ? 'btn-warning' : 'btn-outline-warning'}`} onClick={() => setActiveTab('onceEklenenler')}>Önceden Eklediklerim</button>
-                        <button className={`btn ${activeTab === 'favoriler' ? 'btn-outline-warning' : 'btn-outline-warning'}`} onClick={() => setActiveTab('favoriler')}>Favorilerim</button>
-                        <button className={`btn ${activeTab === 'sonGezdiklerim' ? 'btn-outline-warning' : 'btn-outline-warning'}`} onClick={() => setActiveTab('sonGezdiklerim')}>Son Gezdiklerim</button>
+                        <button className={`btn1 ${activeTab === 'onceEklenenler' ? 'btn-warning' : 'btn-outline-warning'}`} onClick={() => setActiveTab('onceEklenenler')}>Önceden Eklediklerim</button>
+                        <button className={`btn1 ${activeTab === 'favoriler' ? 'btn-outline-warning' : 'btn-outline-warning'}`} onClick={() => setActiveTab('favoriler')}>Favorilerim</button>
+                        <button className={`btn1 ${activeTab === 'sonGezdiklerim' ? 'btn-outline-warning' : 'btn-outline-warning'}`} onClick={() => setActiveTab('sonGezdiklerim')}>Son Gezdiklerim</button>
                     </div>
 
                     <div className="item-list">
@@ -84,7 +90,7 @@ function Cart() {
                                                     <span className="fw-bold">{item.price.toFixed(2)} ₺</span>
                                                 </div>
                                                 {!item.inCart ? (
-                                                    <button className="btn btn-outline-warning btn-sm" onClick={() => addToCart(item.id)}>Sepete Ekle</button>
+                                                    <button className="btn2" onClick={() => addToCart(item.id)}>Sepete Ekle</button>
                                                 ) : (
                                                     <span className="badge bg-success">Sepette</span>
                                                 )}

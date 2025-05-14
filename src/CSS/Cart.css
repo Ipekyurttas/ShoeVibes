@@ -11,3 +11,52 @@
 .item-list .card {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+.s-text{
+  color:#6a380a ;
+  font-size: 30px;
+   font-weight: bold;
+}
+
+.btn11{
+  background-color:#6a380a ;
+  color:white;
+  width: 200px;
+  height: 75px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 5px;
+  border-radius:5px ;
+}
+
+
+.btn1{
+  background-color:#c6ac91 ;
+  color:white;
+  width: 150px;
+  height: 60px;
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding-bottom:3px;
+  padding-top: 3px;
+  border-radius: 5px ;
+  border-color: #be844d;
+}
+
+
+.btn2 {
+  border: 1px solid #ffc107; /* Sarı çerçeve */
+  color: #ffc107; /* Sarı yazı */
+  background-color: transparent; /* Şeffaf arka plan */
+  padding: 5px 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn2:hover {
+  background-color: #ffc107; /* Üzerine gelindiğinde sarı arka plan */
+  color: #fff; /* Yazı rengi beyaz */
+}
