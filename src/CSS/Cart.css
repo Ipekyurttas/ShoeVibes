@@ -1,62 +1,95 @@
-/* src/CSS/Cart.css */
-
 .empty-cart {
   margin-top: 50px;
+  width: 100%;
 }
 
 .tabs button {
   width: 30%;
 }
 
+.item-list {
+  width: 70%;
+}
+
+.card-img {
+  width: 150px;
+  margin-left: 30px;
+}
+
 .item-list .card {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-.s-text{
-  color:#6a380a ;
+
+.s-text {
+  color: #6a380a;
   font-size: 30px;
-   font-weight: bold;
+  font-weight: bold;
 }
 
-.btn11{
-  background-color:#6a380a ;
-  color:white;
+.start-button {
+  width: 165px;
+  height: 50px;
+  background-color: #7f5539;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.start-button:hover {
+  background-color: #5a2d0b;
+  color: white;
+}
+
+.btn11 {
+  background-color: #6a380a;
+  color: white;
   width: 200px;
   height: 75px;
   font-size: 20px;
   font-weight: bold;
   margin-top: 5px;
-  border-radius:5px ;
+  border-radius: 5px;
 }
 
 
-.btn1{
-  background-color:#c6ac91 ;
-  color:white;
+.btn1 {
+  background-color: #c6ac91;
+  color: white;
   width: 150px;
   height: 60px;
   font-size: 17px;
   font-weight: bold;
   margin-top: 3px;
   margin-bottom: 3px;
-  padding-bottom:3px;
+  padding-bottom: 3px;
   padding-top: 3px;
-  border-radius: 5px ;
+  border-radius: 5px;
   border-color: #be844d;
 }
 
 
 .btn2 {
-  border: 1px solid #ffc107; /* Sarı çerçeve */
-  color: #ffc107; /* Sarı yazı */
-  background-color: transparent; /* Şeffaf arka plan */
-  padding: 5px 10px;
-  font-size: 20px;
+  border: 1px solid #6a380a;
+  color: #6a380a;
+  background-color: transparent;
+  padding: 5px 15px;
+  font-size: 18px;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn2:hover {
-  background-color: #ffc107; /* Üzerine gelindiğinde sarı arka plan */
-  color: #fff; /* Yazı rengi beyaz */
+  background-color: #c6ac91;
+  border: 1px solid #c6ac91;
+}
+
+.trash {
+  width: 40px;
 }
