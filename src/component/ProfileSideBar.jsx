@@ -12,6 +12,8 @@ function ProfileSideBar() {
     if (path === 'logout') {
       toast.info('Logging out...', { autoClose: 1000 });
       setTimeout(() => navigate('/'), 1200);
+    } else if (path === 'orders') {
+      navigate('/orders'); // Orders sayfasına yönlendir
     } else {
       navigate(`/${path}`);
     }
@@ -27,7 +29,7 @@ function ProfileSideBar() {
                 <PersonFill className="me-2" /> Account
               </Nav.Link>
             </Nav.Item>
-            
+
             <Nav.Item>
               <Nav.Link onClick={() => handleNavigation('profile/favorites')} className="d-flex align-items-center">
                 <Heart className="me-2" /> Favorites
@@ -40,7 +42,7 @@ function ProfileSideBar() {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link onClick={() => handleNavigation('profile/orders')} className="d-flex align-items-center">
+              <Nav.Link onClick={() => handleNavigation('orders')} className="d-flex align-items-center">
                 <ListCheck className="me-2" /> Orders
               </Nav.Link>
             </Nav.Item>

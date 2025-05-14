@@ -1,0 +1,24 @@
+.search{
+    background-color: #834d19 ;
+    color:white;
+    font-size: 25px;
+    border-radius: 10px;
+    width:250px;
+    height: 55px;
+    margin: 5px;   
+    padding: 5px;
+}
+
+.d1{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    color: white;
+
+}
+
+.s-input{
+    background-color: #e5e5e5 ;
+    height: 45px;
+    width: 500px;
+}

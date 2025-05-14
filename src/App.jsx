@@ -23,6 +23,7 @@ import Men from './page/Men';
 import Kids from './page/Kids';
 import Sneakers from './page/Sneakers';
 import ProductDetail from './page/ProductDetails';
+import Orders from './page/OrdersPage.jsx';
 
 function App() {
   return (
@@ -48,7 +49,13 @@ function App() {
         <Route path='/kids' element={<Kids />} />
         <Route path='/sneakers' element={<Sneakers />} />
         <Route path='/product/:id' element={<ProductDetail />} />
+
+        <Route path="/" element={<Home />} />
+        <Route path="/orders" element={<Orders />} />
+
+
       </Routes>
+
     </div>
   );
 }

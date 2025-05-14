@@ -1,13 +1,13 @@
 import React, { useState, useRef } from 'react';
-import {Navbar,Nav,Container,Button,Form,FormControl} from 'react-bootstrap';
-import {Bell,Heart,X,PersonFill,Gear,BoxArrowRight} from 'react-bootstrap-icons';
+import { Navbar, Nav, Container, Button, Form, FormControl } from 'react-bootstrap';
+import { Bell, Heart, X, PersonFill, Gear, BoxArrowRight } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import yazi from '../images/yazi.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'react-toastify/dist/ReactToastify.css';
-import '../CSS/ProfileHomeNav.css'; 
+import '../CSS/ProfileHomeNav.css';
 
 function ProfileHome() {
   const [searchText, setSearchText] = useState('');
@@ -19,7 +19,6 @@ function ProfileHome() {
   const handleClearSearch = () => {
     setSearchText('');
   };
-
   const navigateToPage = (page) => {
     setShowDropdown(false);
 
@@ -30,9 +29,11 @@ function ProfileHome() {
       setLoading(true);
       toast.info('Loading...', { autoClose: 2000 });
       setTimeout(() => {
-        setLoading(false); 
+        setLoading(false);
         navigate(`/${page}`);
       }, 1000);
+    } else if (page === 'orders') {
+      navigate('/orders'); // Orders sayfasına yönlendirme
     } else {
       navigate(`/${page}`);
     }
@@ -117,7 +118,7 @@ function ProfileHome() {
                     <div className="dropdown-item" onClick={() => navigateToPage('profile/favorites')}>
                       <Heart size={16} /> Favorites
                     </div>
-                    <div className="dropdown-item" onClick={() => navigateToPage('profile/orders')}>
+                    <div className="dropdown-item" onClick={() => navigateToPage('orders')}>
                       <BoxArrowRight size={16} /> Orders
                     </div>
                     <div className="dropdown-item" onClick={() => navigateToPage('profile/notifications')}>

@@ -111,4 +111,21 @@
     cursor: pointer;
     font-weight: bold;
   }
+
+
+
+  .comments-section {
+    margin-top: 2rem;
+    border-top: 1px solid #ccc;
+    padding-top: 1rem;
+  }
+  
+  .comment-card {
+    background: #f9f9f9;
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  
   
