@@ -17,10 +17,6 @@
     color: #6a380a;
 }
 
-.profile-sidebar .nav-link.active {
-    background-color: #6a380a;
-    color: white;
-}
 .card {
     margin-bottom: 20px;
 }

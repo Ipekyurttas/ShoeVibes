@@ -56,14 +56,13 @@ function Cart() {
         <>
             <UserHeader />
             <div className="container mt-4">
-
                 {/* Eğer sepet boşsa */}
                 {cartItems.length === 0 && (
                     <div>
                         <h2 className="text-center mb-4">Sepetim</h2>
                         <div className="empty-cart text-center">
                             <img src={cart} alt="Boş Sepet" style={{ width: "120px", height: "120px", marginBottom: "10px" }} />
-                            <p >Sepetinizde ürün bulunmamaktadır.</p>
+                            <p>Sepetinizde ürün bulunmamaktadır.</p>
                             <p><span className="s-text">ShoeVibes</span>’ da binlerce ürün ve model seni bekliyor</p>
                             <div className="d-flex justify-content-center mt-2">
                                 <Link to="/" className="btn mt-2 start-button">Alışverişe Başla</Link>
@@ -74,42 +73,64 @@ function Cart() {
 
                 {/* Eğer ürün varsa */}
                 {cartItems.length > 0 && (
-                    <>
-                        {/* <div className="tabs d-flex justify-content-around my-4">
-                            <button className={`btn1 ${activeTab === 'onceEklenenler' ? 'btn-warning' : 'btn-outline-warning'}`} onClick={() => setActiveTab('onceEklenenler')}>Önceden Eklediklerim</button>
-                            <button className={`btn1 ${activeTab === 'favoriler' ? 'btn-outline-warning' : 'btn-outline-warning'}`} onClick={() => setActiveTab('favoriler')}>Favorilerim</button>
-                            <button className={`btn1 ${activeTab === 'sonGezdiklerim' ? 'btn-outline-warning' : 'btn-outline-warning'}`} onClick={() => setActiveTab('sonGezdiklerim')}>Son Gezdiklerim</button>
-                        </div> */}
-
-                        <h3 className="mb-5">Sepetim</h3>
-
-                        <div className="item-list">
-                            {cartItems.map(item => (
-                                <div key={item.id} className="card mb-3">
-                                    <div className="row g-0">
-                                        <div className="col-4 card-img">
-                                            <img src={item.imageUrl} className="img-fluid rounded-start" alt={item.name} />
-                                        </div>
-                                        <div className="col-8">
-                                            <div className="card-body">
-                                                <h5 className="card-title">{item.name}</h5>
-                                                <p className="card-text small">{item.description}</p>
-                                                <p className="card-text small text-muted">Beden: {item.size}</p>
-                                                <div className="d-flex align-items-center justify-content-between">
-                                                    <div>
-                                                        {item.oldPrice && <span className="text-muted text-decoration-line-through me-2">{item.oldPrice.toFixed(2)} ₺</span>}
-                                                        <span className="fw-bold">{item.price.toFixed(2)} ₺</span>
+                    <div className="row">
+                        <div className="col-lg-9">
+                            <h3 className="mb-5">Sepetim</h3>
+                            <div className="item-list">
+                                {cartItems.map(item => (
+                                    <div key={item.id} className="card mb-3">
+                                        <div className="row g-0">
+                                            <div className="col-4 card-img">
+                                                <img src={item.imageUrl} className="img-fluid rounded-start" alt={item.name} />
+                                            </div>
+                                            <div className="col-8">
+                                                <div className="card-body">
+                                                    <h5 className="card-title">{item.name}</h5>
+                                                    <p className="card-text small">{item.description}</p>
+                                                    <p className="card-text small text-muted">Beden: {item.size}</p>
+                                                    <div className="d-flex align-items-center justify-content-between">
+                                                        <div>
+                                                            {item.oldPrice && <span className="text-muted text-decoration-line-through me-2">{item.oldPrice.toFixed(2)} ₺</span>}
+                                                            <span className="fw-bold">{item.price.toFixed(2)} ₺</span>
+                                                        </div>
+                                                        <button className="btn2 " onClick={() => addToCart(item.id)}><img src={bin} className='trash' />Sil</button>
                                                     </div>
-                                                        <button className="btn2 " onClick={() => addToCart(item.id)}><img src={bin} className='trash'/>Sil</button>
-
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
-                    </>
+                        <div className="col-lg-3 mt-5">
+                            <div className="card p-3 mb-3" style={{ position: "sticky", top: "30px" }}>
+                                <p className="text-lg font-semibold">
+                                    Sipariş Özeti <span className="text-sm font-normal text-gray-500">(Sepette 3 Ürün Var)</span>
+                                </p>
+
+                                <div className="mt-4 space-y-2">
+                                    <div className="d-flex justify-content-between gap-3">
+                                        <span>Ürünler</span>
+                                        <span>2.499,99 TL</span>
+                                    </div>
+                                    <div className="d-flex justify-content-between gap-3">
+                                        <span>Kargo</span>
+                                        <span>69,99 TL</span>
+                                    </div>
+                                    <hr className="my-2" />
+                                    <div className="d-flex justify-content-between gap-3 text-orange-600 font-bold text-lg">
+                                        <span>Toplam</span>
+                                        <span>2.569,98 TL</span>
+                                    </div>
+                                </div>
+
+                                <button className="mt-4 w-full text-white font-semibold py-2 px-4 rounded card-onay">
+                                    SEPETİ ONAYLA
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
                 )}
             </div>
         </>
