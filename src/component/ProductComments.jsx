@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import "../CSS/ProductComments.css";
+import React from 'react';
 
-// ✅ Yorumların ilk hali burada tanımlanmalı
-const initialComments = [
+const comments = [
     {
         productId: 1,
         username: 'Ayşe',
@@ -24,37 +22,11 @@ const initialComments = [
 ];
 
 const ProductComments = ({ productId }) => {
-    const [commentList, setCommentList] = useState(initialComments);
-    const [formData, setFormData] = useState({
-        username: '',
-        content: '',
-        rating: 5
-    });
-    const [showForm, setShowForm] = useState(false); // 🔹 Form görünürlük durumu
+    const filteredComments = comments.filter(comment => comment.productId === productId);
 
-    const filteredComments = commentList.filter(comment => comment.productId === productId);
-
+    // ⭐ puanı yıldız olarak göstermek için yardımcı fonksiyon
     const renderStars = (rating) => {
-        return '⭐'.repeat(rating) + ''.repeat(5 - rating);
-    };
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: name === 'rating' ? parseInt(value) : value
-        });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const newComment = {
-            productId,
-            ...formData
-        };
-        setCommentList([...commentList, newComment]);
-        setFormData({ username: '', content: '', rating: 5 });
-        setShowForm(false);
+        return '⭐'.repeat(rating) + '☆'.repeat(5 - rating); // örn: ⭐⭐⭐⭐☆
     };
 
     return (
@@ -70,53 +42,6 @@ const ProductComments = ({ productId }) => {
                 ))
             ) : (
                 <p>Bu ürün için henüz yorum yok.</p>
-            )}
-
-            {/* 🔹 Yorum Yap butonu */}
-            <button onClick={() => setShowForm(!showForm)} style={{ marginTop: '1rem', backgroundColor:"#834d19"}}>
-                {showForm ? 'İptal Et' : 'Yorum Yap'}
-            </button>
-
-            {/* 🔹 Form görünürlüğü kontrolü */}
-            {showForm && (
-                <form onSubmit={handleSubmit} className="comment-form">
-                    <div>
-                        <input
-                            type="text"
-                            name="username"
-                            placeholder="Adınız"
-                            value={formData.username}
-                            onChange={handleInputChange}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <textarea
-                            name="content"
-                            placeholder="Yorumunuz"
-                            value={formData.content}
-                            onChange={handleInputChange}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label>
-                            Puan:
-                            <select
-                                name="rating"
-                                value={formData.rating}
-                                onChange={handleInputChange}
-                            >
-                                {[5, 4, 3, 2, 1].map((num) => (
-                                    <option key={num} value={num}>
-                                        {num}
-                                    </option>
-                                ))}
-                            </select>
-                        </label>
-                    </div>
-                    <button type="submit" style={{ backgroundColor:"#834d19"}}>Gönder</button>
-                </form>
             )}
         </div>
     );
