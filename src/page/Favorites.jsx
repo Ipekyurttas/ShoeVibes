@@ -2,10 +2,10 @@ import React from 'react';
 import ProfileHomeNav from '../component/ProfileHomeNav';
 import CategoryNav from '../component/CategoryNav';
 import ProfileSideBar from '../component/ProfileSideBar';
-import ProfileDetailContent from '../component/ProfileDetailContent';
+import FavoritesDetails from '../component/FavoritesDetails';
 import Footer from '../component/Footer';
 
-function ProfileDetail() {
+function FavoritesPage() {
   return (
     <>
       <ProfileHomeNav />
@@ -16,7 +16,7 @@ function ProfileDetail() {
             <ProfileSideBar />
           </div>
           <div className="col-md-9">
-            <ProfileDetailContent />
+            <FavoritesDetails />
           </div>
         </div>
       </div>
@@ -25,4 +25,4 @@ function ProfileDetail() {
   );
 }
 
-export default ProfileDetail;
+export default FavoritesPage;

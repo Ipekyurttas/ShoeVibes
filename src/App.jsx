@@ -1,12 +1,10 @@
-// src/App.js
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import './App.css';
-
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import './App.css';
 
 import Home from './page/Home';
 import User from './page/User';
@@ -22,7 +20,9 @@ import Women from './page/Women';
 import Men from './page/Men';
 import Kids from './page/Kids';
 import Sneakers from './page/Sneakers';
-import ProductDetail from './page/ProductDetails';
+import ProductDetails from './page/ProductDetails';
+import Favorites from './page/Favorites'; 
+import Orders from './page/OrdersPage.jsx';
 
 function App() {
   return (
@@ -34,7 +34,6 @@ function App() {
         <Route path='/forgotpassword' element={<ForgotPassword />} />
         <Route path="/profile" element={<ProfileHome />} />
         <Route path="/profile/account" element={<ProfileDetail />} />
-        <Route path="/profile/favorites" element={<ProfileDetail />} />
         <Route path="/profile/cart" element={<Cart />} />
         <Route path="/profile/orders" element={<ProfileDetail />} />
         <Route path="/profile/settings" element={<ProfileDetail />} />
@@ -47,8 +46,12 @@ function App() {
         <Route path='/men' element={<Men />} />
         <Route path='/kids' element={<Kids />} />
         <Route path='/sneakers' element={<Sneakers />} />
-        <Route path='/product/:id' element={<ProductDetail />} />
+        <Route path='/product/:id' element={<ProductDetails />} />
+        <Route path="/profile/favorites" element={<Favorites/>} />
+        <Route path="/orders" element={<Orders />} />
+
       </Routes>
+
     </div>
   );
 }
