@@ -12,6 +12,8 @@ function ProfileSideBar() {
     if (path === 'logout') {
       toast.info('Logging out...', { autoClose: 1000 });
       setTimeout(() => navigate('/'), 1200);
+    } else if (path === 'orders') {
+      navigate('/orders'); // Orders sayfasına yönlendir
     } else {
       navigate(`/${path}`);
     }

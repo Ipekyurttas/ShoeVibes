@@ -22,6 +22,7 @@ import Kids from './page/Kids';
 import Sneakers from './page/Sneakers';
 import ProductDetails from './page/ProductDetails';
 import Favorites from './page/Favorites'; 
+import Orders from './page/OrdersPage.jsx';
 
 function App() {
   return (
@@ -47,7 +48,10 @@ function App() {
         <Route path='/sneakers' element={<Sneakers />} />
         <Route path='/product/:id' element={<ProductDetails />} />
         <Route path="/profile/favorites" element={<Favorites/>} />
+        <Route path="/orders" element={<Orders />} />
+
       </Routes>
+
     </div>
   );
 }

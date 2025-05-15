@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';  
 import { useNavigate } from 'react-router-dom';
 import adidaslogo from "../images/adidaslogo.jpg";

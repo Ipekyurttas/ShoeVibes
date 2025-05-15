@@ -5,9 +5,11 @@ import CategoryNav from '../component/CategoryNav';
 import Footer from '../component/Footer';
 import "../CSS/ProductDetails.css";
 import conversebrands1 from "../images/conversebrands1.webp"; 
-import sandalet from "../images/sandalet.webp";
 import abiye1 from "../images/abiye1.webp";
 import abiye2 from "../images/abiye2.webp";
+
+import ProductComments from '../component/ProductComments.jsx';
+
 
 const productList = [
   {
@@ -72,6 +74,7 @@ const ProductDetail = () => {
             <span className="current-price">{product.price} TL</span>
             <span className="original-price">{product.originalPrice} TL</span>
           </div>
+
           <div className="rating">
             <span>⭐ {product.rating} ({product.reviewCount} review)</span>
           </div>
@@ -90,6 +93,9 @@ const ProductDetail = () => {
           </div>
 
           <button className="add-to-cart">Add to Cart</button>
+
+          <ProductComments productId={product.id} />
+
         </div>
       </div>
       <Footer />
