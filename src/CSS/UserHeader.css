@@ -1,7 +1,19 @@
 .user-header {
-    height: 80px;
+    height: 80px; /* Bu yükseklik koruyabiliriz */
     border-bottom: 0.8px solid #d3d3d3;
+
+    width: 100%;        /* Tam genişlik */
+    position: fixed;    /* Sayfada sabit kalması için */
+    top: 0;             /* En üstte */
+    left: 0;
+    background-color: white;  /* Üst kısmın arka planı belirgin olsun diye */
+    z-index: 1000;      /* Üstte kalması için yüksek z-index */
+    display: flex;      /* İçerik hizalaması için */
+    align-items: center; /* Dikey ortalama */
+    padding: 0 20px;    /* Yatay iç boşluk */
+    box-sizing: border-box; /* Padding dahil */
 }
+
 
 .logo {
     margin-top: 20px;
