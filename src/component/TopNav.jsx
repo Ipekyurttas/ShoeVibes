@@ -3,11 +3,11 @@ import { Navbar, Nav, Container, Button, Form, FormControl } from 'react-bootstr
 import { Bell, Heart, X } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 import yazi from '../images/yazi.png';
-import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import "../CSS/Navbar.css"
+import "../CSS/Navbar.css";
 
 function TopNavbar() {
   const [searchText, setSearchText] = useState('');
@@ -18,7 +18,6 @@ function TopNavbar() {
   };
 
   const navigateToAuth = (tab) => {
-    console.log(`Navigating to /auth with tab: ${tab}`);
     navigate('/auth', { state: { tab } });
   };
 
@@ -27,11 +26,13 @@ function TopNavbar() {
       <Container fluid className="p-0" style={{ width: '100%', height: '100%' }}>
         <div className="d-flex align-items-center">
           <Navbar.Brand 
-           onClick={() => {
-            navigate('/');
-            toast.success("Navigating..." ,{ autoClose: 2000 });
-           }}
-          className="me-3 p-2 custom-navbar-brand">
+            onClick={() => {
+              navigate('/');
+              toast.success("Navigating...", { autoClose: 2000 });
+            }}
+            className="me-3 p-2 custom-navbar-brand"
+            style={{ cursor: 'pointer' }}
+          >
             <img
               src={yazi}
               alt="Logo"
@@ -49,7 +50,7 @@ function TopNavbar() {
               aria-label="Search"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
-              style={{ borderRadius: '5px', width: '2000px'}}
+              style={{ borderRadius: '5px', width: '2000px' }}
             />
             {searchText && (
               <Button
@@ -70,13 +71,22 @@ function TopNavbar() {
             <Nav.Link href="#notifications" className="custom-nav-link">
               <Bell size={20} />
             </Nav.Link>
-            <Nav.Link href="#favorites" className="custom-nav-link">
-              <Heart class="heart-icon" size={20} />
+            <Nav.Link
+              onClick={() => navigate('/profile/favorites')}
+              className="custom-nav-link"
+            >
+              <Heart className="heart-icon" size={20} />
             </Nav.Link>
-            <Nav.Link onClick={() => navigateToAuth('login')} className="custom-nav-link">
+            <Nav.Link
+              onClick={() => navigateToAuth('login')}
+              className="custom-nav-link"
+            >
               Log In
             </Nav.Link>
-            <Nav.Link onClick={() => navigateToAuth('signup')} className="custom-nav-link">
+            <Nav.Link
+              onClick={() => navigateToAuth('signup')}
+              className="custom-nav-link"
+            >
               Sign In
             </Nav.Link>
           </Nav>
