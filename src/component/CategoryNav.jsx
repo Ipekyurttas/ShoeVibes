@@ -3,8 +3,8 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'react-toastify/dist/ReactToastify.css';  
 import { useNavigate } from 'react-router-dom';
-import adidaslogo from "../images/adidaslogo.jpg";
-import nikelogo1 from "../images/nikelogo1.jpg";
+import adidaslogo1 from "../images/adidaslogo1.png";
+import nikelogo1 from "../images/nikelogo1.png";
 import nikekategori from "../images/nikekategori.avif";
 import pumaerkek from "../images/pumaerkek.jpeg";
 import kremtopuklu from "../images/kremtopuklu.jpg";
@@ -26,7 +26,7 @@ const categories = {
 };
 
 const categoryImages = {
-  brands: [adidaslogo,nikelogo1],
+  brands: [adidaslogo1,nikelogo1],
   men: [nikekategori,pumaerkek],
   women: [kremtopuklu,sneakerkadın],
   kids: [kızsiyah,erkekmavi],

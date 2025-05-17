@@ -1,16 +1,12 @@
 .search{
     background-color: #834d19 ;
     color:white;
-    font-size: 18px;
+    font-size: 25px;
     border-radius: 10px;
-    width:180px;
-    height: 40px;
-    padding-top:5px;
-    margin-top: 5px;
-    /*margin: 5px;   
-    /*padding: 5px;
-  /*  box-shadow: 0px 4px 10px rgba(165, 42, 42, 0.5);*/
-   
+    width:250px;
+    height: 55px;
+    margin: 5px;   
+    padding: 5px;
 }
 
 .d1{
@@ -22,11 +18,7 @@
 }
 
 .s-input{
-    background-color: #ffffff ;
-    border-radius: 10px;
-    border-color:azure;
-    color:black;
+    background-color: #e5e5e5 ;
     height: 45px;
     width: 500px;
-    box-shadow: 0px 2px 5px ;
 }

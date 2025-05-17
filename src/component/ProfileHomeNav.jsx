@@ -107,7 +107,7 @@ function ProfileHome() {
                 <Heart size={20} />
               </Nav.Link>
 
-             
+
 
               <div
                 className="position-relative"
