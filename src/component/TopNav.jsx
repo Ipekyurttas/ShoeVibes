@@ -28,7 +28,6 @@ function TopNavbar() {
           <Navbar.Brand 
             onClick={() => {
               navigate('/');
-              toast.success("Navigating...", { autoClose: 2000 });
             }}
             className="me-3 p-2 custom-navbar-brand"
             style={{ cursor: 'pointer' }}

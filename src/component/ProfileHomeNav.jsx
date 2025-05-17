@@ -33,7 +33,7 @@ function ProfileHome() {
         navigate(`/${page}`);
       }, 1000);
     } else if (page === 'orders') {
-      navigate('/orders'); // Orders sayfasına yönlendirme
+      navigate('/orders'); 
     } else {
       navigate(`/${page}`);
     }
@@ -60,7 +60,12 @@ function ProfileHome() {
       <Navbar bg="light" expand="lg" className="sticky-top p-0 custom-top-navbar">
         <Container fluid className="p-0" style={{ width: '100%', height: '100%' }}>
           <div className="d-flex align-items-center">
-            <Navbar.Brand href="#" className="me-3 p-2 custom-navbar-brand">
+            <Navbar.Brand
+              className="me-3 p-2 custom-navbar-brand"
+              onClick={() => {
+                navigate('/');
+              }}
+            >
               <img
                 src={yazi}
                 alt="Logo"
