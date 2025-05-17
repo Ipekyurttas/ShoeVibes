@@ -8,7 +8,7 @@
 }
 
 .item-list {
-  width: 70%;
+  width: 80%;
 }
 
 .card-img {
@@ -92,4 +92,14 @@
 
 .trash {
   width: 40px;
+}
+
+.card-onay {
+  background-color: #c6ac91;
+  border: 1px solid #c6ac91;
+}
+
+.card-onay:hover {
+  background-color: #6a380a;
+  border: 1px solid #6a380a;
 }

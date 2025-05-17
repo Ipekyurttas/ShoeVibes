@@ -101,6 +101,9 @@ function ProfileHome() {
               <Nav.Link href="#favorites" className="custom-nav-link">
                 <Heart size={20} />
               </Nav.Link>
+
+             
+
               <div
                 className="position-relative"
                 onMouseEnter={handleMouseEnter}
