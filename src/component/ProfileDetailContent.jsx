@@ -1,7 +1,18 @@
 import React from 'react';
 import { Card, ListGroup, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 function ProfileDetailContent() {
+  const navigate = useNavigate();
+
+  const handleEdit = () => {
+    navigate('/profile/edit');
+  };
+
+  const handleAddAddress = () => {
+    navigate('/profile/add');
+  };
+
   return (
     <Card className="border-0 bg-white">
       <Card.Body>
@@ -11,7 +22,7 @@ function ProfileDetailContent() {
           <Card.Body>
             <div className="d-flex justify-content-between align-items-center mb-3">
               <Card.Title as="h5" className="mb-0">Personal Information</Card.Title>
-              <Button variant="outline-secondary" size="sm">Edit</Button>
+              <Button variant="outline-secondary" size="sm" onClick={handleEdit}>Edit</Button>
             </div>
 
             <ListGroup variant="flush">
@@ -38,7 +49,7 @@ function ProfileDetailContent() {
 
               <ListGroup.Item className="d-flex justify-content-between align-items-center border-0">
                 <div className="fw-bold">Shipping Addresses</div>
-                <Button variant="outline-secondary" size="sm">Add</Button>
+                <Button variant="outline-secondary" size="sm" onClick={handleAddAddress}>Add</Button>
               </ListGroup.Item>
 
               <ListGroup.Item className="text-muted border-0 ps-0">No addresses saved</ListGroup.Item>
