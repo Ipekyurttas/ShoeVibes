@@ -51,7 +51,7 @@ function Form({ activeTab, setActiveTab }) {
             toast.error('Signup failed: ' + (error.response?.data?.message || error.message));
         }
     };
-    
+
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -61,14 +61,22 @@ function Form({ activeTab, setActiveTab }) {
                     'Content-Type': 'application/json'
                 }
             });
-    
+
             if (response.status === 200) {
-                console.log('Login Data:', loginData);
+                const { token, role } = response.data;
+
+                // Token ve rolü localStorage'a kaydet
+                localStorage.setItem('token', token);
+                localStorage.setItem('role', role);
+
+                console.log('Token:', token);
+                console.log('Role:', role);
+
                 toast.success('Entrance Successful. You are redirected to Home Page...');
-        
+
                 setTimeout(() => {
                     navigate('/profile');
-                }, 2000); 
+                }, 2000);
             }
         } catch (error) {
             toast.error('Login failed: ' + (error.response?.data?.message || error.message));

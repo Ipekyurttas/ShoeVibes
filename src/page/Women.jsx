@@ -15,10 +15,12 @@ import bot2 from "../images/bot2.webp";
 import çizme1 from "../images/çizme1.webp";
 import çizme2 from "../images/çizme2.webp";
 import heel1 from "../images/heel1.webp";
+import ProfileHomeNav from '../component/ProfileHomeNav';
 import "../CSS/Brands.css";
 
 const Women = () => {
   const [favorites, setFavorites] = useState([]);
+  const token = localStorage.getItem('token');
 
   const products = [ 
  { 
@@ -210,7 +212,7 @@ const Women = () => {
 
   return (
     <>
-      <TopNavbar />
+      {token ? <ProfileHomeNav /> : <TopNavbar />}
       <CategoryNav />
       <div className="ecommerce-container">
         <aside className="sidebar-container">
