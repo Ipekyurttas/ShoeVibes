@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
@@ -25,11 +24,12 @@ import FavoritesPage from './page/Favorites';
 import Orders from './page/OrdersPage.jsx';
 import Review from './page/Review.jsx';
 import Edit from './page/Edit.jsx';
+import AddressPage from './page/AddressPage.jsx';
+import PaymentPage from './page/PaymentPage';
 
 function App() {
   return (
     <div className="app-root">
-      <ToastContainer position="top-center" autoClose={1000} />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/auth' element={<User />} />
@@ -53,6 +53,8 @@ function App() {
         <Route path="/orders" element={<Orders />} />
          <Route path="/profile/review" element={<Review />} />
          <Route path="/profile/edit" element={<Edit />} />
+         <Route path="/profile/add" element={<AddressPage />} />
+         <Route path="/payment" element={<PaymentPage />} />
       </Routes>
 
     </div>

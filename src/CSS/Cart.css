@@ -1,4 +1,3 @@
-
 .empty-cart {
   margin-top: 50px;
   width: 100%;
@@ -54,7 +53,6 @@
   border-radius: 5px;
 }
 
-
 .btn1 {
   background-color: #c6ac91;
   color: white;
@@ -69,7 +67,6 @@
   border-radius: 5px;
   border-color: #be844d;
 }
-
 
 .btn2 {
   border: 1px solid #6a380a;
@@ -105,3 +102,10 @@
   border: 1px solid #6a380a;
 }
 
+.coupon-card {
+  transition: 0.3s ease all;
+}
+
+.coupon-card:hover {
+  background-color: #f9f9f9;
+}
