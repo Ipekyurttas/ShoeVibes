@@ -12,6 +12,8 @@ import "../CSS/Navbar.css";
 function TopNavbar() {
   const [searchText, setSearchText] = useState('');
   const navigate = useNavigate();
+  
+  const isLoggedIn = false;
 
   const handleClearSearch = () => {
     setSearchText('');
@@ -71,7 +73,14 @@ function TopNavbar() {
               <Bell size={20} />
             </Nav.Link>
             <Nav.Link
-              onClick={() => navigate('/profile/favorites')}
+              onClick={() => {
+                if (isLoggedIn) {
+                  navigate('/profile/favorites');
+                } else {
+                  toast.info('You need to log in to view your favorites!');
+                  navigateToAuth('login');
+                }
+              }}
               className="custom-nav-link"
             >
               <Heart className="heart-icon" size={20} />

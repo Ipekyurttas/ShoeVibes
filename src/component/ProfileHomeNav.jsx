@@ -1,12 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { Navbar, Nav, Container, Button, Form, FormControl } from 'react-bootstrap';
-import { Bell, Heart, X, PersonFill, Gear, BoxArrowRight } from 'react-bootstrap-icons';
+import { Bell, Heart, X, PersonFill, Gear, BoxArrowRight, Cart, ListCheck } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import yazi from '../images/yazi.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import 'react-toastify/dist/ReactToastify.css';
 import '../CSS/ProfileHomeNav.css';
 
 function ProfileHome() {
@@ -19,23 +17,31 @@ function ProfileHome() {
   const handleClearSearch = () => {
     setSearchText('');
   };
-  const navigateToPage = (page) => {
+
+  const routeMap = {
+    account: 'profile/account',
+    favorites: 'profile/favorites',
+    cart: 'profile/cart',
+    settings: 'profile/settings',
+    orders: 'orders',
+    logout: '', 
+  };
+
+  const navigateToPage = (pageKey) => {
     setShowDropdown(false);
 
-    if (page === 'logout') {
-      toast.info('Logging out...', { autoClose: 1000 });
-      setTimeout(() => navigate('/'), 1200);
-    } else if (page === 'profile/account') {
+    const path = routeMap[pageKey];
+
+    if (pageKey === 'account') {
       setLoading(true);
-      toast.info('Loading...', { autoClose: 2000 });
       setTimeout(() => {
         setLoading(false);
-        navigate(`/${page}`);
+        navigate(`/${path}`);
       }, 1000);
-    } else if (page === 'orders') {
-      navigate('/orders'); 
-    } else {
-      navigate(`/${page}`);
+    } else if (pageKey === 'logout') {
+      setTimeout(() => navigate('/'), 1000);
+    } else if (path !== undefined) {
+      navigate(`/${path}`);
     }
   };
 
@@ -52,19 +58,12 @@ function ProfileHome() {
 
   return (
     <>
-      {loading && (
-        <div className="loading-overlay">
-          <div className="loading-text">Loading...</div>
-        </div>
-      )}
       <Navbar bg="light" expand="lg" className="sticky-top p-0 custom-top-navbar">
         <Container fluid className="p-0" style={{ width: '100%', height: '100%' }}>
           <div className="d-flex align-items-center">
             <Navbar.Brand
               className="me-3 p-2 custom-navbar-brand"
-              onClick={() => {
-                navigate('/');
-              }}
+              onClick={() => navigate('/')}
             >
               <img
                 src={yazi}
@@ -100,14 +99,12 @@ function ProfileHome() {
             <Nav className="ms-auto align-items-center custom-right-nav">
               <Nav.Link href="#new" className="custom-nav-link">New</Nav.Link>
               <Nav.Link href="#about" className="custom-nav-link">About</Nav.Link>
-              <Nav.Link href="#notifications" className="custom-nav-link">
+              <Nav.Link onClick={() => navigateToPage('notifications')} className="custom-nav-link">
                 <Bell size={20} />
               </Nav.Link>
-              <Nav.Link href="#favorites" className="custom-nav-link">
+              <Nav.Link onClick={() => navigateToPage('favorites')} className="custom-nav-link">
                 <Heart size={20} />
               </Nav.Link>
-
-
 
               <div
                 className="position-relative"
@@ -115,27 +112,27 @@ function ProfileHome() {
                 onMouseLeave={handleMouseLeave}
                 style={{ cursor: 'pointer' }}
               >
-                <div className="custom-nav-link" onClick={() => navigateToPage('profile/account')}>
+                <div className="custom-nav-link" onClick={() => navigateToPage('account')}>
                   <PersonFill size={20} />
                 </div>
                 {showDropdown && (
                   <div className="custom-dropdown-menu position-absolute end-0 mt-2">
-                    <div className="dropdown-item" onClick={() => navigateToPage('profile/account')}>
+                    <div className="dropdown-item" onClick={() => navigateToPage('account')}>
                       <PersonFill size={16} /> Account
                     </div>
-                    <div className="dropdown-item" onClick={() => navigateToPage('profile/favorites')}>
+                    <div className="dropdown-item" onClick={() => navigateToPage('favorites')}>
                       <Heart size={16} /> Favorites
                     </div>
                     <div className="dropdown-item" onClick={() => navigateToPage('orders')}>
-                      <BoxArrowRight size={16} /> Orders
+                      <ListCheck size={16} /> Orders
                     </div>
-                    <div className="dropdown-item" onClick={() => navigateToPage('profile/notifications')}>
-                      <Bell size={16} /> Notifications
+                    <div className="dropdown-item" onClick={() => navigateToPage('cart')}>
+                      <Cart size={16} /> Cart
                     </div>
-                    <div className="dropdown-item" onClick={() => navigateToPage('profile/settings')}>
+                    <div className="dropdown-item" onClick={() => navigateToPage('settings')}>
                       <Gear size={16} /> Settings
                     </div>
-                    <div className="dropdown-item" onClick={() => navigateToPage('profile/logout')}>
+                    <div className="dropdown-item" onClick={() => navigateToPage('logout')}>
                       <BoxArrowRight size={16} /> Log out
                     </div>
                   </div>
