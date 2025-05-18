@@ -4,10 +4,12 @@ import CategoryNav from '../component/CategoryNav';
 import Footer from '../component/Footer';
 import CategorySidebar from '../component/CategorySideBar';
 import pembespor from "../images/pembespor.webp";
+import ProfileHomeNav from '../component/ProfileHomeNav';
 import "../CSS/Brands.css";
 
 const Kids = () => {
     const [favorites, setFavorites] = useState([]);
+    const token = localStorage.getItem('token');
 
     const products = [
         {
@@ -199,7 +201,7 @@ const Kids = () => {
 
     return (
         <>
-            <TopNavbar />
+            {token ? <ProfileHomeNav /> : <TopNavbar />}
             <CategoryNav />
             <div className="ecommerce-container">
                 <aside className="sidebar-container">

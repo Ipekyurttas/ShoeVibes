@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TopNavbar from '../component/TopNav';
 import CategoryNav from '../component/CategoryNav';
+import ProfileHomeNav from '../component/ProfileHomeNav';
 import Footer from '../component/Footer';
 import CategorySidebar from '../component/CategorySideBar';
 import conversebrands from "../images/conversebrands.webp";
@@ -18,6 +19,7 @@ import "../CSS/Brands.css";
 
 const Brands = () => {
   const [favorites, setFavorites] = useState([]);
+  const token = localStorage.getItem('token');
 
   const products = [ 
  { 
@@ -209,7 +211,7 @@ const Brands = () => {
 
   return (
     <>
-      <TopNavbar />
+      {token ? <ProfileHomeNav /> : <TopNavbar />}
       <CategoryNav />
       <div className="ecommerce-container">
         <aside className="sidebar-container">

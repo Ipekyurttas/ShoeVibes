@@ -59,10 +59,20 @@ function Form({ activeTab, setActiveTab }) {
             });
 
             if (response.status === 200) {
-                console.log('Login Data:', loginData);
+                const { token, role } = response.data;
+
+                // Token ve rolü localStorage'a kaydet
+                localStorage.setItem('token', token);
+                localStorage.setItem('role', role);
+
+                console.log('Token:', token);
+                console.log('Role:', role);
+
+                toast.success('Entrance Successful. You are redirected to Home Page...');
+
                 setTimeout(() => {
                     navigate('/profile');
-                }, 1000);
+                }, 2000);
             }
         } catch (error) {
             console.error('Login failed:', error);

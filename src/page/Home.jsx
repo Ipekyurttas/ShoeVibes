@@ -1,4 +1,3 @@
-import React from 'react';
 import TopNavbar from '../component/TopNav';
 import CategoryNav from '../component/CategoryNav';
 import Footer from '../component/Footer';
