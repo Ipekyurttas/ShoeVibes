@@ -7,6 +7,7 @@ import ProfileHome from "../component/ProfileHomeNav.jsx";
 import ProfileSideBar from "../component/ProfileSideBar.jsx";
 import CategoryNav from "../component/CategoryNav.jsx";
 import TopNavbar from "../component/TopNav.jsx";
+import Footer from "../component/Footer.jsx";
 
 const orders = [
     {
@@ -268,6 +269,7 @@ export default function OrdersPage() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }
