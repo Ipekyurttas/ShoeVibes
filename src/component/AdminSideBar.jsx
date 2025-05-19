@@ -5,13 +5,43 @@ import {
 } from 'react-bootstrap-icons';
 import '../CSS/ProfileSideBar.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function AdminSideBar() {
   const navigate = useNavigate();
 
+  const handleLogout = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        navigate('/auth');
+        return;
+      }
+
+      // Make logout request to backend
+      await axios.post('http://localhost:8080/auth/logout', {}, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      // Clear local storage and redirect
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      navigate('/auth');
+      
+    } catch (error) {
+      console.error('Logout failed:', error);
+      // Still clear local storage and redirect even if logout request fails
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      navigate('/auth');
+    }
+  };
+
   const handleNavigation = (path) => {
     if (path === 'logout') {
-      setTimeout(() => navigate('/'), 1200);
+      handleLogout();
     } else {
       navigate(`/${path}`);
     }
@@ -28,11 +58,6 @@ function AdminSideBar() {
         <Nav.Item className="mb-2">
           <Nav.Link onClick={() => handleNavigation('admin/product')} className="d-flex align-items-center fs-6 fw-semibold">
             <Box className="me-3" style={{ fontSize: '1.25rem' }} /> Product Management
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item className="mb-2">
-          <Nav.Link onClick={() => handleNavigation('admin/category')} className="d-flex align-items-center fs-6 fw-semibold">
-            <Grid className="me-3" style={{ fontSize: '1.25rem' }} /> Category Management
           </Nav.Link>
         </Nav.Item>
         <Nav.Item className="mb-2">

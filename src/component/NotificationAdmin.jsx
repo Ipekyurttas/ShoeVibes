@@ -26,14 +26,35 @@ const NotificationAdmin = () => {
   const handleSend = () => {
     if (!newNotification.trim()) return;
 
-    const newNotif = {
-      id: Date.now(),
-      message: newNotification,
-      createdAt: new Date().toISOString()
-    };
+    fetch(`http://localhost:8080/api/notifications/send?message=${encodeURIComponent(newNotification)}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded' // ya da 'application/json' backend izin veriyorsa
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Bildirim gönderilemedi.');
+        }
+        return response.text();
+      })
+      .then(data => {
+        // Backendden dönen mesajı göster (opsiyonel)
+        console.log(data);
 
-    setNotifications([newNotif, ...notifications]);
-    setNewNotification('');
+        // Yeni bildirimi frontend state'e ekle
+        const newNotif = {
+          id: Date.now(),
+          message: newNotification,
+          createdAt: new Date().toISOString()
+        };
+        setNotifications([newNotif, ...notifications]);
+        setNewNotification('');
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Bildirim gönderilirken hata oluştu.');
+      });
   };
 
   return (
@@ -52,6 +73,7 @@ const NotificationAdmin = () => {
             variant="primary"
             onClick={handleSend}
             className="send-button"
+            style={{ width: '180px' }}
           >
             Send
           </Button>
