@@ -6,6 +6,8 @@ import { Instagram,  Truck, ArrowCounterclockwise, ShieldCheck, Headset, Twitter
 import logo1 from '../images/logo1.png';
 import payments from '../images/payments.png';
 import "../CSS/Footer.css";
+import Blogs from "../component/Blogs.jsx";
+
 
 const Footer = () => {
   return (

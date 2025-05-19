@@ -12,7 +12,7 @@ import "../CSS/Navbar.css";
 function TopNavbar() {
   const [searchText, setSearchText] = useState('');
   const navigate = useNavigate();
-  
+
   const isLoggedIn = false;
 
   const handleClearSearch = () => {
@@ -27,7 +27,7 @@ function TopNavbar() {
     <Navbar bg="light" expand="lg" className="sticky-top p-0 custom-top-navbar">
       <Container fluid className="p-0" style={{ width: '100%', height: '100%' }}>
         <div className="d-flex align-items-center">
-          <Navbar.Brand 
+          <Navbar.Brand
             onClick={() => {
               navigate('/');
             }}
@@ -67,7 +67,12 @@ function TopNavbar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto align-items-center custom-right-nav">
-            <Nav.Link href="#new" className="custom-nav-link">New</Nav.Link>
+            <Nav.Link
+              onClick={() => navigate('/new')}
+              className="custom-nav-link"
+            >
+              New
+            </Nav.Link>
             <Nav.Link href="#about" className="custom-nav-link">About</Nav.Link>
             <Nav.Link href="#notifications" className="custom-nav-link">
               <Bell size={20} />
