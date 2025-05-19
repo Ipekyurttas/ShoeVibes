@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
@@ -33,7 +32,6 @@ import AdminCategory from './page/AdminCategory.jsx';
 function App() {
   return (
     <div className="app-root">
-      <ToastContainer position="top-center" autoClose={1000} />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/auth' element={<User />} />

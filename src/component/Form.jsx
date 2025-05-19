@@ -38,20 +38,17 @@ function Form({ activeTab, setActiveTab }) {
                     'Content-Type': 'application/json'
                 }
             });
-    
+
             if (response.status === 200 || response.status === 201) {
                 console.log('Signup Data:', formData);
-                toast.success('Registration Successful. You are redirected to Home Page...');
-                
                 setTimeout(() => {
                     navigate('/profile');
-                }, 2000); 
+                }, 1000);
             }
         } catch (error) {
-            toast.error('Signup failed: ' + (error.response?.data?.message || error.message));
+            console.error('Signup failed:', error);
         }
     };
-
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -79,7 +76,7 @@ function Form({ activeTab, setActiveTab }) {
                 }, 2000);
             }
         } catch (error) {
-            toast.error('Login failed: ' + (error.response?.data?.message || error.message));
+            console.error('Login failed:', error);
         }
     };
 
@@ -103,7 +100,6 @@ function Form({ activeTab, setActiveTab }) {
 
                 <div className="form-content-body">
                     {activeTab === 'signup' && (
-
                         <form className="form" onSubmit={handleSignup}>
                             <p className="custom-font">Sign Up</p>
                             <input
@@ -154,7 +150,6 @@ function Form({ activeTab, setActiveTab }) {
                                 type='button'
                                 className='btn btn-google'
                                 onClick={() => {
-                                    toast.success('Successful registration with Google');
                                     setTimeout(() => navigate('/profilehome'), 1000);
                                 }}
                             >
@@ -212,7 +207,6 @@ function Form({ activeTab, setActiveTab }) {
                                 type='button'
                                 className='btn btn-google'
                                 onClick={() => {
-                                    toast.success('Successful entrance with Google');
                                     setTimeout(() => navigate('/profile'), 1000);
                                 }}
                             >

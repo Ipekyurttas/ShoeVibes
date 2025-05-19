@@ -1,0 +1,124 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 1rem;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.form-content {
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 500px;
+}
+
+.form-items {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.form-item {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  color: #6c757d;
+  transition: background 0.2s, color 0.2s;
+}
+
+.form-item.active {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+.form p.custom-font {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form input {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+}
+
+.btn-google {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  width: 100%;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.btn-google:hover {
+  background-color: #f1f3f5;
+}
+
+.google-logo {
+  width: 20px;
+  height: 20px;
+}
+
+.or-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.or-text {
+  margin: 0 0.75rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background-color: #dee2e6;
+}
+
+.switch-form-text {
+  text-align: center;
+  margin-top: 1rem;
+  color: #6c757d;
+}
+
+.switch-form-link {
+  color: #0d6efd;
+  cursor: pointer;
+  font-weight: 500;
+  margin-left: 0.25rem;
+}
+
+.switch-form-link:hover {
+  text-decoration: underline;
+}
+
+.forgot-password-text {
+  text-align: right;
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.forgot-password-link {
+  cursor: pointer;
+  color: #0d6efd;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
