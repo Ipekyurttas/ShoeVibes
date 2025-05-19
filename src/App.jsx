@@ -27,7 +27,6 @@ import Edit from './page/Edit.jsx';
 import Admin from './page/Admin.jsx';
 import AdminDetail from './page/AdminDetail.jsx';
 import AdminProduct from './page/AdminProduct.jsx';
-import AdminCategory from './page/AdminCategory.jsx';
 
 function App() {
   return (
@@ -58,7 +57,6 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/account" element={<AdminDetail />} />
         <Route path="/admin/product" element={<AdminProduct />} />
-        <Route path="/admin/category" element={<AdminCategory />} />
       </Routes>
 
     </div>

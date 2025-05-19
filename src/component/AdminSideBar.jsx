@@ -29,11 +29,6 @@ function AdminSideBar() {
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item className="mb-2">
-                    <Nav.Link onClick={() => handleNavigation('admin/category')} className="d-flex align-items-center fs-6 fw-semibold">
-                        <Grid className="me-3" style={{ fontSize: '1.25rem' }} /> Category Management
-                    </Nav.Link>
-                </Nav.Item>
-                <Nav.Item className="mb-2">
                     <Nav.Link onClick={() => handleNavigation('profile/orders')} className="d-flex align-items-center fs-6 fw-semibold">
                         <Bell className="me-3" style={{ fontSize: '1.25rem' }} /> Notification
                     </Nav.Link>
