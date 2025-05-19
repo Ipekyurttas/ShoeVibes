@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'; 
-import axios from 'axios'; // Axios'u ekliyoruz
-import '../css/Form.css';
+import axios from 'axios'; 
+import '../CSS/Form.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import google from '../images/google.png';
 

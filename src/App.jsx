@@ -25,6 +25,10 @@ import FavoritesPage from './page/Favorites';
 import Orders from './page/OrdersPage.jsx';
 import Review from './page/Review.jsx';
 import Edit from './page/Edit.jsx';
+import Admin from './page/Admin.jsx';
+import AdminDetail from './page/AdminDetail.jsx';
+import AdminProduct from './page/AdminProduct.jsx';
+import AdminCategory from './page/AdminCategory.jsx';
 
 function App() {
   return (
@@ -51,8 +55,12 @@ function App() {
         <Route path='/product/:id' element={<ProductDetails />} />
         <Route path="/profile/favorites" element={<FavoritesPage />} />
         <Route path="/orders" element={<Orders />} />
-         <Route path="/profile/review" element={<Review />} />
-         <Route path="/profile/edit" element={<Edit />} />
+        <Route path="/profile/review" element={<Review />} />
+        <Route path="/profile/edit" element={<Edit />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/account" element={<AdminDetail />} />
+        <Route path="/admin/product" element={<AdminProduct />} />
+        <Route path="/admin/category" element={<AdminCategory />} />
       </Routes>
 
     </div>

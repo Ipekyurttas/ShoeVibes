@@ -7,6 +7,7 @@ import "../CSS/ProductDetails.css";
 import conversebrands1 from "../images/conversebrands1.webp"; 
 import abiye1 from "../images/abiye1.webp";
 import abiye2 from "../images/abiye2.webp";
+import ProfileHomeNav from '../component/ProfileHomeNav';
 
 import ProductComments from '../component/ProductComments.jsx';
 
@@ -56,12 +57,13 @@ const productList = [
 const ProductDetail = () => {
   const { id } = useParams();
   const product = productList.find(p => p.id === parseInt(id));
+  const token = localStorage.getItem('token');
 
   if (!product) return <div>Product Is Not Found</div>;
 
   return (
     <>
-      <TopNavbar />
+      {token ? <ProfileHomeNav /> : <TopNavbar />}
       <CategoryNav />
       <div className="product-detail-container">
         <div className="image-section">
