@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
@@ -35,6 +35,8 @@ import AdminDetail from './page/AdminDetail.jsx';
 import AdminProduct from './page/AdminProduct.jsx';
 import NotificationAdminPage from './page/NotificationAdminPage.jsx';
 import AdminOrderPage from './page/AdminOrderPage.jsx';
+
+import Contact from './page/Contact.jsx';
 
 
 function App() {
@@ -73,6 +75,9 @@ function App() {
         <Route path="/admin/product" element={<AdminProduct />} />
         <Route path="/admin/notification" element={<NotificationAdminPage />} />
         <Route path="/admin/order" element={<AdminOrderPage />} />
+
+        <Route path='/contact' element={<Contact />} />
+
       </Routes>
     </div>
   );
