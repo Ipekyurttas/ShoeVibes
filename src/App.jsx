@@ -5,8 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './App.css';
 
-import { AuthProvider } from './context/AuthContext'; 
-
 
 import Home from './page/Home';
 import User from './page/User';
@@ -30,20 +28,17 @@ import Edit from './page/Edit';
 import AddressPage from './page/AddressPage';
 import PaymentPage from './page/PaymentPage';
 import About from './component/About';
-import ProfileHomeNav from './component/ProfileHomeNav.jsx';
 import SettingsPage from './component/Settings.jsx';
 import Blogs from './component/Blogs.jsx';
 import New from './component/New';
 import NotificationUserPage from './page/NotificatonUserPage.jsx';
 import AdminDetail from './page/AdminDetail.jsx';
 import AdminProduct from './page/AdminProduct.jsx';
-import AdminCategory from './page/AdminCategory.jsx';
 import NotificationAdminPage from './page/NotificationAdminPage.jsx';
 import AdminOrderPage from './page/AdminOrderPage.jsx';
 
 function App() {
   return (
-    <AuthProvider> 
       <div className="app-root">
         <Routes>
           <Route path='/' element={<Home />} />
@@ -78,12 +73,10 @@ function App() {
           <Route path="/admin" element={<AdminDetail />} />
           <Route path="/admin/account" element={<AdminDetail />} />
           <Route path="/admin/product" element={<AdminProduct />} />
-          <Route path="/admin/category" element={<AdminCategory />} />
           <Route path="/admin/notification" element={<NotificationAdminPage />} />
           <Route path="/admin/order" element={<AdminOrderPage />} />
         </Routes>
       </div>
-    </AuthProvider>
   );
 }
 
