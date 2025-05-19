@@ -22,7 +22,7 @@ function ProfileHome() {
     favorites: 'profile/favorites',
     cart: 'profile/cart',
     settings: 'profile/settings',
-    orders: 'orders',
+    orders: 'profile/orders',  // Burayı düzelttim
     logout: '',
     notifications: 'profile/notifications',
   };
