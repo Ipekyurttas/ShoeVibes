@@ -10,7 +10,6 @@ import '../CSS/ProfileHomeNav.css';
 function ProfileHome() {
   const [searchText, setSearchText] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
-  const [loading, setLoading] = useState(false);
   const dropdownTimeoutRef = useRef(null);
   const navigate = useNavigate();
 
@@ -24,7 +23,7 @@ function ProfileHome() {
     cart: 'profile/cart',
     settings: 'profile/settings',
     orders: 'orders',
-    logout: '', 
+    logout: '',
   };
 
   const navigateToPage = (pageKey) => {
@@ -32,13 +31,7 @@ function ProfileHome() {
 
     const path = routeMap[pageKey];
 
-    if (pageKey === 'account') {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        navigate(`/${path}`);
-      }, 1000);
-    } else if (pageKey === 'logout') {
+    if (pageKey === 'logout') {
       setTimeout(() => navigate('/'), 1000);
     } else if (path !== undefined) {
       navigate(`/${path}`);
@@ -64,6 +57,7 @@ function ProfileHome() {
             <Navbar.Brand
               className="me-3 p-2 custom-navbar-brand"
               onClick={() => navigate('/')}
+              style={{ cursor: 'pointer' }}
             >
               <img
                 src={yazi}
@@ -97,8 +91,20 @@ function ProfileHome() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto align-items-center custom-right-nav">
-              <Nav.Link href="#new" className="custom-nav-link">New</Nav.Link>
-              <Nav.Link href="#about" className="custom-nav-link">About</Nav.Link>
+              <Nav.Link
+                onClick={() => navigate('/new')}
+                className="custom-nav-link"
+                style={{ cursor: 'pointer' }}
+              >
+                New
+              </Nav.Link>
+              <Nav.Link
+                onClick={() => navigate('/about')}
+                className="custom-nav-link"
+                style={{ cursor: 'pointer' }}
+              >
+                About
+              </Nav.Link>
               <Nav.Link onClick={() => navigateToPage('notifications')} className="custom-nav-link">
                 <Bell size={20} />
               </Nav.Link>
