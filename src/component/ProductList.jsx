@@ -8,11 +8,10 @@ const ProductList = ({ filters }) => {
   useEffect(() => {
     const fetchFilteredProducts = async () => {
       try {
-        // Örnek veri formatı: { category: "Color", subCategory: "Black" }
         if (filters && filters.Color && filters.Color.length > 0) {
           const response = await axios.post('http://localhost:8080/products/filter', {
-            category: "Color", // örnek - backend'e uygun olarak değiştirilmeli
-            subCategory: filters.Color[0] // örnek - burada ilkini yolladık, ihtiyaca göre güncellenebilir
+            category: "Color", 
+            subCategory: filters.Color[0] 
           });
           setProducts(response.data);
         } else {

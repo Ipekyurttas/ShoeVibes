@@ -5,13 +5,43 @@ import {
 } from 'react-bootstrap-icons';
 import '../CSS/ProfileSideBar.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function AdminSideBar() {
   const navigate = useNavigate();
 
+  const handleLogout = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        navigate('/auth');
+        return;
+      }
+
+     
+      await axios.post('http://localhost:8080/auth/logout', {}, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+     
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      navigate('/auth');
+      
+    } catch (error) {
+      console.error('Logout failed:', error);
+      
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      navigate('/auth');
+    }
+  };
+
   const handleNavigation = (path) => {
     if (path === 'logout') {
-      setTimeout(() => navigate('/'), 1200);
+      handleLogout();
     } else {
       navigate(`/${path}`);
     }

@@ -7,7 +7,7 @@ import "../CSS/ProductDetails.css";
 import ProfileHomeNav from '../component/ProfileHomeNav';
 import ProductComments from '../component/ProductComments.jsx';
 import { addToCart } from '../services/cartService';
-import { getProductById } from '../services/productService'; // yeni import
+import { getProductById } from '../services/productService'; 
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -48,7 +48,6 @@ const ProductDetail = () => {
       alert("Error adding product to cart.");
     }
   };
-
   const increaseQuantity = () => setQuantity(prev => prev + 1);
   const decreaseQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
 
