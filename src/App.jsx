@@ -20,13 +20,27 @@ import Men from './page/Men';
 import Kids from './page/Kids';
 import Sneakers from './page/Sneakers';
 import ProductDetails from './page/ProductDetails';
-import FavoritesPage from './page/Favorites';
-import Orders from './page/OrdersPage.jsx';
-import Review from './page/Review.jsx';
-import Edit from './page/Edit.jsx';
-import Admin from './page/Admin.jsx';
+import Favorites from './page/Favorites';
+import OrdersPage from './page/OrdersPage';
+import Review from './page/Review';
+import Edit from './page/Edit';
+import AddressPage from './page/AddressPage';
+import PaymentPage from './page/PaymentPage';
+import About from './component/About';
+import ProfileHomeNav from './component/ProfileHomeNav.jsx';
+import SettingsPage from './component/Settings.jsx';
+import Blogs from './component/Blogs.jsx';
+
+// Yeni sayfa importu (New.jsx dosyan olmalı)
+import New from './component/New';
+import NotificationUserPage from './page/NotificatonUserPage.jsx';
 import AdminDetail from './page/AdminDetail.jsx';
 import AdminProduct from './page/AdminProduct.jsx';
+import AdminCategory from './page/AdminCategory.jsx';
+import NotificationAdminPage from './page/NotificationAdminPage.jsx';
+import AdminOrderPage from './page/AdminOrderPage.jsx';
+
+
 
 function App() {
   return (
@@ -38,8 +52,8 @@ function App() {
         <Route path="/profile" element={<ProfileHome />} />
         <Route path="/profile/account" element={<ProfileDetail />} />
         <Route path="/profile/cart" element={<Cart />} />
-        <Route path="/profile/orders" element={<Orders />} />
-        <Route path="/profile/settings" element={<ProfileDetail />} />
+        <Route path="/profile/orders" element={<OrdersPage />} />
+        <Route path="/profile/settings" element={<SettingsPage />} />
         <Route path='/success' element={<SuccessEmail />} />
         <Route path='/failure' element={<Failure />} />
         <Route path='/set-password' element={<NewPassword />} />
@@ -50,15 +64,30 @@ function App() {
         <Route path='/kids' element={<Kids />} />
         <Route path='/sneakers' element={<Sneakers />} />
         <Route path='/product/:id' element={<ProductDetails />} />
-        <Route path="/profile/favorites" element={<FavoritesPage />} />
-        <Route path="/orders" element={<Orders />} />
+        <Route path="/profile/favorites" element={<Favorites />} />
+        <Route path="/orders" element={<OrdersPage />} />
         <Route path="/profile/review" element={<Review />} />
         <Route path="/profile/edit" element={<Edit />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/profile/add" element={<AddressPage />} />
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path='/about' element={<About />} />
+        <Route path="/ayarlar" element={<SettingsPage />} />
+        <Route path="/new" element={<New />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/profile/favorites" element={<FavoritesPage />} />
+        <Route path="/orders" element={<Orders />} />
+         <Route path="/profile/add" element={<AddressPage />} />
+         <Route path="/payment" element={<PaymentPage />} />
+         <Route path="/profile/notifications" element={<NotificationUserPage />} />
+        <Route path="/profile/review" element={<Review />} />
+        <Route path="/profile/edit" element={<Edit />} />
+        <Route path="/admin" element={<AdminDetail />} />
         <Route path="/admin/account" element={<AdminDetail />} />
         <Route path="/admin/product" element={<AdminProduct />} />
+        <Route path="/admin/category" element={<AdminCategory />} />
+        <Route path="/admin/notification" element={<NotificationAdminPage />} />
+          <Route path="/admin/order" element={<AdminOrderPage />} />
       </Routes>
-
     </div>
   );
 }

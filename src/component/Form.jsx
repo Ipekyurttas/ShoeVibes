@@ -20,6 +20,8 @@ function Form({ activeTab, setActiveTab }) {
         password: ''
     });
 
+    const [errorMessage, setErrorMessage] = useState('');
+
     const handleInput2Change = (e) => {
         const { name, value } = e.target;
         setLoginData({ ...loginData, [name]: value });
@@ -40,10 +42,7 @@ function Form({ activeTab, setActiveTab }) {
             });
 
             if (response.status === 200 || response.status === 201) {
-                console.log('Signup Data:', formData);
-                setTimeout(() => {
-                    navigate('/profile');
-                }, 1000);
+                navigate('/profile');
             }
         } catch (error) {
             console.error('Signup failed:', error);
@@ -62,21 +61,14 @@ function Form({ activeTab, setActiveTab }) {
             if (response.status === 200) {
                 const { token, role } = response.data;
 
-                // Token ve rolü localStorage'a kaydet
                 localStorage.setItem('token', token);
                 localStorage.setItem('role', role);
 
-                console.log('Token:', token);
-                console.log('Role:', role);
-
-                toast.success('Entrance Successful. You are redirected to Home Page...');
-
-                setTimeout(() => {
-                    navigate('/profile');
-                }, 2000);
+                navigate('/profile');
             }
         } catch (error) {
             console.error('Login failed:', error);
+            setErrorMessage('Login failed. Please check your credentials.');
         }
     };
 
@@ -150,13 +142,12 @@ function Form({ activeTab, setActiveTab }) {
                                 type='button'
                                 className='btn btn-google'
                                 onClick={() => {
-                                    setTimeout(() => navigate('/profilehome'), 1000);
+                                    navigate('/profilehome');
                                 }}
                             >
                                 <img src={google} alt='google' className='google-logo' />
                                 Sign Up with Google
                             </button>
-
                             <p className="switch-form-text">
                                 Already have an account?{' '}
                                 <span onClick={() => setActiveTab('login')} className="switch-form-link">
@@ -172,7 +163,7 @@ function Form({ activeTab, setActiveTab }) {
                             <input
                                 type="text"
                                 name="email"
-                                placeholder="Username*"
+                                placeholder="Email*"
                                 className="form-control"
                                 value={loginData.email}
                                 onChange={handleInput2Change}
@@ -187,6 +178,7 @@ function Form({ activeTab, setActiveTab }) {
                                 onChange={handleInput2Change}
                                 required
                             />
+                            {errorMessage && <p className="text-danger">{errorMessage}</p>}
                             <p className="forgot-password-text">
                                 <span
                                     className="forgot-password-link"
@@ -207,13 +199,12 @@ function Form({ activeTab, setActiveTab }) {
                                 type='button'
                                 className='btn btn-google'
                                 onClick={() => {
-                                    setTimeout(() => navigate('/profile'), 1000);
+                                    navigate('/profile');
                                 }}
                             >
                                 <img src={google} alt='google' className='google-logo' />
                                 Log In with Google
                             </button>
-
                             <p className="switch-form-text">
                                 Don't have an account?{' '}
                                 <span onClick={() => setActiveTab('signup')} className="switch-form-link">

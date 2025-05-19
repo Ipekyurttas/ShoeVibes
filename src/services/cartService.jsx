@@ -1,14 +1,29 @@
+// src/services/cartService.js
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/api/carts'; // Backend URL'nizi buraya yazın
+const API_URL = 'http://localhost:8080/api/carts'; // Backend URL
 
-// Kullanıcıya ait sepeti getir
-export const getCartByUserId = async (userId) => {
+// Token ile kullanıcıya ait sepeti getir (opsiyonel kupon kodu ile)
+export const getCartByUserId = async (token, couponCode = null) => {
     try {
-        const response = await axios.get(`${API_URL}/user/${userId}`);
-        return response.data; // API'den dönen CartDTO
+        const response = await axios.get(`${API_URL}/list`, {
+            headers: { Authorization: `Bearer ${token}` },
+            params: couponCode ? { coupon: couponCode } : {},
+        });
+        return response.data;
     } catch (error) {
         console.error("Error fetching cart:", error);
+        throw error;
+    }
+};
+
+// UserId ile sepet getir (JWT kullanmayan endpoint için)
+export const getCartByUserIdPlain = async (userId) => {
+    try {
+        const response = await axios.get(`${API_URL}/user/${userId}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching cart by userId:", error);
         throw error;
     }
 };
@@ -17,7 +32,7 @@ export const getCartByUserId = async (userId) => {
 export const createCart = async (cartDTO) => {
     try {
         const response = await axios.post(`${API_URL}/create`, cartDTO);
-        return response.data; // API'den dönen CartDTO
+        return response.data;
     } catch (error) {
         console.error("Error creating cart:", error);
         throw error;
@@ -28,7 +43,7 @@ export const createCart = async (cartDTO) => {
 export const updateCart = async (cartId, cartDTO) => {
     try {
         const response = await axios.put(`${API_URL}/${cartId}`, cartDTO);
-        return response.data; // API'den dönen güncellenmiş CartDTO
+        return response.data;
     } catch (error) {
         console.error("Error updating cart:", error);
         throw error;
