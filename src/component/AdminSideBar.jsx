@@ -18,21 +18,21 @@ function AdminSideBar() {
         return;
       }
 
-      // Make logout request to backend
+     
       await axios.post('http://localhost:8080/auth/logout', {}, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
 
-      // Clear local storage and redirect
+     
       localStorage.removeItem('token');
       localStorage.removeItem('role');
       navigate('/auth');
       
     } catch (error) {
       console.error('Logout failed:', error);
-      // Still clear local storage and redirect even if logout request fails
+      
       localStorage.removeItem('token');
       localStorage.removeItem('role');
       navigate('/auth');
