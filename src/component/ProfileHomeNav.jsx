@@ -24,6 +24,7 @@ function ProfileHome() {
     cart: 'profile/cart',
     settings: 'profile/settings',
     orders: 'orders',
+    notifications: 'profile/notifications',
     logout: '', 
   };
 

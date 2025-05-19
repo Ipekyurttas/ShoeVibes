@@ -26,6 +26,7 @@ import Review from './page/Review.jsx';
 import Edit from './page/Edit.jsx';
 import AddressPage from './page/AddressPage.jsx';
 import PaymentPage from './page/PaymentPage';
+import NotificationUserPage from './page/NotificatonUserPage.jsx';
 
 function App() {
   return (
@@ -55,6 +56,8 @@ function App() {
          <Route path="/profile/edit" element={<Edit />} />
          <Route path="/profile/add" element={<AddressPage />} />
          <Route path="/payment" element={<PaymentPage />} />
+         <Route path="/profile/notifications" element={<NotificationUserPage />} />
+
       </Routes>
 
     </div>

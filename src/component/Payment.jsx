@@ -170,7 +170,7 @@ const Payment = () => {
               <span>69.99 TL</span>
             </div>
             <div className="summary-total">
-              <span>Total</span>
+              <span>Total : </span>
               <span>2,569.98 TL</span>
             </div>
           </div>
