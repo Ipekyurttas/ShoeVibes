@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../css/Form.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../CSS/ProfileEdit.css"; 
 
+
 function ProfileEdit() {
+  const navigate = useNavigate();
+
   const [userData, setUserData] = useState({
     firstName: '',
     lastName: '',
@@ -12,7 +16,8 @@ function ProfileEdit() {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:8080/user/profile', {
+    // Admin bilgilerini çek
+    axios.get('http://localhost:8080/auth/me', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
@@ -29,13 +34,14 @@ function ProfileEdit() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.put('http://localhost:8080/user/profile', userData, {
+      await axios.put('http://localhost:8080/auth/update', userData, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       });
       alert('Profil başarıyla güncellendi.');
+      navigate('/admin');
     } catch (error) {
       console.error('Güncelleme hatası:', error);
       alert('Profil güncellenemedi.');

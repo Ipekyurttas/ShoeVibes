@@ -24,6 +24,7 @@ function ProfileHome() {
     settings: 'profile/settings',
     orders: 'orders',
     logout: '',
+    notifications: 'profile/notifications',
   };
 
   const navigateToPage = (pageKey) => {

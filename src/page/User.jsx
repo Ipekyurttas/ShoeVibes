@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import UserHeader from '../component/UserHeader';
-import Form from '../component/Form';
+import Form from '../component/Form.jsx';
 import { useLocation } from 'react-router-dom';
 
 function User() {
