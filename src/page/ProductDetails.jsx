@@ -4,6 +4,7 @@ import TopNavbar from '../component/TopNav';
 import CategoryNav from '../component/CategoryNav';
 import Footer from '../component/Footer';
 import "../CSS/ProductDetails.css";
+import axios from 'axios';
 
 import conversebrands1 from "../images/conversebrands1.webp";
 import abiye1 from "../images/abiye1.webp";
@@ -61,21 +62,51 @@ const ProductDetail = () => {
 
   if (!product) return <div>Product not found</div>;
 
-  const handleAddToCart = () => {
-    if (!selectedSize || !selectedColor) {
-      alert("Select size and color.");
+  const handleAddToCart = async () => {
+  if (!selectedSize || !selectedColor) {
+    alert("Please select size and color.");
+    return;
+  }
+
+  try {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert("You need to login first!");
       return;
     }
 
-    console.log("Added to cart:", {
+    console.log("Sending request with:", {
       productId: product.id,
-      size: selectedSize,
-      color: selectedColor,
-      quantity: quantity
+      quantity: quantity,
+      token: token ? "exists" : "missing"
     });
 
-    // Burada cart'a ekleme işlemini yapabilirsin
-  };
+    const response = await axios.post(
+      'http://localhost:8080/carts/add',
+      null,
+      {
+        params: {
+          productId: product.id,
+          quantity: quantity
+        },
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
+
+    console.log("Full response:", response);
+    alert("Product added to cart successfully!");
+  } catch (error) {
+    console.error("Detailed error:", {
+      message: error.message,
+      response: error.response?.data,
+      status: error.response?.status,
+      headers: error.response?.headers
+    });
+    alert(`Error: ${error.response?.data?.message || error.message}`);
+  }
+};
 
   const increaseQuantity = () => setQuantity(prev => prev + 1);
   const decreaseQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));

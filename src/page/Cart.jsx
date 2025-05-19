@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { getCartByUserId } from '../services/cartService';
 import CategoryNav from '../component/CategoryNav';
 import ProfileHomeNav from '../component/ProfileHomeNav';
 import Footer from '../component/Footer';
@@ -88,34 +87,6 @@ const Cart = () => {
             )}
           </div>
 
-          <div className="col-lg-3">
-            <div className="card p-3 mb-3">
-              <h5>Coupons</h5>
-              {fakeCoupons.map(c => (
-                <div key={c.id} className="d-flex justify-content-between align-items-center mt-2">
-                  <div>
-                    <p className="m-0 fw-bold">{c.code}</p>
-                    <small>{c.description}</small>
-                  </div>
-                  <button
-                    className={`btn ${couponStatus[c.id] ? 'btn-success' : 'btn-outline-primary'}`}
-                    onClick={() => handleCouponClick(c.code, c.id)}
-                    disabled={couponStatus[c.id]}
-                  >
-                    {couponStatus[c.id] ? "Applied" : "Apply"}
-                  </button>
-                </div>
-              ))}
-            </div>
-            <div className="card p-3">
-              <p><strong>Total:</strong> {cart.totalPrice.toFixed(2)} TL</p>
-              <p><small className="text-muted">Discount: {cart.discount.toFixed(2)} TL</small></p>
-              <button className="btn btn-primary w-100">Proceed to Payment</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <Footer />
           <div className="col-lg-3">
             <div className="card p-3 mb-3">
               <h5>Coupons</h5>
