@@ -1,123 +1,60 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
-import CategoryNav from '../component/CategoryNav';
+import React, { useEffect, useState } from 'react';
+import { getCartItems, removeFromCart, updateCartItemQuantity } from '../services/cartService';
 import ProfileHomeNav from '../component/ProfileHomeNav';
+import CategoryNav from '../component/CategoryNav';
 import Footer from '../component/Footer';
 
-const API_URL = 'http://localhost:8080/carts';
-
 const Cart = () => {
-  const token = localStorage.getItem('token');
-  const [cart, setCart] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [couponStatus, setCouponStatus] = useState({});
-
-  const fakeCoupons = [
-    { id: 1, code: 'WELCOME10', description: '10% discount' },
-    { id: 2, code: 'SUMMER20', description: '20 TL discount' },
-  ];
-
-  const fetchCart = useCallback(async (couponCode = null) => {
-    setLoading(true);
-    try {
-      const response = await axios.get(`${API_URL}/list`, {
-        headers: { Authorization: `Bearer ${token}` },
-        params: couponCode ? { coupon: couponCode } : {},
-      });
-      setCart(response.data);
-    } catch (error) {
-      console.error('Error fetching cart:', error);
-    } finally {
-      setLoading(false);
-    }
-  }, [token]);
-
-  const handleCouponClick = (couponCode, id) => {
-    setCouponStatus(prev => ({ ...prev, [id]: true }));
-    fetchCart(couponCode);
-  };
-
-  const handleRemoveItem = async (cartItemId) => {
-    try {
-      const response = await axios.delete(`${API_URL}/remove`, {
-        headers: { Authorization: `Bearer ${token}` },
-        params: { cartItemId },
-      });
-      setCart(response.data);
-    } catch (error) {
-      console.error('Error removing item:', error);
-    }
-  };
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
+    const fetchCart = async () => {
+      const items = await getCartItems();
+      setCartItems(items);
+    };
     fetchCart();
-  }, [fetchCart]);
+  }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (!cart || !cart.cartItems) return <div>No cart found.</div>;
+  const handleRemove = async (productId) => {
+    await removeFromCart(productId);
+    setCartItems(cartItems.filter(item => item.product.id !== productId));
+  };
+
+  const handleQuantityChange = async (productId, quantity) => {
+    await updateCartItemQuantity(productId, quantity);
+    setCartItems(cartItems.map(item =>
+      item.product.id === productId ? { ...item, quantity } : item
+    ));
+  };
+
+  const totalPrice = cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
 
   return (
     <>
       <ProfileHomeNav />
       <CategoryNav />
-      <div className="container mt-4">
-        <div className="row">
-          <div className="col-lg-9">
-            <h3 className="mb-4">Cart</h3>
-            {cart.cartItems.length === 0 ? (
-              <p>No items in your cart.</p>
-            ) : (
-              cart.cartItems.map(item => (
-                <div key={item.id} className="card mb-3">
-                  <div className="row g-0">
-                    <div className="col-4">
-                      <img src={item.imageUrls[0]} className="img-fluid rounded-start" alt={item.name} />
-                    </div>
-                    <div className="col-8">
-                      <div className="card-body">
-                        <h5 className="card-title">{item.name}</h5>
-                        <p>Quantity: {item.quantity}</p>
-                        <p>Price: {item.price} TL</p>
-                        <button
-                          className="btn btn-danger btn-sm"
-                          onClick={() => handleRemoveItem(item.id)}
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-
-          <div className="col-lg-3">
-            <div className="card p-3 mb-3">
-              <h5>Coupons</h5>
-              {fakeCoupons.map(c => (
-                <div key={c.id} className="d-flex justify-content-between align-items-center mt-2">
-                  <div>
-                    <p className="m-0 fw-bold">{c.code}</p>
-                    <small>{c.description}</small>
-                  </div>
-                  <button
-                    className={`btn ${couponStatus[c.id] ? 'btn-success' : 'btn-outline-primary'}`}
-                    onClick={() => handleCouponClick(c.code, c.id)}
-                    disabled={couponStatus[c.id]}
-                  >
-                    {couponStatus[c.id] ? "Applied" : "Apply"}
-                  </button>
-                </div>
-              ))}
-            </div>
-            <div className="card p-3">
-              <p><strong>Total:</strong> {cart.totalPrice.toFixed(2)} TL</p>
-              <p><small className="text-muted">Discount: {cart.discount.toFixed(2)} TL</small></p>
-              <button className="btn btn-primary w-100">Proceed to Payment</button>
-            </div>
-          </div>
-        </div>
+      <div className="cart-container">
+        <h2>Sepet</h2>
+        {cartItems.length === 0 ? (
+          <p>Sepetiniz boş.</p>
+        ) : (
+          <ul>
+            {cartItems.map(({ product, quantity }) => (
+              <li key={product.id}>
+                <span>{product.name}</span>
+                <span>{product.price} TL</span>
+                <input
+                  type="number"
+                  value={quantity}
+                  min="1"
+                  onChange={(e) => handleQuantityChange(product.id, parseInt(e.target.value))}
+                />
+                <button onClick={() => handleRemove(product.id)}>Kaldır</button>
+              </li>
+            ))}
+          </ul>
+        )}
+        <h3>Toplam: {totalPrice} TL</h3>
       </div>
       <Footer />
     </>

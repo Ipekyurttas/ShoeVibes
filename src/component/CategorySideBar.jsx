@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import '../CSS/CategorySideBar.css';
 
-const CategorySidebar = () => {
+const CategorySidebar = ({ onApplyFilters }) => {
   const [expandedCategories, setExpandedCategories] = useState({});
+  const [selectedFilters, setSelectedFilters] = useState({});
 
   const toggleCategory = (category) => {
     setExpandedCategories(prev => ({
@@ -11,35 +12,28 @@ const CategorySidebar = () => {
     }));
   };
 
+  const handleCheckboxChange = (category, option) => {
+    setSelectedFilters(prev => {
+      const prevOptions = prev[category] || [];
+      const updatedOptions = prevOptions.includes(option)
+        ? prevOptions.filter(o => o !== option)
+        : [...prevOptions, option];
+
+      return {
+        ...prev,
+        [category]: updatedOptions
+      };
+    });
+  };
+
   const categories = [
-    {
-      name: 'Brands',
-      options: ['Nike', 'Adidas', 'Puma', 'Sketchers', 'Vans', 'Converse', 'Lumberjack', 'Us.Polo Assn.']
-    },
-    {
-      name: 'Color',
-      options: ['Black', 'Bej', 'Red', 'Blue','Grey','White','Green','Pink','Yellow']
-    },
-    {
-      name: 'Price',
-      options: ['300-600', '600-900', '900-1200', '1200-1500', '1500+']
-    },
-    {
-      name: 'Size',
-      options: ['36', '37', '38', '39', '40', '41', '42', '43', '44']
-    },
-    {
-      name: 'Material',
-      options: ['Artificial Leather', 'Genuine Leather', 'Rubber','Fabric','Orthopedic']
-    },
-    {
-      name: 'Delivery',
-      options: ['Free Delivery']
-    },
-    {
-      name: 'Discount',
-      options: ['Discounted Product']
-    }
+    { name: 'Brands', options: ['Nike', 'Adidas', 'Puma', 'Sketchers', 'Vans', 'Converse', 'Lumberjack', 'Us.Polo Assn.'] },
+    { name: 'Color', options: ['Black', 'Bej', 'Red', 'Blue', 'Grey', 'White', 'Green', 'Pink', 'Yellow'] },
+    { name: 'Price', options: ['300-600', '600-900', '900-1200', '1200-1500', '1500+'] },
+    { name: 'Size', options: ['36', '37', '38', '39', '40', '41', '42', '43', '44'] },
+    { name: 'Material', options: ['Artificial Leather', 'Genuine Leather', 'Rubber', 'Fabric', 'Orthopedic'] },
+    { name: 'Delivery', options: ['Free Delivery'] },
+    { name: 'Discount', options: ['Discounted Product'] }
   ];
 
   return (
@@ -50,15 +44,11 @@ const CategorySidebar = () => {
 
       <div className="sidebar-categories">
         {categories.map((category, index) => (
-          <div
-            key={index}
-            className={`sidebar-category ${expandedCategories[category.name] ? 'expanded' : ''}`}
-          >
+          <div key={index} className={`sidebar-category ${expandedCategories[category.name] ? 'expanded' : ''}`}>
             <div className="category-title" onClick={() => toggleCategory(category.name)}>
               {category.name}
               <i className={`bi bi-chevron-${expandedCategories[category.name] ? 'up' : 'down'}`}></i>
             </div>
-
             <div className="category-options">
               {category.options.map((option, optIndex) => (
                 <div key={optIndex} className="form-check">
@@ -66,11 +56,10 @@ const CategorySidebar = () => {
                     className="form-check-input"
                     type="checkbox"
                     id={`${category.name}-${optIndex}`}
+                    onChange={() => handleCheckboxChange(category.name, option)}
+                    checked={(selectedFilters[category.name] || []).includes(option)}
                   />
-                  <label
-                    className="form-check-label"
-                    htmlFor={`${category.name}-${optIndex}`}
-                  >
+                  <label className="form-check-label" htmlFor={`${category.name}-${optIndex}`}>
                     {option}
                   </label>
                 </div>
@@ -80,7 +69,7 @@ const CategorySidebar = () => {
         ))}
       </div>
 
-      <button className="btn apply-btn w-100 mt-3">
+      <button className="btn apply-btn w-100 mt-3" onClick={() => onApplyFilters(selectedFilters)}>
         Apply
       </button>
     </div>
