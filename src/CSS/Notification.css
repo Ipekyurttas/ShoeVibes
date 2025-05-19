@@ -4,10 +4,20 @@
 }
 
 .card:hover {
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
 h4 {
   color: #6a380a;
   font-weight: bold;
+}
+
+.notification-input-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.send-button {
+  margin-top: 4px; 
 }

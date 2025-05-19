@@ -1,170 +1,107 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../CSS/Cart.css';
-import stiletto from "../images/stiletto.webp";
-import convers from "../images/conversebrands.webp";
-import convers1 from "../images/conversebrands1.webp";
-import cart from "../images/shopping-cart.png";
-import bin from "../images/bin.png";
+import React, { useState, useEffect } from 'react';
+import { getCartByUserId } from '../services/cartService';
+import { useAuth } from '../context/AuthContext'; // Token alınacak yer
+import CategoryNav from '../component/CategoryNav';
 import ProfileHomeNav from '../component/ProfileHomeNav';
 import Footer from '../component/Footer';
-import CategoryNav from '../component/CategoryNav';
 
-function Cart() {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Muggo",
-      description: "MARY Garantili Kare Burunlu Kadın Ayakkabı",
-      price: 624.95,
-      oldPrice: 1249.90,
-      size: 38,
-      imageUrl: stiletto,
-      inCart: false
-    },
-    {
-      id: 2,
-      name: "Freemax",
-      description: "Kadın Yazlık Rahat Mavi Renk Konvers",
-      price: 494.94,
-      oldPrice: null,
-      size: 38,
-      imageUrl: convers,
-      inCart: false
-    },
-    {
-      id: 3,
-      name: "Tonny Black",
-      description: "Kadın Beyaz Konvers",
-      price: 674.97,
-      oldPrice: 1349.95,
-      size: 38,
-      imageUrl: convers1,
-      inCart: false
-    }
-  ]);
-
+const Cart = () => {
+  const { token } = useAuth(); // Auth context'ten token alındı
+  const [cart, setCart] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [coupon, setCoupon] = useState(null);
   const [couponStatus, setCouponStatus] = useState({});
+
   const fakeCoupons = [
     { id: 1, code: 'WELCOME10', description: '10% discount' },
-    { id: 2, code: 'SUMMER20', description: 'Summer  - 20 TL' },
+    { id: 2, code: 'SUMMER20', description: '20 TL discount' },
   ];
 
-  const addToCart = (id) => {
-    setCartItems(prevItems =>
-      prevItems.map(item => item.id === id ? { ...item, inCart: true } : item)
-    );
+  const fetchCart = async (couponCode = null) => {
+    setLoading(true);
+    try {
+      const cartData = await getCartByUserId(token, couponCode);
+      setCart(cartData);
+    } catch (error) {
+      console.error('Error fetching cart:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleCouponClick = (id) => {
+  useEffect(() => {
+    fetchCart();
+  }, []);
+
+  const handleCouponClick = (couponCode, id) => {
     setCouponStatus(prev => ({ ...prev, [id]: true }));
+    setCoupon(couponCode);
+    fetchCart(couponCode);
   };
+
+  if (loading) return <div>Loading...</div>;
+  if (!cart) return <div>No cart found.</div>;
 
   return (
     <>
-      <ProfileHomeNav />
-      <CategoryNav />
-      <div className="container mt-4">
-        {cartItems.length === 0 && (
-          <div>
-            <h2 className="text-center mb-4">Cart</h2>
-            <div className="empty-cart text-center">
-              <img src={cart} alt="Boş Sepet" style={{ width: "120px", height: "120px", marginBottom: "10px" }} />
-              <p>You haven't added any products yet.</p>
-              <p className="s-text">Thousands of products and models are waiting for you at ShoeVibes</p>
-              <div className="d-flex justify-content-center mt-2">
-                <Link to="/" className="btn mt-2 start-button">Start Shopping </Link>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {cartItems.length > 0 && (
-          <div className="row">
-            <div className="col-lg-9">
-              <h3 className="mb-5">Cart</h3>
-              <div className="item-list">
-                {cartItems.map(item => (
-                  <div key={item.id} className="card mb-3">
-                    <div className="row g-0">
-                      <div className="col-4 card-img">
-                        <img src={item.imageUrl} className="img-fluid rounded-start" alt={item.name} />
-                      </div>
-                      <div className="col-8">
-                        <div className="card-body">
-                          <h5 className="card-title">{item.name}</h5>
-                          <p className="card-text small">{item.description}</p>
-                          <p className="card-text small text-muted">Size: {item.size}</p>
-                          <p className="card-text small text-muted">Color: Black</p>
-                          <p className="card-text small text-muted">Quantity: 1</p>
-                          <div className="d-flex align-items-center justify-content-between">
-                            <div>
-                              {item.oldPrice && <span className="text-muted text-decoration-line-through me-2">{item.oldPrice.toFixed(2)} ₺</span>}
-                              <span className="fw-bold">{item.price.toFixed(2)} ₺</span>
-                            </div>
-                            <button className="btn2" onClick={() => addToCart(item.id)}><img src={bin} className='trash' alt="delete" />Remove</button>
-                          </div>
-                        </div>
-                      </div>
+    <ProfileHomeNav />
+    <CategoryNav/>
+    <div className="container mt-4">
+      <div className="row">
+        <div className="col-lg-9">
+          <h3 className="mb-4">Cart</h3>
+          {cart.cartItems.length === 0 ? (
+            <p>No items in your cart.</p>
+          ) : (
+            cart.cartItems.map(item => (
+              <div key={item.id} className="card mb-3">
+                <div className="row g-0">
+                  <div className="col-4">
+                    <img src={item.imageUrls[0]} className="img-fluid rounded-start" alt={item.name} />
+                  </div>
+                  <div className="col-8">
+                    <div className="card-body">
+                      <h5 className="card-title">{item.name}</h5>
+                      <p>Quantity: {item.quantity}</p>
+                      <p>Price: {item.price} TL</p>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="col-lg-3 mt-5">
-              <div className="card p-3 mb-3">
-                <h5 className="mb-3">Cupons</h5>
-                {fakeCoupons.map(coupon => (
-                  <div key={coupon.id} className="coupon-card d-flex justify-content-between align-items-center mt-2 p-2 border rounded">
-                    <div>
-                      <p className="m-0 fw-bold">{coupon.code}</p>
-                      <small className="text-muted">{coupon.description}</small>
-                    </div>
-                    <button
-                      className={`btn ${couponStatus[coupon.id] ? 'btn-success' : 'btn-outline-primary'}`}
-                      onClick={() => handleCouponClick(coupon.id)}
-                      disabled={couponStatus[coupon.id]}
-                    >
-                      {couponStatus[coupon.id] ? "You won" : "win"}
-                    </button>
-                  </div>
-                ))}
-              </div>
-              <div className="card p-3 mb-3" style={{ position: "sticky", top: "30px" }}>
-                <p className="text-lg font-semibold">
-                  Order Summary<span className="text-sm font-normal text-gray-500">(3 items in the cart)</span>
-                </p>
-
-                <div className="mt-4 space-y-2">
-                  <div className="d-flex justify-content-between gap-3">
-                    <span>Products</span>
-                    <span>2.499,99 TL</span>
-                  </div>
-                  <div className="d-flex justify-content-between gap-3">
-                    <span>Deliveriy</span>
-                    <span>69,99 TL</span>
-                  </div>
-                  <hr className="my-2" />
-                  <div className="d-flex justify-content-between gap-3 text-orange-600 font-bold text-lg">
-                    <span>Total</span>
-                    <span>2.569,98 TL</span>
                   </div>
                 </div>
-
-                <Link to="/payment">
-                  <button className="mt-4 w-full text-white font-semibold py-2 px-4 rounded card-onay">
-                    Confirm Your Cart
-                  </button>
-                </Link>
               </div>
-            </div>
+            ))
+          )}
+        </div>
+
+        <div className="col-lg-3">
+          <div className="card p-3 mb-3">
+            <h5>Coupons</h5>
+            {fakeCoupons.map(c => (
+              <div key={c.id} className="d-flex justify-content-between align-items-center mt-2">
+                <div>
+                  <p className="m-0 fw-bold">{c.code}</p>
+                  <small>{c.description}</small>
+                </div>
+                <button
+                  className={`btn ${couponStatus[c.id] ? 'btn-success' : 'btn-outline-primary'}`}
+                  onClick={() => handleCouponClick(c.code, c.id)}
+                  disabled={couponStatus[c.id]}
+                >
+                  {couponStatus[c.id] ? "Applied" : "Apply"}
+                </button>
+              </div>
+            ))}
           </div>
-        )}
+          <div className="card p-3">
+            <p><strong>Total:</strong> {cart.totalPrice.toFixed(2)} TL</p>
+            <p><small className="text-muted">Discount: {cart.discount.toFixed(2)} TL</small></p>
+            <button className="btn btn-primary w-100">Proceed to Payment</button>
+          </div>
+        </div>
       </div>
-      <Footer />
+    </div>
+    <Footer/>
     </>
   );
-}
+};
 
 export default Cart;

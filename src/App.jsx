@@ -27,10 +27,12 @@ import Edit from './page/Edit.jsx';
 import AddressPage from './page/AddressPage.jsx';
 import PaymentPage from './page/PaymentPage';
 import NotificationUserPage from './page/NotificatonUserPage.jsx';
-import Admin from './page/Admin.jsx';
 import AdminDetail from './page/AdminDetail.jsx';
 import AdminProduct from './page/AdminProduct.jsx';
 import AdminCategory from './page/AdminCategory.jsx';
+import NotificationAdminPage from './page/NotificationAdminPage.jsx';
+import AdminOrderPage from './page/AdminOrderPage.jsx';
+
 
 
 function App() {
@@ -62,10 +64,12 @@ function App() {
          <Route path="/profile/notifications" element={<NotificationUserPage />} />
         <Route path="/profile/review" element={<Review />} />
         <Route path="/profile/edit" element={<Edit />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin" element={<AdminDetail />} />
         <Route path="/admin/account" element={<AdminDetail />} />
         <Route path="/admin/product" element={<AdminProduct />} />
         <Route path="/admin/category" element={<AdminCategory />} />
+        <Route path="/admin/notification" element={<NotificationAdminPage />} />
+          <Route path="/admin/order" element={<AdminOrderPage />} />
       </Routes>
 
     </div>
