@@ -15,10 +15,6 @@ import Failure from './page/Failure.jsx';
 import NewPassword from './page/NewPassword.jsx';
 import Cart from './page/Cart.jsx';
 import Brands from './page/Brands.jsx';
-import Women from './page/Women.jsx';
-import Men from './page/Men.jsx';
-import Kids from './page/Kids.jsx';
-import Sneakers from './page/Sneakers.jsx';
 import ProductDetails from './page/ProductDetails.jsx';
 import Favorites from './page/Favorites.jsx';
 import OrdersPage from './page/OrdersPage.jsx';
@@ -35,6 +31,7 @@ import AdminDetail from './page/AdminDetail.jsx';
 import AdminProduct from './page/AdminProduct.jsx';
 import NotificationAdminPage from './page/NotificationAdminPage.jsx';
 import AdminOrderPage from './page/AdminOrderPage.jsx';
+import SearchResults from './page/SearchResults.jsx';
 
 import Contact from './page/Contact.jsx';
 
@@ -56,10 +53,6 @@ function App() {
         <Route path='/set-password' element={<NewPassword />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/brands' element={<Brands />} />
-        <Route path='/women' element={<Women />} />
-        <Route path='/men' element={<Men />} />
-        <Route path='/kids' element={<Kids />} />
-        <Route path='/sneakers' element={<Sneakers />} />
         <Route path='/product/:id' element={<ProductDetails />} />
         <Route path="/profile/favorites" element={<Favorites />} />
         <Route path="/profile/review" element={<Review />} />
@@ -75,7 +68,7 @@ function App() {
         <Route path="/admin/product" element={<AdminProduct />} />
         <Route path="/admin/notification" element={<NotificationAdminPage />} />
         <Route path="/admin/order" element={<AdminOrderPage />} />
-
+        <Route path="/search" element={<SearchResults />} />
         <Route path='/contact' element={<Contact />} />
 
       </Routes>

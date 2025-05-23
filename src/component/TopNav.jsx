@@ -1,3 +1,5 @@
+// src/component/TopNav.jsx
+
 import React, { useState } from 'react';
 import { Navbar, Nav, Container, Button, Form, FormControl } from 'react-bootstrap';
 import { Bell, Heart, X } from 'react-bootstrap-icons';
@@ -13,10 +15,18 @@ function TopNavbar() {
   const [searchText, setSearchText] = useState('');
   const navigate = useNavigate();
 
-  const isLoggedIn = false;
+  const isLoggedIn = !!localStorage.getItem('token');
 
   const handleClearSearch = () => {
     setSearchText('');
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const trimmed = searchText.trim();
+    if (trimmed) {
+      navigate(`/search?keyword=${encodeURIComponent(trimmed)}`);
+    }
   };
 
   const navigateToAuth = (tab) => {
@@ -26,11 +36,9 @@ function TopNavbar() {
   return (
     <Navbar bg="light" expand="lg" className="sticky-top p-0 custom-top-navbar">
       <Container fluid className="p-0" style={{ width: '100%', height: '100%' }}>
-        <div className="d-flex align-items-center">
+        <div className="d-flex align-items-center w-100">
           <Navbar.Brand
-            onClick={() => {
-              navigate('/');
-            }}
+            onClick={() => navigate('/')}
             className="me-3 p-2 custom-navbar-brand"
             style={{ cursor: 'pointer' }}
           >
@@ -42,8 +50,13 @@ function TopNavbar() {
               className="d-inline-block align-top"
             />
           </Navbar.Brand>
+
           <ToastContainer />
-          <Form className="d-flex custom-search-form" style={{ flexGrow: 1 }}>
+
+          <Form
+            className="d-flex custom-search-form flex-grow-1"
+            onSubmit={handleSearchSubmit}
+          >
             <FormControl
               type="search"
               placeholder="Search for"
@@ -51,29 +64,29 @@ function TopNavbar() {
               aria-label="Search"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
-              style={{ borderRadius: '5px', width: '2000px' }}
+              style={{ borderRadius: '5px' }}
             />
             {searchText && (
               <Button
                 variant="link"
                 onClick={handleClearSearch}
-                style={{ marginLeft: '-40px', zIndex: 1 }}
+                className="search-clear-button"
               >
                 <X size={20} color="#6a380a" />
               </Button>
             )}
           </Form>
         </div>
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto align-items-center custom-right-nav">
-            <Nav.Link
-              onClick={() => navigate('/new')}
-              className="custom-nav-link"
-            >
+            <Nav.Link onClick={() => navigate('/new')} className="custom-nav-link">
               New
             </Nav.Link>
-            <Nav.Link href="#about" className="custom-nav-link">About</Nav.Link>
+            <Nav.Link href="#about" className="custom-nav-link">
+              About
+            </Nav.Link>
             <Nav.Link href="#notifications" className="custom-nav-link">
               <Bell size={20} />
             </Nav.Link>
@@ -90,6 +103,7 @@ function TopNavbar() {
             >
               <Heart className="heart-icon" size={20} />
             </Nav.Link>
+
             <Nav.Link
               onClick={() => navigateToAuth('login')}
               className="custom-nav-link"

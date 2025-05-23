@@ -1,12 +1,6 @@
-// src/api/productService.js
-import axios from '../api/axiosInstance';
-
-export const getAllProducts = async () => {
-  const response = await axios.get('/products');
-  return response.data;
-};
+import axios from 'axios';
 
 export const getProductById = async (id) => {
-  const response = await axios.get(`/products/${id}`);
-  return response.data;
+  const res = await axios.get(`http://localhost:8080/products/list/${id}`);
+  return res.data;
 };

@@ -7,7 +7,7 @@ import "../CSS/ProductDetails.css";
 import ProfileHomeNav from '../component/ProfileHomeNav';
 import ProductComments from '../component/ProductComments.jsx';
 import { addToCart } from '../services/cartService';
-import { getProductById } from '../services/productService'; 
+import { getProductById } from '../services/productService';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -48,8 +48,11 @@ const ProductDetail = () => {
       alert("Error adding product to cart.");
     }
   };
+
   const increaseQuantity = () => setQuantity(prev => prev + 1);
   const decreaseQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
+
+  const getImageUrl = (url) => `http://localhost:8080${url}`;
 
   if (loading) return <div>Loading...</div>;
   if (!product) return <div>Product not found</div>;
@@ -60,24 +63,26 @@ const ProductDetail = () => {
       <CategoryNav />
       <div className="product-detail-container">
         <div className="image-section">
-          <img src={product.imageUrls?.[0]} alt={product.name} />
+          {product.images?.[0]?.url ? (
+            <img src={getImageUrl(product.images[0].url)} alt={product.name} />
+          ) : (
+            <div className="no-image">Resim Yok</div>
+          )}
         </div>
+
         <div className="detail-section">
           <h1 className="product-name">{product.name}</h1>
           <div className="price-info">
             <span className="current-price">{product.price} TL</span>
-            {product.originalPrice && (
-              <span className="original-price">{product.originalPrice} TL</span>
-            )}
           </div>
           <div className="rating">
-            <span>⭐ {product.rating}</span>
+            <span>⭐ {product.rating || "4.5"}</span>
           </div>
           <p className="description">{product.description}</p>
 
           <div className="size-selector">
             <h4>Size</h4>
-            {product.sizes?.map(size => (
+            {product.size?.map(size => (
               <button
                 key={size}
                 className={`size-button ${selectedSize === size ? 'selected-size' : ''}`}
@@ -91,7 +96,7 @@ const ProductDetail = () => {
           <div className="size-selector">
             <h4>Color</h4>
             <div className="color-options">
-              {product.colors?.map(color => (
+              {product.color?.map(color => (
                 <button
                   key={color}
                   className={`color-button ${selectedColor === color ? 'selected-color' : ''}`}
@@ -117,6 +122,14 @@ const ProductDetail = () => {
           <button className="add-to-cart" onClick={handleAddToCart}>
             Add to cart
           </button>
+
+          <div className="category-info">
+            <p><strong>Category:</strong> {product.category?.name}</p>
+            <p><strong>Subcategory:</strong> {product.subCategory?.name}</p>
+            <p><strong>Brand:</strong> {product.brand}</p>
+            <p><strong>Material:</strong> {product.material}</p>
+            <p><strong>Stock:</strong> {product.stock}</p>
+          </div>
 
           <ProductComments productId={product.id} />
         </div>

@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import 'react-toastify/dist/ReactToastify.css';  
 import { useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'react-toastify/dist/ReactToastify.css';
+import "../CSS/Navbar.css";
+
+// Görseller
 import adidaslogo1 from "../images/adidaslogo1.png";
 import nikelogo1 from "../images/nikelogo1.png";
 import nikekategori from "../images/nikekategori.avif";
@@ -14,62 +17,62 @@ import sneakerbeyaz from "../images/sneakerbeyaz.webp";
 import kızsiyah from "../images/kızsiyah.webp";
 import erkekmavi from "../images/erkekmavi.webp";
 import indirim from "../images/indirim.png";
-import "../CSS/Navbar.css";
 
+// Kategoriler ve alt kategoriler
 const categories = {
-  brands: ["Nike", "Adidas", "Puma", "Sketchers", "Vans", "Converse", "Lumberjack", "Us.Polo Assn."],
-  women: ["The Newest", "Bestsellers", "Heels", "Flats", "Sneakers", "Boots", "Evening Dress"],
-  men: ["The Newest", "Bestsellers", "Sneakers", "Boots", "Sandals", "Loafers"],
-  kids: ["The Newest", "Bestsellers", "Sneakers", "Sandals", "Boots", "Slip-ons"],
-  sneakers: ["The Newest", "Bestsellers", "Running", "Basketball", "Casual", "Skateboarding"],
-  campaigns: ["50% Off", "Buy 1 Get 1 Free", "Clearance Sale"]
+  Brands: ["Nike", "Adidas", "Puma", "Sketchers", "Vans", "Converse", "Lumberjack", "Us.Polo Assn."],
+  Women: ["The Newest", "Bestsellers", "Heels", "Flats", "Sneakers", "Boots", "Evening Dress"],
+  Men: ["The Newest", "Bestsellers", "Sneakers", "Boots", "Sandals", "Loafers"],
+  Kids: ["The Newest", "Bestsellers", "Sneakers", "Sandals", "Boots", "Slip-ons"],
+  Sneakers: ["The Newest", "Bestsellers", "Running", "Basketball", "Casual", "Skateboarding"],
+  Campaigns: ["50% Off", "Buy 1 Get 1 Free", "Clearance Sale"]
 };
 
+// Görsel eşlemesi
 const categoryImages = {
-  brands: [adidaslogo1,nikelogo1],
-  men: [nikekategori,pumaerkek],
-  women: [kremtopuklu,sneakerkadın],
-  kids: [kızsiyah,erkekmavi],
-  sneakers: [sneakerbeyaz,sneakersiyah],
+  brands: [adidaslogo1, nikelogo1],
+  men: [nikekategori, pumaerkek],
+  women: [kremtopuklu, sneakerkadın],
+  kids: [kızsiyah, erkekmavi],
+  sneakers: [sneakerbeyaz, sneakersiyah],
   campaigns: [indirim],
 };
 
 function CategoryNav() {
-  const [activeCategory, setActiveCategory] = useState(null);
-  const [hoveredCategory, setHoveredCategory] = useState(null);
+  const [openedCategory, setOpenedCategory] = useState(null);
   const navbarRef = useRef(null);
-  const navigate= useNavigate();
+  const navigate = useNavigate();
 
+  // Kategori dışına tıklanınca kapanması
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navbarRef.current && !navbarRef.current.contains(event.target)) {
-        setActiveCategory(null); 
+        setOpenedCategory(null);
       }
     };
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
+  // Ana kategoriye tıklama
   const handleCategoryClick = (category) => {
-    if(category === "brands" && activeCategory === "brands" ){
-      navigate("/brands");
-    }else if(category === "women" && activeCategory === "women" ){
-      navigate("/women");
-    }else if(category === "men" && activeCategory === "men" ){
-      navigate("/men");
-    }else if(category === "kids" && activeCategory === "kids" ){
-      navigate("/kids");
-    }else if(category === "sneakers" && activeCategory === "sneakers" ){
-      navigate("/sneakers");
-    }else{
-      setActiveCategory(prevCategory => prevCategory === category ? null : category);
+    if (openedCategory === category) {
+      // Zaten açıksa: direkt sadece kategoriyle yönlendir
+      navigate(`/brands?category=${encodeURIComponent(category)}`);
+    } else {
+      setOpenedCategory(category);
     }
   };
 
-  const currentCategory = activeCategory || hoveredCategory;
+  // Alt kategoriye tıklama (örneğin Nike)
+  const handleSubCategoryClick = (category, subCategory) => {
+    navigate(`/brands?category=${encodeURIComponent(category)}&subCategory=${encodeURIComponent(subCategory)}`);
+  };
+
+  const displayCategory = openedCategory;
 
   return (
-  <> 
+    <>
       <Navbar expand="lg" className="sticky-top p-0 custom-category-navbar" ref={navbarRef}>
         <Container fluid className="p-0">
           <Navbar.Toggle aria-controls="category-navbar-nav" />
@@ -79,10 +82,11 @@ function CategoryNav() {
                 <Nav.Link
                   key={index}
                   href={`#${category}`}
-                  onMouseEnter={() => setHoveredCategory(category)}
-                  onMouseLeave={() => setHoveredCategory(null)}
-                  onClick={() => handleCategoryClick(category)}
-                  className={`custom-category-link ${activeCategory === category ? 'active' : ''}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleCategoryClick(category);
+                  }}
+                  className="custom-category-link"
                 >
                   {category.charAt(0).toUpperCase() + category.slice(1)}
                 </Nav.Link>
@@ -92,19 +96,21 @@ function CategoryNav() {
         </Container>
       </Navbar>
 
-      {currentCategory && (
+      {displayCategory && (
         <div className="category-details-container">
           <div className="category-details-panel">
             <div className="category-items">
-              <h4>{currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1)}</h4>
+              <h4>{displayCategory.charAt(0).toUpperCase() + displayCategory.slice(1)}</h4>
               <ul className="category-list single-column">
-                {categories[currentCategory].map((item, index) => (
-                  <li key={index}>{item}</li>
+                {categories[displayCategory].map((item, index) => (
+                  <li key={index} onClick={() => handleSubCategoryClick(displayCategory, item)}>
+                    {item}
+                  </li>
                 ))}
               </ul>
             </div>
             <div className="category-images">
-              {categoryImages[currentCategory].map((img, idx) => (
+              {categoryImages[displayCategory.toLowerCase()]?.map((img, idx) => (
                 <img key={idx} src={img} alt={`img-${idx}`} />
               ))}
             </div>
