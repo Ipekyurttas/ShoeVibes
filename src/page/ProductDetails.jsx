@@ -71,7 +71,7 @@ const ProductDetail = () => {
         </div>
 
         <div className="detail-section">
-          <h1 className="product-name">{product.name}</h1>
+          <p className="product-name">{product.name}</p>
           <div className="price-info">
             <span className="current-price">{product.price} TL</span>
           </div>
@@ -123,15 +123,9 @@ const ProductDetail = () => {
             Add to cart
           </button>
 
-          <div className="category-info">
-            <p><strong>Category:</strong> {product.category?.name}</p>
-            <p><strong>Subcategory:</strong> {product.subCategory?.name}</p>
-            <p><strong>Brand:</strong> {product.brand}</p>
-            <p><strong>Material:</strong> {product.material}</p>
-            <p><strong>Stock:</strong> {product.stock}</p>
+          <div style={{ marginTop: '1rem', width: '100%' }}>
+            <ProductComments productId={product.id} />
           </div>
-
-          <ProductComments productId={product.id} />
         </div>
       </div>
       <Footer />

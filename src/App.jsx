@@ -1,3 +1,4 @@
+import { ToastContainer } from 'react-toastify';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
@@ -34,6 +35,7 @@ import AdminOrderPage from './page/AdminOrderPage.jsx';
 import SearchResults from './page/SearchResults.jsx';
 
 import Contact from './page/Contact.jsx';
+import ProfilOrder from './page/ProfilOrder.jsx';
 
 
 function App() {
@@ -70,8 +72,10 @@ function App() {
         <Route path="/admin/order" element={<AdminOrderPage />} />
         <Route path="/search" element={<SearchResults />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/orders' element={<ProfilOrder/>} />
 
       </Routes>
+        <ToastContainer />
     </div>
   );
 }

@@ -12,6 +12,7 @@
 }
 
 .product-card {
+  position: relative;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
@@ -25,11 +26,29 @@
 }
 
 .card-img-top {
-  height: 320px;
-  object-fit: cover;
   width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: contain;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  display: block;
+  background-color: #fafafa;
+}
+
+.remove-icon-wrapper {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+}
+
+.remove-favorite-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #333;
+  cursor: pointer;
 }
 
 .product-details {
@@ -74,7 +93,7 @@
 
 @media (max-width: 768px) {
   .card-img-top {
-    height: 240px;
+    max-height: 300px;
   }
 
   .favorites-header {

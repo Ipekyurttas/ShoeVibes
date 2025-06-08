@@ -144,12 +144,6 @@ function Home1() {
           <img src={men} alt="zappos" className="image mt-5" />
         </div>
       </div>
-      <div className="mt-5">
-        <div className="mt-5">
-          <p className="fw-bold you-title">Sizin İçin Seçtiklerimiz</p>
-        </div>
-        <ProductList />
-      </div>
     </div>
   );
 }

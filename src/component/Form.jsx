@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify'; 
-import axios from 'axios'; 
+import { toast } from 'react-toastify';
+import axios from 'axios';
 import '../CSS/Form.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import google from '../images/google.png';
@@ -64,13 +64,21 @@ function Form({ activeTab, setActiveTab }) {
                 localStorage.setItem('token', token);
                 localStorage.setItem('role', role);
 
-                navigate('/profile');
+                // 🎯 Rol bazlı yönlendirme
+                if (role === 'ADMIN') {
+                    navigate('/admin');
+                } else if (role === 'USER') {
+                    navigate('/profile');
+                } else {
+                    toast.error('Unknown role. Access denied.');
+                }
             }
         } catch (error) {
             console.error('Login failed:', error);
             setErrorMessage('Login failed. Please check your credentials.');
         }
     };
+
 
     return (
         <div className="form-container">

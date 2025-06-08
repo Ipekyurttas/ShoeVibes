@@ -4,6 +4,7 @@ import CategoryNav from '../component/CategoryNav';
 import ProfileSideBar from '../component/ProfileSideBar';
 import FavoritesDetails from '../component/FavoritesDetails';
 import Footer from '../component/Footer';
+import axios from 'axios';
 
 function FavoritesPage() {
   return (

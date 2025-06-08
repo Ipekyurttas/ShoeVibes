@@ -21,12 +21,15 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
+  align-items: flex-start;
 }
 
 .product-name {
-  font-size: 2.5rem;
+  font-size: 1.2rem !important;
   font-weight: bold;
+  text-align: left;
+  margin-bottom: 0.2rem;
 }
 
 .product-code {
@@ -37,12 +40,14 @@
 .price-info {
   display: flex;
   gap: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  
 }
 
 .current-price {
   color: #6a380a;
   font-weight: bold;
+  font-size: 1.6rem;
 }
 
 .original-price {
@@ -51,30 +56,31 @@
 }
 
 .rating {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #ff9900;
+  margin-bottom: 0.2rem;
 }
 
 .description {
-  font-size: 1.1rem;
-  margin-top: 1rem;
+  font-size: 1.2rem;
+  margin: 0.2rem 0 0 0;
 }
 
 .size-selector h4 {
   margin: 1rem 0 0.5rem 0;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .size-button {
   margin-right: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   border: 1px solid #ddd;
   background-color: #a38461;
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.2s;
   color: white;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .size-button:hover {
@@ -115,7 +121,7 @@
 
 .quantity-selector h4 {
   margin-bottom: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .quantity-controls {
@@ -145,9 +151,9 @@
 }
 
 .quantity-controls span {
-  width: 40px;
+  width: 36px;
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.9rem;
   padding: 0.25rem;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -156,8 +162,8 @@
 
 .add-to-cart {
   margin-top: 1.5rem;
-  padding: 1rem;
-  font-size: 1.2rem;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
   background-color: #6a380a;
   color: white;
   border: none;
@@ -165,6 +171,7 @@
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.2s;
+  width: 80%;
 }
 
 .add-to-cart:hover {
@@ -182,5 +189,5 @@
   padding: 0.75rem;
   border-radius: 8px;
   margin-bottom: 1rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }

@@ -53,7 +53,7 @@ export default function SettingsPage() {
 
                     {/* Kullanıcı Hesabı Başlığı */}
                     <h5
-                        style={{ cursor: "pointer", fontWeight: "bold" }}
+                        style={{ cursor: "pointer", fontWeight: "bold", fontSize: "15px" }}
                         onClick={toggleAccountForm}
                     >
                         Kullanıcı Hesabı {showAccountForm ? "▲" : "▼"}
@@ -112,7 +112,7 @@ export default function SettingsPage() {
                                         onChange={handleChange}
                                     />
                                 </div>
-                                <button type="submit" className="btn btn-sm btn-primary">
+                                <button type="submit" className="btn btn-sm btn-primary" style={{ width: "100px", height: "50px", marginLeft: "400px", marginTop: "-15px", marginBottom: "15px" }}>
                                     Güncelle
                                 </button>
                             </form>
@@ -123,7 +123,7 @@ export default function SettingsPage() {
 
                     {/* Dil ve Bölge Ayarları */}
                     <h5
-                        style={{ cursor: "pointer", fontWeight: "bold" }}
+                        style={{ cursor: "pointer", fontWeight: "bold", fontSize: "15px" }}
                         onClick={toggleLocaleForm}
                     >
                         Dil ve Bölge Ayarları {showLocaleForm ? "▲" : "▼"}
@@ -160,12 +160,16 @@ export default function SettingsPage() {
                                         <option value="America/New_York">America/New York</option>
                                     </select>
                                 </div>
-                                <button type="submit" className="btn btn-sm btn-primary">
+                                <button type="submit" className="btn btn-sm btn-primary" style={{ width: "100px", height: "50px", marginLeft: "400px", marginTop: "-15px", marginBottom: "15px" }}>
                                     Kaydet
                                 </button>
                             </form>
                         </div>
                     )}
+                    <div>
+
+                    </div>
+
                 </div>
             </div>
 

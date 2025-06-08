@@ -22,4 +22,3 @@ function ProfileHome() {
 }
 
 export default ProfileHome;
-

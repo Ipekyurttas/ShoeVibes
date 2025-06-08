@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getCartByUserId } from '../services/cartService';
+import axios from 'axios';
 
 const Cart = ({ userId }) => {
     const [cart, setCart] = useState(null);

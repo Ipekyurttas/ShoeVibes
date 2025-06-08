@@ -8,23 +8,35 @@ const ProductList = ({ filters }) => {
   useEffect(() => {
     const fetchFilteredProducts = async () => {
       try {
+        let response;
         if (filters && filters.Color && filters.Color.length > 0) {
-          const response = await axios.post('http://localhost:8080/products/filter', {
-            category: "Color", 
-            subCategory: filters.Color[0] 
+          response = await axios.post('http://localhost:8080/products/filter', {
+            category: "Color",
+            subCategory: filters.Color[0]
           });
-          setProducts(response.data);
         } else {
-          const response = await axios.get('http://localhost:8080/products/list');
-          setProducts(response.data);
+          response = await axios.get('http://localhost:8080/products/list');
         }
+
+        const data = response.data;
+        if (Array.isArray(data)) {
+          setProducts(data);
+        } else if (Array.isArray(data.products)) {
+          setProducts(data.products);
+        } else {
+          console.warn("API beklenmeyen formatta veri döndü:", data);
+          setProducts([]);
+        }
+
       } catch (error) {
         console.error("Error fetching products:", error);
+        setProducts([]);
       }
     };
 
     fetchFilteredProducts();
   }, [filters]);
+
 
   return (
     <div className="product-list-container">

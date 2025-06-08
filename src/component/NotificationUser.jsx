@@ -1,25 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Card } from 'react-bootstrap';
-import '../CSS/Notification.css'; 
+import '../CSS/Notification.css';
+import axios from 'axios';
 
 const NotificationUser = () => {
-  const notifications = [
-    {
-      id: 1,
-      message: "Kargoya verildi: Siparişiniz yola çıktı!",
-      createdAt: "2025-05-18T14:30:00"
-    },
-    {
-      id: 2,
-      message: "İndirim: Sepette %20 indirim fırsatını kaçırmayın!",
-      createdAt: "2025-05-16T10:15:00"
-    },
-    {
-      id: 3,
-      message: "Hesabınız başarıyla güncellendi.",
-      createdAt: "2025-05-10T09:45:00"
+  const [notifications, setNotifications] = useState([]);
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/api/notifications/my", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        setNotifications(response.data);
+      } catch (error) {
+        console.error("Bildirimler alınamadı:", error);
+      }
+    };
+
+    if (token) {
+      fetchNotifications();
     }
-  ];
+  }, [token]);
 
   return (
     <Container className="mt-4">

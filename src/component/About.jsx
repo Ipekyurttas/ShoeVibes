@@ -32,7 +32,11 @@ const About = () => {
                 <div className="row">
                     <div className="col-md-8 mx-auto">
                         <p className="lead">
-                            <strong>ShoeVibes</strong>, kullanıcılara geniş bir ayakkabı seçkisi sunarak, her tarza ve ihtiyaca uygun kaliteli modelleri kolayca bulmalarını sağlar. Kullanıcı dostu arayüzü sayesinde alışveriş süreci hızlı ve pratiktir. Güvenli ödeme seçenekleri ve sorunsuz iade politikalarıyla kullanıcıların alışverişte kendilerini güvende hissetmelerini destekler. Ayrıca, stil önerileri ve kullanıcı yorumlarıyla alışveriş deneyimini zenginleştirerek, modayı takip eden herkes için ilham kaynağı olur. ShoeVibes, ayakkabı tutkunlarının keyifli ve sorunsuz bir şekilde alışveriş yapabilecekleri güvenilir bir platformdur.
+                            <strong>ShoeVibes</strong>, 2019 yılında Yeşim KAYA, İpek Nur YURTTAŞ ve Zeynep İNCE’nin öncülüğünde kurulan SohoVibes, modern yaşamın dinamiklerine uyum sağlayan özgün bir alışveriş deneyimi sunmak amacıyla yola çıktı. Moda tutkusunu teknolojiyle harmanlayan bu girişim, kullanıcıların tarzlarını özgürce ifade edebileceği bir dijital platform haline geldi. Kapsayıcı ürün çeşitliliği, kullanıcı dostu arayüzü ve yenilikçi filtreleme sistemleri ile SohoVibes, her yaştan ve tarzdan kullanıcıya hitap eden sade ama güçlü bir alışveriş deneyimi sunar.
+
+                            SohoVibes, yalnızca bir e-ticaret sitesi değil; aynı zamanda stilin, yaratıcılığın ve kişisel ifadenin ön planda tutulduğu bir yaşam alanıdır. Kurucularının vizyonuyla şekillenen bu platform, müşteri memnuniyetini merkeze alarak sürekli gelişen ürün koleksiyonları ve kişiselleştirilmiş alışveriş çözümleri ile fark yaratmayı hedefler. Kaliteli ürünlere erişimi kolaylaştıran yapısıyla kısa sürede sadık bir kullanıcı kitlesi oluşturmuş ve dijital moda dünyasında kendine özel bir yer edinmiştir.
+
+                            Her detayında özenle düşünülmüş bir deneyim vadeden SohoVibes, geçmişin ilhamı ile geleceğin modasını bugüne taşıyor.
                         </p>
                     </div>
                 </div>

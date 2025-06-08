@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import favoriteService from '../services/favoriteService'; // oluşturduğun dosya yolu
+import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import { X, StarFill, Star } from 'react-bootstrap-icons';
+import { useNavigate } from 'react-router-dom';
 import "../CSS/FavoriteDetails.css";
 
 function FavoritesDetails() {
   const [favorites, setFavorites] = useState([]);
-  const userId = 1; // Örnek kullanıcı ID'si, bunu auth ile değiştir
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchFavorites();
-  }, []);
+    if (token) {
+      fetchFavorites();
+    }
+  }, [token]);
 
   const fetchFavorites = async () => {
     try {
-      const response = await favoriteService.listFavorite(userId);
-      // backend'den dönen product seti response.data.products içinde
-      setFavorites(Array.from(response.data.products || []));
+      const response = await axios.get("http://localhost:8080/favorites/list", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setFavorites(response.data.products || []);
     } catch (error) {
       console.error('Favoriler alınırken hata:', error);
     }
@@ -24,12 +31,19 @@ function FavoritesDetails() {
 
   const removeFavorite = async (productId) => {
     try {
-      await favoriteService.removeFavorite(userId, productId);
-      fetchFavorites(); // Listeyi güncelle
+      await axios.delete("http://localhost:8080/favorites/remove", {
+        params: { productId },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      fetchFavorites();
     } catch (error) {
       console.error('Favori kaldırılırken hata:', error);
     }
   };
+
+  const getImageUrl = (url) => `http://localhost:8080${url}`;
 
   const renderStars = (rating) => {
     return Array(5)
@@ -45,33 +59,40 @@ function FavoritesDetails() {
 
   return (
     <div className="favorites-page product-list-container">
-      <h5 className="mb-4">Favorites</h5>
+      <h5 className="mb-4">Favori Ürünler</h5>
       {favorites.length > 0 ? (
         <div className="products-grid">
           {favorites.map((product) => (
-            <div key={product.id} className="product-card position-relative">
-              <div className="product-image">
-                <img
-                  src={product.imageUrls && product.imageUrls.length > 0 ? product.imageUrls[0] : ''}
-                  alt={product.name}
-                  className="card-img-top"
-                />
+            <div key={product.id} className="product-card">
+              <div className="remove-icon-wrapper">
                 <button
-                  className="position-absolute top-0 end-0 m-2 p-0 border-0 bg-transparent text-dark"
+                  className="remove-favorite-button"
                   onClick={() => removeFavorite(product.id)}
                 >
                   <X size={20} />
                 </button>
               </div>
+              <img
+                src={product.imageUrls?.[0] ? getImageUrl(product.imageUrls[0]) : ''}
+                alt={product.name}
+                className="card-img-top"
+              />
               <div className="product-details">
                 <h3 className="product-title">{product.name}</h3>
-                <div className="rating-container d-flex align-items-center">{renderStars(product.rating || 0)}</div>
-                <div className="price-container my-2">
-                  <span className="current-price fw-bold">{product.price.toLocaleString()} TL</span>
+                <div className="rating-container d-flex align-items-center">
+                  {renderStars(product.rating || 0)}
                 </div>
-                <div className="mb-2 small text-muted">Size: {product.size || '-'}</div>
-                <Button variant="primary" className="w-100" onClick={() => alert(`${product.name} added to cart!`)}>
-                  Add to Cart
+                <div className="price-container my-2">
+                  <span className="current-price fw-bold">
+                    {product.price.toLocaleString()} TL
+                  </span>
+                </div>
+                <Button
+                  variant="primary"
+                  className="w-100"
+                  onClick={() => navigate(`/product/${product.id}`)}
+                >
+                  Sepete Ekle
                 </Button>
               </div>
             </div>
@@ -81,8 +102,7 @@ function FavoritesDetails() {
         <div className="empty-favorites-card text-center">
           <div>
             <div style={{ fontSize: '2rem' }}>💔</div>
-            <p className="mt-3 text-muted">You haven't added any products yet</p>
-            {/* Burada alışverişe yönlendirme */}
+            <p className="mt-3 text-muted">Henüz favori ürün eklemediniz.</p>
           </div>
         </div>
       )}

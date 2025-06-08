@@ -1,57 +1,199 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../CSS/Payment.css';
-import { useNavigate } from 'react-router-dom';
 
 const Payment = () => {
   const navigate = useNavigate();
-  const [selectedAddress, setSelectedAddress] = useState(null);
-  const [paymentMethod, setPaymentMethod] = useState("credit_card");
+  const location = useLocation();
+
+  const {
+    totalPrice = 0,
+    discount = 0,
+    discountedPrice = 0,
+    appliedCoupon = null,
+    itemCount = 0
+  } = location.state || {};
 
   const savedAddresses = [
-    { id: 1, label: "Home Address", address: "123 Main St, Istanbul" },
-    { id: 2, label: "Work Address", address: "456 Office Ave, Ankara" }
+    {
+      id: 1,
+      label: "Home Address",
+      address: "Moda Neighborhood, 123rd St. No:5, Kadikoy, Istanbul"
+    },
+    {
+      id: 2,
+      label: "Work Address",
+      address: "Kizilay Neighborhood, No:10, Cankaya, Ankara"
+    }
   ];
 
-  const handleConfirmPayment = () => {
-    if (!selectedAddress) {
-      alert("Please select an address.");
+  const [selectedAddressId, setSelectedAddressId] = useState(null);
+  const [address, setAddress] = useState('');
+  const [agreementChecked, setAgreementChecked] = useState(false);
+
+  const [form, setForm] = useState({
+    fullName: '',
+    cardNumber: '',
+    expiry: '',
+    cvc: ''
+  });
+
+  useEffect(() => {
+    if (!location.state) {
+      navigate("/cart");
+    }
+  }, [location.state, navigate]);
+
+  const handleAddressSelect = (id) => {
+    const selected = savedAddresses.find(a => a.id === parseInt(id));
+    setSelectedAddressId(id);
+    setAddress(selected?.address || '');
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "cardNumber") {
+      const cleaned = value.replace(/\D/g, "").slice(0, 16);
+      const formatted = cleaned.replace(/(.{4})/g, "$1 ").trim();
+      setForm(prev => ({ ...prev, [name]: formatted }));
+    } else {
+      setForm(prev => ({ ...prev, [name]: value }));
+    }
+  };
+
+  const handlePayment = () => {
+    if (!agreementChecked) {
+      alert("Lütfen sözleşmeyi kabul ediniz.");
       return;
     }
-    alert("Payment successful!");
-    navigate("/order"); 
+
+    alert("Ödeme işlemi tamamlandı!");
+    navigate("/"); // ✅ Anasayfaya yönlendir
   };
 
   return (
-    <div className="payment-container">
-      <h2>Payment</h2>
+    <div className="container payment-page mt-5 mb-5">
+      <div className="row">
+        <div className="col-md-7">
+          <h3 className="mb-4">Payment Details</h3>
 
-      <div className="section">
-        <h4>Select Delivery Address</h4>
-        {savedAddresses.map(addr => (
-          <div key={addr.id}>
-            <input
-              type="radio"
-              name="address"
-              value={addr.id}
-              onChange={() => setSelectedAddress(addr)}
-            />
-            <label>{addr.label} - {addr.address}</label>
+          <div className="mb-4">
+            <label className="form-label">Saved Addresses</label>
+            <select
+              className="form-select"
+              value={selectedAddressId || ''}
+              onChange={(e) => handleAddressSelect(e.target.value)}
+            >
+              <option value="">Select an address</option>
+              {savedAddresses.map(addr => (
+                <option key={addr.id} value={addr.id}>{addr.label}</option>
+              ))}
+            </select>
           </div>
-        ))}
-      </div>
 
-      <div className="section">
-        <h4>Select Payment Method</h4>
-        <select value={paymentMethod} onChange={e => setPaymentMethod(e.target.value)}>
-          <option value="credit_card">Credit Card</option>
-          <option value="cash_on_delivery">Cash on Delivery</option>
-          <option value="bank_transfer">Bank Transfer</option>
-        </select>
-      </div>
+          <div className="mb-4">
+            <label className="form-label">Address</label>
+            <textarea
+              className="form-control"
+              rows="2"
+              value={address}
+              readOnly
+            />
+          </div>
 
-      <button className="btn btn-success mt-3" onClick={handleConfirmPayment}>
-        Confirm & Pay
-      </button>
+          <div className="mb-3">
+            <label className="form-label">Full Name</label>
+            <input
+              type="text"
+              className="form-control"
+              name="fullName"
+              value={form.fullName}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Card Number</label>
+            <input
+              type="text"
+              className="form-control"
+              name="cardNumber"
+              value={form.cardNumber}
+              onChange={handleChange}
+              placeholder="1234 5678 9012 3456"
+            />
+          </div>
+
+          <div className="row">
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Expiry Date</label>
+              <input
+                type="text"
+                className="form-control"
+                name="expiry"
+                placeholder="MM/YY"
+                value={form.expiry}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-md-6 mb-3">
+              <label className="form-label">CVC</label>
+              <input
+                type="text"
+                className="form-control"
+                name="cvc"
+                value={form.cvc}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="form-check mb-3 d-flex align-items-center">
+            <input
+              className="form-check-input me-2"
+              type="checkbox"
+              id="agreement"
+              checked={agreementChecked}
+              onChange={() => setAgreementChecked(!agreementChecked)}
+              style={{ width: '16px', height: '16px' }}
+            />
+            <label className="form-check-label" htmlFor="agreement">
+              I read the agreement, I accept the agreement.
+            </label>
+          </div>
+
+          <button
+            className="btn btn-success w-100 mt-3"
+            onClick={handlePayment}
+          >
+            Complete Payment
+          </button>
+        </div>
+
+        <div className="col-md-5">
+          <div className="order-summary">
+            <h5 className="mb-3">Order Summary ({itemCount} items)</h5>
+            <div className="summary-item">
+              <span>Subtotal</span>
+              <span>{totalPrice.toLocaleString('tr-TR')} TL</span>
+            </div>
+            {appliedCoupon && (
+              <div className="summary-item">
+                <span>Coupon ({appliedCoupon})</span>
+                <span>-{discount.toFixed(2)} TL</span>
+              </div>
+            )}
+            <div className="summary-item">
+              <span>Shipping</span>
+              <span>69.99 TL</span>
+            </div>
+            <div className="summary-total">
+              <span>Total : </span>
+              <span>{(discountedPrice + 69.99).toLocaleString('tr-TR')} TL</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

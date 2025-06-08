@@ -1,0 +1,18 @@
+.order-success-wrapper {
+    background-color: #fefefe;
+    border-left: 5px solid #28a745;
+}
+
+.order-products-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.order-product-item img {
+    object-fit: cover;
+    border: 1px solid #ddd;
+}
+
+.product-name {
+    font-weight: 500;
+}

@@ -5,6 +5,7 @@ import Footer from '../component/Footer';
 import ReviewDetail from '../component/ReviewDetail';
 import ProfileSideBar from '../component/ProfileSideBar';
 import { Container, Row, Col } from 'react-bootstrap';
+import axios from 'axios';
 
 const ReviewPage = () => {
   return (

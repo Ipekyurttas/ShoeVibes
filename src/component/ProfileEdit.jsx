@@ -88,3 +88,11 @@ function ProfileEdit() {
 }
 
 export default ProfileEdit;
+
+
+
+// useEffect(() => {
+//     axios.get('http://localhost:8080/user/profile')
+//         .then(res => setProfile(res.data))
+//         .catch(err => console.error(err));
+// }, []);
